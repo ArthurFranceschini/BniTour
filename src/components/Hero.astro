@@ -1,0 +1,86 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { ChevronRight } from 'lucide-astro';
+---
+
+<Layout title="Hero">
+  <main>
+    <section
+      id="Hero"
+      class="section-padding section-reveal">
+      
+      <div 
+        class="h-screen bg-cover bg-center bg-no-repeat rounded-xl overflow-hidden relative"
+        style="background-image: url('Hero-bg1.webp');">
+        
+        <div class="absolute inset-0" style="background: linear-gradient(45deg, rgba(25, 55, 85, 0.4 ), transparent);"></div>
+        
+        <div class="relative z-10 h-full flex flex-col justify-end items-start p-4 pb-4">
+                    <a href='/' class="btn-cta text-white hover:bg-white/10 mb-4">
+            <span class="button-content-initial-text">Confira mais destinos</span>
+            <div class="btn-cta-icon-wrapper button-content-initial-icon bg-white/20">
+              <ChevronRight size={20} color="white" />
+            </div>
+          </a>
+          
+          <h1 class="mb-2 text-white title-reveal w-1/2">Lorem ipsum dolor sit amet, consectetur. </h1>
+          <h2 class="mb-4 text-white title-reveal">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean pharetra accumsan orci, in bibendum purus vulputate a. Etiam ultrices odio sapien..</h2>
+          
+          <div class="flex gap-4 mt-6">
+            <a href='/' class="btn-nav text-black mt-6">
+              <span class="button-content-initial-text">Saiba Mais</span>
+              <div class="btn-cta-icon-wrapper button-content-initial-icon bg-black">
+                <ChevronRight size={20} color="white" />
+              </div>
+            </a>
+             <a href='/' class="btn-cta text-white hover:bg-white/10 mt-6">
+              <span class="button-content-initial-text">Saiba Mais</span>
+              <div class="btn-cta-icon-wrapper button-content-initial-icon bg-white/20">
+                <ChevronRight size={20} color="white" />
+              </div>
+            </a>
+          </div>
+        </div> 
+      </div>
+    </section>
+  </main>
+</Layout>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const sections = document.querySelectorAll('.section-reveal, .section-reveal-left');
+    
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          if (entry.target.classList.contains('section-reveal')) {
+            entry.target.classList.add('section-reveal-active');
+          }
+          if (entry.target.classList.contains('section-reveal-left')) {
+            entry.target.classList.add('section-reveal-left-active');
+          }
+          
+          setTimeout(() => {
+            const titles = entry.target.querySelectorAll('.title-reveal');
+            titles.forEach((title, index) => {
+              setTimeout(() => {
+                title.classList.add('is-visible');
+              }, index * 200); 
+            });
+          }, 400);
+          
+          setTimeout(() => {
+            const buttons = entry.target.querySelectorAll('.btn-cta, .btn-nav');
+            buttons.forEach((button, index) => {
+              setTimeout(() => {
+                button.classList.add('is-revealed');
+              }, index * 200); 
+            });
+          }, 1200);
+        }
+      });
+    });
+
+    sections.forEach(section => observer.observe(section));
+  });
+</script>
