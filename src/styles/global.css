@@ -5,6 +5,10 @@ html {
 }
 
 @layer components {
+  .nav-item {
+      @apply inline-flex items-center hover:text-white font-normal focus:outline-none backdrop-blur-md cursor-pointer overflow-hidden gap-x-8;
+  }
+
 .btn-cta {
   @apply inline-flex items-center rounded-full font-normal transition-all duration-300 focus:outline-none border border-white bg-transparent backdrop-blur-md cursor-pointer overflow-hidden pl-4 pr-0 gap-x-8;
 }
@@ -92,4 +96,43 @@ html {
   p {
     @apply text-lg lg:text-2xl font-normal tracking-tighter leading-relaxed;
   }
+}
+
+.header-fade-in {
+  opacity: 0;
+  transform: translateY(-20px);
+  transition: all 0.8s ease-out;
+}
+
+.header-fade-in.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.header-btn {
+  opacity: 0;
+  transform: translateY(-10px);
+  transition: all 0.6s ease-out;
+}
+
+.header-btn.is-revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.nav-item {
+    opacity: 0;
+    transform: translateY(-15px);
+    transition: opacity 0.5s ease-out, transform 0.5s ease-out; 
+}
+
+.nav-item.is-revealed {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .nav-item {
+    transition-property: opacity, transform; 
+    transition-duration: 1s;
+    transition-timing-function: ease-out;
 }

@@ -1,0 +1,67 @@
+---
+import { ChevronRight } from 'lucide-astro';
+---
+
+<header class="section-padding flex items-center header-fade-in relative w-full bg-white z-50 py-1 sm:py-3 md:py-4 transition-colors duration-300">
+    <div class="flex items-center justify-between w-full">
+        
+        <div class="flex-shrink-0">
+            <a href='/' class="btn-nav border-1 border-black text-black header-btn">
+                <span class="button-content-initial-text">CTA</span>
+                <div class="btn-cta-icon-wrapper button-content-initial-icon bg-black">
+                    <ChevronRight size={20} color="white" />
+                </div>
+            </a>
+        </div>
+
+        <div class="absolute left-1/2 transform -translate-x-1/2">
+            <img src="/logoipsum-332.svg" alt="Logo" class="h-8">
+        </div>
+        
+        <div class="flex items-center gap-4">
+            <div class="flex gap-4 nav-links">
+                <a href="/" class="nav-item hover:text-white">Home</a>
+                <a href="/" class="nav-item">Passeios</a>
+                <a href="/" class="nav-item">Sobre</a>
+                <a href="/" class="nav-item">Depoimentos</a>
+            </div>
+            <a href='/' class="btn-cta border-1 border-black text-black header-btn">
+                <span class="button-content-initial-text">Blog</span>
+                <div class="btn-cta-icon-wrapper button-content-initial-icon bg-black">
+                    <ChevronRight size={20} color="white" />
+                </div>
+            </a>
+        </div>
+
+    </div>
+</header>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+
+        const header = document.querySelector('.header-fade-in');
+        if (header) {
+            setTimeout(() => {
+                header.classList.add('is-visible');
+            }, 200);
+        }
+
+        const navItems = document.querySelectorAll('.nav-item');
+        setTimeout(() => {
+            navItems.forEach((item, index) => {
+                setTimeout(() => {
+                    item.classList.add('is-revealed');
+                }, index * 100); 
+            });
+        }, 600); 
+
+        const headerBtns = document.querySelectorAll('.header-btn');
+        setTimeout(() => {
+            headerBtns.forEach((btn, index) => {
+                setTimeout(() => {
+                    btn.classList.add('is-revealed');
+                }, index * 200); 
+            });
+        }, 1000);
+    });
+</script>
