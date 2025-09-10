@@ -62,7 +62,7 @@ html {
     }
 
     .section-padding {
-      @apply py-16 px-2 md:px-2 lg:px-2 lg:py-8;
+      @apply py-4 px-2 md:px-2 lg:px-4 lg:py-4;
     }
 
     .section-reveal {
