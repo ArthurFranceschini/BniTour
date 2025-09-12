@@ -6,7 +6,7 @@ import { ChevronLeft, ChevronRight } from 'lucide-astro';
 <section id='Pacotes' class="section-padding section-reveal">
   <div class="relative z-10 p-4 md:p-8">
     <div class="header-container mb-8">
-      <h1 class='text-black title-reveal'>Lorem Ipsum Dolor</h1>
+      <h1 class='text-black title-reveal'>Lorem ipsum dolor sit amet, consectetur.</h1>
       
       <div class="carousel-controls">
         <button class="carousel-btn carousel-btn-prev" id="prevBtn" style="display: none;">
@@ -25,31 +25,115 @@ import { ChevronLeft, ChevronRight } from 'lucide-astro';
           <div class="image-container card-reveal">
             <div class="card-tag card-tag-blue">Puerto Iguazú - Argentina</div>
             <img src={CataratasImg.src} alt="Puerto Iguazú - Argentina">
+            <div class="card-content">
+              <div class="card-content-wrapper">
+                <div class="card-text">
+                  <h1 class="mb-2">Cataratas do Iguaçu</h1>
+                  <p>Lorem ipsum dolor sit amet, consectetur.</p>
+                </div>
+                <a href='/' class="btn-cta text-white hover:bg-white/10">
+                  <span class="button-content-initial-text">Ver Mais</span>
+                  <div class="btn-cta-icon-wrapper button-content-initial-icon bg-white/20">
+                    <ChevronRight size={20} color="white" />
+                  </div>
+                </a>
+              </div>
+            </div>
           </div>
           
           <div class="image-container card-reveal">
             <div class="card-tag card-tag-green">Foz do Iguaçu - Brasil</div>
             <img src={CataratasImg.src} alt="Foz do Iguaçu - Brasil">
+            <div class="card-content">
+              <div class="card-content-wrapper">
+                <div class="card-text">
+                  <h1 class="mb-2">Lado Brasileiro</h1>
+                  <p>Lorem ipsum dolor sit amet, consectetur.</p>
+                </div>
+                <a href='/' class="btn-cta text-white hover:bg-white/10">
+                  <span class="button-content-initial-text">Ver Mais</span>
+                  <div class="btn-cta-icon-wrapper button-content-initial-icon bg-white/20">
+                    <ChevronRight size={20} color="white" />
+                  </div>
+                </a>
+              </div>
+            </div>
           </div>
           
           <div class="image-container card-reveal">
             <div class="card-tag card-tag-red">Ciudad del Este - Paraguai</div>
             <img src={CataratasImg.src} alt="Ciudad del Este - Paraguai">
+            <div class="card-content">
+              <div class="card-content-wrapper">
+                <div class="card-text">
+                  <h1 class="mb-2">Compras no Paraguai</h1>
+                  <p>Lorem ipsum dolor sit amet, consectetur.</p>
+                </div>
+                <a href='/' class="btn-cta text-white hover:bg-white/10">
+                  <span class="button-content-initial-text">Ver Mais</span>
+                  <div class="btn-cta-icon-wrapper button-content-initial-icon bg-white/20">
+                    <ChevronRight size={20} color="white" />
+                  </div>
+                </a>
+              </div>
+            </div>
           </div>
-          
+
           <div class="image-container card-reveal">
             <div class="card-tag card-tag-blue">Puerto Iguazú - Argentina</div>
             <img src={CataratasImg.src} alt="Puerto Iguazú - Argentina">
+            <div class="card-content">
+              <div class="card-content-wrapper">
+                <div class="card-text">
+                  <h1 class="mb-2">Cataratas do Iguaçu</h1>
+                  <p>Lorem ipsum dolor sit amet, consectetur.</p>
+                </div>
+                <a href='/' class="btn-cta text-white hover:bg-white/10">
+                  <span class="button-content-initial-text">Ver Mais</span>
+                  <div class="btn-cta-icon-wrapper button-content-initial-icon bg-white/20">
+                    <ChevronRight size={20} color="white" />
+                  </div>
+                </a>
+              </div>
+            </div>
           </div>
           
           <div class="image-container card-reveal">
             <div class="card-tag card-tag-green">Foz do Iguaçu - Brasil</div>
             <img src={CataratasImg.src} alt="Foz do Iguaçu - Brasil">
+            <div class="card-content">
+              <div class="card-content-wrapper">
+                <div class="card-text">
+                  <h1 class="mb-2">Lado Brasileiro</h1>
+                  <p>Lorem ipsum dolor sit amet, consectetur.</p>
+                </div>
+                <a href='/' class="btn-cta text-white hover:bg-white/10">
+                  <span class="button-content-initial-text">Ver Mais</span>
+                  <div class="btn-cta-icon-wrapper button-content-initial-icon bg-white/20">
+                    <ChevronRight size={20} color="white" />
+                  </div>
+                </a>
+              </div>
+            </div>
           </div>
           
           <div class="image-container card-reveal">
             <div class="card-tag card-tag-red">Ciudad del Este - Paraguai</div>
             <img src={CataratasImg.src} alt="Ciudad del Este - Paraguai">
+            <div class="card-content">
+              <div class="card-content-wrapper">
+                <div class="card-text">
+                  <h1 class="mb-2">Compras no Paraguai</h1>
+                  <p>Lorem ipsum dolor sit amet, consectetur.</p>
+                </div>
+                <a href='/' class="btn-cta text-white hover:bg-white/10">
+                  <span class="button-content-initial-text">Ver Mais</span>
+                  <div class="btn-cta-icon-wrapper button-content-initial-icon bg-white/20">
+                    <ChevronRight size={20} color="white" />
+                  </div>
+                </a>
+              </div>
+            </div>
           </div>
           
         </div>
@@ -84,6 +168,16 @@ import { ChevronLeft, ChevronRight } from 'lucide-astro';
               }, index * 200);
             });
           }, 800);
+          
+          // Animar botões CTA
+          setTimeout(() => {
+            const ctaButtons = entry.target.querySelectorAll('.btn-cta');
+            ctaButtons.forEach((button, index) => {
+              setTimeout(() => {
+                button.classList.add('is-revealed');
+              }, index * 200);
+            });
+          }, 1200);
         }
       });
     });

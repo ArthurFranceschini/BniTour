@@ -225,15 +225,24 @@ html {
   padding: 0.5rem 0;
 }
 
-.image-container {
-  flex: 0 0 auto;
-  width: calc(33.333% - 1rem);
-  position: relative;
-  padding-bottom: calc(33.333% * 0.5625 - 0.5625rem);
-  overflow: hidden;
-  border-radius: 8px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  transition: box-shadow 0.3s ease;
+.image-container::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 50%;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent);
+  z-index: 1;
+}
+
+.card-content {
+  position: absolute;
+  bottom: 12px;
+  left: 12px;
+  right: 12px;
+  color: white;
+  z-index: 2;
 }
 
 .image-container:hover {
@@ -273,17 +282,16 @@ html {
   background: #3b82f6; 
 }
 
-.card-reveal {
+.image-container.card-reveal {
   opacity: 0;
-  transform: translateY(30px);
-  transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  transform: translateY(40px) scale(0.95);
+  transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.card-reveal.is-visible {
+.image-container.card-reveal.is-visible {
   opacity: 1;
-  transform: translateY(0);
+  transform: translateY(0) scale(1);
 }
-
 .carousel-btn {
   background: rgba(255, 255, 255, 0.95);
   border: 1px solid rgba(0, 0, 0, 0.1);
@@ -307,14 +315,6 @@ html {
     background-color 0.3s ease,
     box-shadow 0.3s ease,
     color 0.3s ease;
-}
-
-.carousel-btn[style*="display: none"],
-.carousel-btn.hidden {
-  opacity: 0;
-  visibility: hidden;
-  transform: scale(0.8);
-  pointer-events: none;
 }
 
 .carousel-btn[style*="display: flex"],
@@ -345,4 +345,141 @@ html {
 
 .carousel-btn:hover svg {
   transform: scale(1.1);
+}
+
+.card-content {
+  position: absolute;
+  bottom: 12px;
+  left: 12px;
+  right: 12px;
+  color: white;
+  z-index: 2;
+}
+
+.card-content h2 {
+  font-size: 1.125rem;
+  font-weight: 600;
+  margin: 0 0 4px 0;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+}
+
+.card-content p {
+  font-size: 0.875rem;
+  margin: 0;
+  opacity: 0.9;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.image-container {
+  flex: 0 0 auto;
+  width: calc(33.333% - 1rem);
+  position: relative;
+  height: 300px; 
+  overflow: hidden;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.3s ease;
+}
+
+.image-container img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.card-content-wrapper {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 8px;
+  width: 100%;
+  position: relative;
+}
+
+.card-text {
+  flex: 1;
+  min-width: 0;
+  padding-right: 8px; 
+}
+
+.card-content .btn-cta {
+  position: absolute;
+  right: 0; 
+  bottom: 0; 
+  margin: 0; 
+  padding: 4px 0px 4px 8px; 
+  border-radius: 20px 0 0 20px; 
+}
+
+.card-content .btn-cta .btn-cta-icon-wrapper {
+  margin-right: 0; 
+  border-radius: 50%;
+}
+
+.card-cta-btn:hover {
+  background: rgba(255, 255, 255, 0.3);
+  transform: scale(1.1);
+}
+.card-content .btn-cta {
+  font-size: 0.75rem; 
+  padding: 4px 8px; 
+  min-width: auto; 
+  white-space: nowrap; 
+  flex-shrink: 0; 
+}
+
+.card-content .btn-cta .button-content-initial-text {
+  font-size: 0.75rem; 
+  padding-right: 4px; 
+}
+
+.card-content .btn-cta .btn-cta-icon-wrapper {
+  width: 24px; 
+  height: 24px; 
+  min-width: 24px; 
+}
+
+.card-content-wrapper {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 8px; 
+  width: 100%;
+}
+
+.card-text {
+  flex: 1;
+  min-width: 0; 
+  margin-right: 8px; 
+}
+
+.card-content .btn-cta {
+  height: 32px !important;
+  min-height: 32px !important;
+  padding: 0 0 0 12px !important;
+  border-radius: 16px !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 8px !important; 
+}
+
+.card-content .btn-cta .button-content-initial-text {
+  font-size: 0.75rem !important; 
+  line-height: 1 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.card-content .btn-cta .btn-cta-icon-wrapper {
+  width: 32px !important; 
+  height: 32px !important; 
+  min-width: 32px !important;
+  margin: 0 !important; 
+  border-radius: 50% !important; 
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
 }
