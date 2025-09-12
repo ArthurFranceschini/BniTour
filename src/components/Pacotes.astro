@@ -1,43 +1,59 @@
 ---
 import CataratasImg from '../assets/image/Cards/Brasil/Cataratas.jpg';
+import { ChevronLeft, ChevronRight } from 'lucide-astro';
 ---
 
 <section id='Pacotes' class="section-padding section-reveal">
   <div class="relative z-10 p-4 md:p-8">
-    <h1 class='mb-8 text-black title-reveal w-1/2'>Lorem Ipsum Dolor</h1>
+    <div class="header-container mb-8">
+      <h1 class='text-black title-reveal'>Lorem Ipsum Dolor</h1>
+      
+      <div class="carousel-controls">
+        <button class="carousel-btn carousel-btn-prev" id="prevBtn" style="display: none;">
+          <ChevronLeft size={20} />
+        </button>
+        <button class="carousel-btn carousel-btn-next" id="nextBtn">
+          <ChevronRight size={20} />
+        </button>
+      </div>
+    </div>
     
     <div class="carousel-container">
       <div class="carousel-wrapper">
         <div class="carousel-track" id="carousel-track">
           
           <div class="image-container card-reveal">
-            <img src={CataratasImg.src} alt="Cataratas do Iguaçu">
+            <div class="card-tag card-tag-blue">Puerto Iguazú - Argentina</div>
+            <img src={CataratasImg.src} alt="Puerto Iguazú - Argentina">
           </div>
           
           <div class="image-container card-reveal">
-            <img src={CataratasImg.src} alt="Cataratas do Iguaçu">
+            <div class="card-tag card-tag-green">Foz do Iguaçu - Brasil</div>
+            <img src={CataratasImg.src} alt="Foz do Iguaçu - Brasil">
           </div>
           
           <div class="image-container card-reveal">
-            <img src={CataratasImg.src} alt="Cataratas do Iguaçu">
+            <div class="card-tag card-tag-red">Ciudad del Este - Paraguai</div>
+            <img src={CataratasImg.src} alt="Ciudad del Este - Paraguai">
           </div>
           
           <div class="image-container card-reveal">
-            <img src={CataratasImg.src} alt="Cataratas do Iguaçu">
+            <div class="card-tag card-tag-blue">Puerto Iguazú - Argentina</div>
+            <img src={CataratasImg.src} alt="Puerto Iguazú - Argentina">
           </div>
           
           <div class="image-container card-reveal">
-            <img src={CataratasImg.src} alt="Cataratas do Iguaçu">
+            <div class="card-tag card-tag-green">Foz do Iguaçu - Brasil</div>
+            <img src={CataratasImg.src} alt="Foz do Iguaçu - Brasil">
           </div>
           
           <div class="image-container card-reveal">
-            <img src={CataratasImg.src} alt="Cataratas do Iguaçu">
+            <div class="card-tag card-tag-red">Ciudad del Este - Paraguai</div>
+            <img src={CataratasImg.src} alt="Ciudad del Este - Paraguai">
           </div>
           
         </div>
       </div>
-      
-      <button class="carousel-btn carousel-btn-next" id="nextBtn">›</button>
     </div>
   </div>
 </section>
@@ -74,18 +90,26 @@ import CataratasImg from '../assets/image/Cards/Brasil/Cataratas.jpg';
 
     sections.forEach(section => observer.observe(section));
     
-    // Carrossel functionality
     const track = document.getElementById('carousel-track') as HTMLElement;
+    const prevBtn = document.getElementById('prevBtn') as HTMLButtonElement;
     const nextBtn = document.getElementById('nextBtn') as HTMLButtonElement;
     const cards = document.querySelectorAll('.image-container') as NodeListOf<HTMLElement>;
+    const carouselContainer = document.querySelector('.carousel-container') as HTMLElement;
     
-    if (!track || !nextBtn || cards.length === 0) {
+    if (!track || !prevBtn || !nextBtn || !carouselContainer || cards.length === 0) {
       return;
     }
     
     let currentIndex = 0;
-    const cardsToShow = window.innerWidth >= 1024 ? 3 : window.innerWidth >= 768 ? 2 : 1;
-    const maxIndex = Math.max(0, cards.length - cardsToShow);
+    let autoPlayInterval: ReturnType<typeof setInterval> | null = null;
+    
+    function getCardsToShow(): number {
+      return window.innerWidth >= 1024 ? 3 : window.innerWidth >= 768 ? 2 : 1;
+    }
+    
+    function getMaxIndex(): number {
+      return Math.max(0, cards.length - getCardsToShow());
+    }
     
     function updateCarousel(): void {
       const firstCard = cards[0];
@@ -96,37 +120,96 @@ import CataratasImg from '../assets/image/Cards/Brasil/Cataratas.jpg';
       const translateX = -(currentIndex * (cardWidth + gap));
       track.style.transform = `translateX(${translateX}px)`;
       
-      // Esconder botão quando chegar ao final
-      nextBtn.style.display = currentIndex >= maxIndex ? 'none' : 'flex';
+      const maxIndex = getMaxIndex();
+      
+      if (currentIndex === 0) {
+        prevBtn.style.display = 'none';
+      } else {
+        prevBtn.style.display = 'flex';
+      }
+      
+      if (currentIndex >= maxIndex) {
+        nextBtn.style.display = 'none';
+      } else {
+        nextBtn.style.display = 'flex';
+      }
     }
     
     function goToSlide(index: number): void {
+      const maxIndex = getMaxIndex();
       currentIndex = Math.max(0, Math.min(index, maxIndex));
       updateCarousel();
     }
     
-    nextBtn.addEventListener('click', () => {
+    function nextSlide(): void {
+      const maxIndex = getMaxIndex();
       if (currentIndex < maxIndex) {
         goToSlide(currentIndex + 1);
       } else {
-        // Volta ao início
         goToSlide(0);
+      }
+    }
+    
+    function startAutoPlay(): void {
+      if (autoPlayInterval) {
+        clearInterval(autoPlayInterval);
+      }
+      
+      autoPlayInterval = setInterval(() => {
+        nextSlide();
+      }, 4000);
+    }
+    
+    function stopAutoPlay(): void {
+      if (autoPlayInterval) {
+        clearInterval(autoPlayInterval);
+        autoPlayInterval = null;
+      }
+    }
+    
+    function resetAutoPlay(): void {
+      stopAutoPlay();
+      startAutoPlay();
+    }
+    
+    prevBtn.addEventListener('click', () => {
+      goToSlide(currentIndex - 1);
+      resetAutoPlay();
+    });
+    
+    nextBtn.addEventListener('click', () => {
+      goToSlide(currentIndex + 1);
+      resetAutoPlay();
+    });
+    
+    carouselContainer.addEventListener('mouseenter', () => {
+      stopAutoPlay();
+    });
+    
+    carouselContainer.addEventListener('mouseleave', () => {
+      startAutoPlay();
+    });
+    
+    document.addEventListener('visibilitychange', () => {
+      if (document.hidden) {
+        stopAutoPlay();
+      } else {
+        startAutoPlay();
       }
     });
     
     window.addEventListener('resize', () => {
-      // Recalcular cardsToShow e maxIndex no resize
-      const newCardsToShow = window.innerWidth >= 1024 ? 3 : window.innerWidth >= 768 ? 2 : 1;
-      const newMaxIndex = Math.max(0, cards.length - newCardsToShow);
+      const maxIndex = getMaxIndex();
       
-      // Ajustar currentIndex se necessário
-      if (currentIndex > newMaxIndex) {
-        currentIndex = newMaxIndex;
+      if (currentIndex > maxIndex) {
+        currentIndex = maxIndex;
       }
       
       updateCarousel();
+      resetAutoPlay();
     });
     
     updateCarousel();
+    startAutoPlay();
   });
 </script>
