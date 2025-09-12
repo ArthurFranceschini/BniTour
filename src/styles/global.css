@@ -10,14 +10,51 @@ html {
   }
 
 .btn-cta {
-  @apply inline-flex items-center rounded-full font-normal transition-all duration-300 focus:outline-none border border-white bg-transparent backdrop-blur-md cursor-pointer overflow-hidden pl-4 pr-0 gap-x-8;
+  @apply inline-flex items-center rounded-full font-normal transition-all duration-300 focus:outline-none border border-white bg-transparent backdrop-blur-md cursor-pointer overflow-hidden pl-4 pr-0 gap-x-8 relative;
+  /* Adicionado position relative */
 }
+
+.btn-cta::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 0;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: inherit;
+  transition: width 0.6s ease-out;
+  z-index: -1;
+}
+
+.btn-cta.is-revealed::before {
+  width: 100%;
+}
+
 .btn-nav {
-  @apply inline-flex items-center rounded-full font-normal transition-all duration-300 focus:outline-none border border-white bg-white backdrop-blur-md overflow-hidden pl-4 pr-0 gap-x-8;
+  @apply inline-flex items-center rounded-full font-normal transition-all duration-300 focus:outline-none border border-white bg-white backdrop-blur-md overflow-hidden pl-4 pr-0 gap-x-8 relative;
+}
+
+.btn-nav::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 0;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.05);
+  border-radius: inherit;
+  transition: width 0.6s ease-out;
+  z-index: -1;
+}
+
+.btn-nav.is-revealed::before {
+  width: 100%;
 }
 
 .btn-cta-icon-wrapper {
-  @apply w-9 h-9 rounded-full flex items-center justify-center;
+  @apply w-9 h-9 rounded-full flex items-center justify-center relative z-10;
+  /* Adicionado z-index para ficar acima do background */
 }
 
     .scroll-animation .col {
@@ -40,15 +77,19 @@ html {
     .button-content-initial-text {
         opacity: 0;
         white-space: nowrap;
-        transition: opacity 0.4s ease-out 0.3s;  
+        transition: opacity 0.4s ease-out 0.3s;
+        position: relative;
+        z-index: 10;
+        /* Garantir que o texto fique acima do background */
     }
 
     .button-content-initial-icon {
         opacity: 0;
         transform: translateX(100%);
+        position: relative;
+        z-index: 10;
     }
                 
-    /* is-revealed */
     .is-revealed .button-content-initial-text {
         opacity: 1;
         transform: translateX(0);
@@ -66,16 +107,16 @@ html {
     }
 
     .section-reveal {
-      @apply opacity-0 translate-y-8 transition-all duration-700 ease-out;
+      @apply opacity-0 translate-y-8 transition-all duration-1000 ease-out;
     }
-    .section-reveal-active {
+    .section-reveal.section-reveal-active {
       @apply opacity-100 translate-y-0;
     }
 
     .section-reveal-left {
       @apply opacity-0 -translate-x-8 transition-all duration-700 ease-out;
     }
-    .section-reveal-left-active {
+    .section-reveal-left.section-reveal-left-active {
       @apply opacity-100 translate-x-0;
     }
 }
@@ -135,4 +176,155 @@ html {
     transition-property: opacity, transform; 
     transition-duration: 1s;
     transition-timing-function: ease-out;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+}
+
+.image-container {
+  position: relative;
+  width: 100%;
+  padding-bottom: 56.25%;
+  overflow: hidden;
+}
+
+.image-container img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+
+.carousel-container {
+  position: relative;
+  overflow: hidden;
+  margin: 0;
+  width: 100%;
+}
+
+.carousel-wrapper {
+  overflow: hidden;
+  border-radius: 12px;
+}
+
+.carousel-track {
+  display: flex;
+  gap: 1.5rem;
+  transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  padding: 0.5rem 0;
+}
+
+
+.image-container {
+  flex: 0 0 auto;
+  width: calc(33.333% - 1rem); 
+  position: relative;
+  padding-bottom: calc(33.333% * 0.5625 - 0.5625rem); 
+  overflow: hidden;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.image-container:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+}
+
+.image-container img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.image-container:hover img {
+  transform: scale(1.05);
+}
+
+
+.card-reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.card-reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+
+.carousel-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255, 255, 255, 0.9);
+  border: none;
+  border-radius: 50%;
+  width: 48px;
+  height: 48px;
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  transition: all 0.3s ease;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.carousel-btn:hover {
+  background: white;
+  transform: translateY(-50%) scale(1.1);
+}
+
+.carousel-btn-next {
+  right: -24px;
+}
+
+
+@media (max-width: 1024px) {
+  .image-container {
+    width: calc(50% - 0.75rem); 
+    padding-bottom: calc(50% * 0.5625 - 0.4219rem);
+  }
+  
+  .carousel-btn {
+    width: 40px;
+    height: 40px;
+    font-size: 20px;
+  }
+  
+  .carousel-btn-next {
+    right: -20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .image-container {
+    width: calc(100% - 0rem); 
+    padding-bottom: calc(100% * 0.5625);
+  }
+  
+  .carousel-btn-next {
+    right: 10px;
+  }
+}
+
+@media (max-width: 640px) {
+  .carousel-track {
+    gap: 1rem;
+  }
 }

@@ -1,0 +1,132 @@
+---
+import CataratasImg from '../assets/image/Cards/Brasil/Cataratas.jpg';
+---
+
+<section id='Pacotes' class="section-padding section-reveal">
+  <div class="relative z-10 p-4 md:p-8">
+    <h1 class='mb-8 text-black title-reveal w-1/2'>Lorem Ipsum Dolor</h1>
+    
+    <div class="carousel-container">
+      <div class="carousel-wrapper">
+        <div class="carousel-track" id="carousel-track">
+          
+          <div class="image-container card-reveal">
+            <img src={CataratasImg.src} alt="Cataratas do Iguaçu">
+          </div>
+          
+          <div class="image-container card-reveal">
+            <img src={CataratasImg.src} alt="Cataratas do Iguaçu">
+          </div>
+          
+          <div class="image-container card-reveal">
+            <img src={CataratasImg.src} alt="Cataratas do Iguaçu">
+          </div>
+          
+          <div class="image-container card-reveal">
+            <img src={CataratasImg.src} alt="Cataratas do Iguaçu">
+          </div>
+          
+          <div class="image-container card-reveal">
+            <img src={CataratasImg.src} alt="Cataratas do Iguaçu">
+          </div>
+          
+          <div class="image-container card-reveal">
+            <img src={CataratasImg.src} alt="Cataratas do Iguaçu">
+          </div>
+          
+        </div>
+      </div>
+      
+      <button class="carousel-btn carousel-btn-next" id="nextBtn">›</button>
+    </div>
+  </div>
+</section>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const sections = document.querySelectorAll('.section-reveal');
+    
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('section-reveal-active');
+          
+          setTimeout(() => {
+            const titles = entry.target.querySelectorAll('.title-reveal');
+            titles.forEach((title, index) => {
+              setTimeout(() => {
+                title.classList.add('is-visible');
+              }, index * 200); 
+            });
+          }, 400);
+          
+          setTimeout(() => {
+            const cards = entry.target.querySelectorAll('.card-reveal');
+            cards.forEach((card, index) => {
+              setTimeout(() => {
+                card.classList.add('is-visible');
+              }, index * 200);
+            });
+          }, 800);
+        }
+      });
+    });
+
+    sections.forEach(section => observer.observe(section));
+    
+    // Carrossel functionality
+    const track = document.getElementById('carousel-track') as HTMLElement;
+    const nextBtn = document.getElementById('nextBtn') as HTMLButtonElement;
+    const cards = document.querySelectorAll('.image-container') as NodeListOf<HTMLElement>;
+    
+    if (!track || !nextBtn || cards.length === 0) {
+      return;
+    }
+    
+    let currentIndex = 0;
+    const cardsToShow = window.innerWidth >= 1024 ? 3 : window.innerWidth >= 768 ? 2 : 1;
+    const maxIndex = Math.max(0, cards.length - cardsToShow);
+    
+    function updateCarousel(): void {
+      const firstCard = cards[0];
+      if (!firstCard) return;
+      
+      const cardWidth = firstCard.offsetWidth;
+      const gap = 24;
+      const translateX = -(currentIndex * (cardWidth + gap));
+      track.style.transform = `translateX(${translateX}px)`;
+      
+      // Esconder botão quando chegar ao final
+      nextBtn.style.display = currentIndex >= maxIndex ? 'none' : 'flex';
+    }
+    
+    function goToSlide(index: number): void {
+      currentIndex = Math.max(0, Math.min(index, maxIndex));
+      updateCarousel();
+    }
+    
+    nextBtn.addEventListener('click', () => {
+      if (currentIndex < maxIndex) {
+        goToSlide(currentIndex + 1);
+      } else {
+        // Volta ao início
+        goToSlide(0);
+      }
+    });
+    
+    window.addEventListener('resize', () => {
+      // Recalcular cardsToShow e maxIndex no resize
+      const newCardsToShow = window.innerWidth >= 1024 ? 3 : window.innerWidth >= 768 ? 2 : 1;
+      const newMaxIndex = Math.max(0, cards.length - newCardsToShow);
+      
+      // Ajustar currentIndex se necessário
+      if (currentIndex > newMaxIndex) {
+        currentIndex = newMaxIndex;
+      }
+      
+      updateCarousel();
+    });
+    
+    updateCarousel();
+  });
+</script>
