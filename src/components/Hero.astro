@@ -1,9 +1,8 @@
 ---
-import Layout from '../layouts/Layout.astro';
 import { ChevronRight } from 'lucide-astro';
 ---
 
-<Layout title="Hero">
+
   <main>
     <section
       id="Hero"
@@ -16,7 +15,7 @@ import { ChevronRight } from 'lucide-astro';
   <div class="absolute inset-0" style="background: linear-gradient(45deg, rgba(25, 55, 85, 0.4 ), transparent);"></div>
   
   <div class="relative z-10 min-h-screen flex flex-col justify-center items-start p-4 pb-4 md:p-8 md:pb-8">
-          <a href='/' class="btn-cta text-white hover:bg-white/10 mb-4">
+          <a href='/' class="btn-cta text-white hover:bg-white/10 mb-8">
             <span class="button-content-initial-text">Lorem Ipsum dolor</span>
             <div class="btn-cta-icon-wrapper button-content-initial-icon bg-white/20">
               <ChevronRight size={20} color="white" />
@@ -24,7 +23,7 @@ import { ChevronRight } from 'lucide-astro';
           </a>
           
           <h1 class="mb-2 text-white title-reveal w-1/2">Lorem ipsum dolor sit amet, consectetur. </h1>
-          <h2 class="mb-4 text-white title-reveal w-1/2">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean pharetra accumsan orci, in bibendum purus vulputate a. Etiam ultrices odio sapien..</h2>
+          <h2 class="mb-8 text-white title-reveal w-1/2">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean pharetra accumsan orci, in bibendum purus vulputate a. Etiam ultrices odio sapien..</h2>
           
           <div class="flex gap-4 mt-6">
             <a href='/' class="btn-nav text-black mt-6">
@@ -44,7 +43,7 @@ import { ChevronRight } from 'lucide-astro';
       </div>
     </section>
   </main>
-</Layout>
+
 
 <script>
   document.addEventListener('DOMContentLoaded', () => {

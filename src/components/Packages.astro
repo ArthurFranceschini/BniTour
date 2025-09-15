@@ -1,11 +1,11 @@
 ---
 import CataratasImg from '../assets/image/Cards/Brasil/Cataratas.jpg';
 import { ChevronLeft, ChevronRight } from 'lucide-astro';
----
 
-<section id='Pacotes' class="section-padding section-reveal">
-  <div class="relative z-10 p-4 md:p-8">
-    <div class="header-container mb-8">
+---
+<section id='Packages' class="section-padding section-reveal">
+  <div class="relative z-10 p-4 md:p-4">
+    <div class="header-container">
       <h1 class='text-black title-reveal'>Lorem ipsum dolor sit amet, consectetur.</h1>
       
       <div class="carousel-controls">
@@ -18,6 +18,8 @@ import { ChevronLeft, ChevronRight } from 'lucide-astro';
       </div>
     </div>
     
+    <h2 class='-mt-4 mb-8'>Lorem ipsum dolor sit amet, consectetur adipiscing elit...</h2>
+    
     <div class="carousel-container">
       <div class="carousel-wrapper">
         <div class="carousel-track" id="carousel-track">
@@ -28,7 +30,10 @@ import { ChevronLeft, ChevronRight } from 'lucide-astro';
             <div class="card-content">
               <div class="card-content-wrapper">
                 <div class="card-text">
-                  <h1 class="mb-2 w-1/2">Cataratas do Iguaçu</h1>
+                  <h1 class="mb-2 w-fit">
+    <span class="block">Cataratas</span>
+    <span class="block">do Iguaçu</span>
+</h1>
                   <p>Lorem ipsum dolor sit amet, consectetur.</p>
                 </div>
                 <a href='/' class="btn-cta text-white hover:bg-white/10">
@@ -85,7 +90,10 @@ import { ChevronLeft, ChevronRight } from 'lucide-astro';
             <div class="card-content">
               <div class="card-content-wrapper">
                 <div class="card-text">
-                 <h1 class="mb-2 w-1/2">Cataratas do Iguaçu</h1>
+                <h1 class="mb-2 w-fit">
+    <span class="block">Cataratas</span>
+    <span class="block">do Iguaçu</span>
+</h1>
                   <p>Lorem ipsum dolor sit amet, consectetur.</p>
                 </div>
                 <a href='/' class="btn-cta text-white hover:bg-white/10">
@@ -142,6 +150,7 @@ import { ChevronLeft, ChevronRight } from 'lucide-astro';
   </div>
 </section>
 
+
 <script>
   document.addEventListener('DOMContentLoaded', () => {
     const sections = document.querySelectorAll('.section-reveal');
@@ -169,7 +178,6 @@ import { ChevronLeft, ChevronRight } from 'lucide-astro';
             });
           }, 800);
           
-          // Animar botões CTA
           setTimeout(() => {
             const ctaButtons = entry.target.querySelectorAll('.btn-cta');
             ctaButtons.forEach((button, index) => {

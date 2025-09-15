@@ -1,0 +1,89 @@
+---
+import Pin from '../assets/Icons/Pin.svg'
+import Car from '../assets/Icons/Car.svg'
+import Ticket from '../assets/Icons/Ticket.svg'
+
+---
+
+
+<section id='About' class="section-padding section-reveal flex flex-col md:flex-row items-stretch">
+  
+  <div class="relative z-10 p-4 md:p-8 flex flex-col w-full md:w-1/2">
+    <div class="header-container flex flex-col items-start">
+      <h1 class='text-black title-reveal'>Lorem ipsum dolor sit amet, consectetur.</h1>
+      <h2 class='title-reveal mt-4'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent finibus vulputate congue. Suspendisse molestie leo eget massa lacinia, eget condimentum nunc iaculis. Sed nec aliquet odio.</h2>
+    </div>
+   <div class="allign-left space-y-8 mt-8">
+     <div class="flex items-center icon-reveal">
+       <Car height={96} width="auto"/>
+       <div class="flex flex-col ml-4"> 
+         <h2>Lorem Ipsum</h2>
+         <h2 class="mt-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</h2>
+       </div>
+     </div>
+
+     <div class="flex items-center icon-reveal">
+       <Ticket height={96} width="auto"/>
+       <div class="flex flex-col ml-4">
+         <h2>Lorem Ipsum</h2>
+         <h2 class="mt-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</h2>
+       </div>
+     </div>
+
+     <div class="flex items-center icon-reveal">
+       <Pin height={96} width="auto"/>
+       <div class="flex flex-col ml-4">
+         <h2>Lorem Ipsum</h2>
+         <h2 class="mt-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</h2>
+       </div>
+     </div>
+   </div>
+  </div>
+
+  <div class="relative w-full md:w-1/2 flex items-center justify-center min-h-[300px] md:min-h-0 p-4 overflow-hidden">
+    <img src="https://via.placeholder.com/600x400/FF5733/FFFFFF?text=Imagem+1"
+         alt="Primeira imagem da colagem"
+         class="absolute w-[70%] h-[70%] object-cover -translate-x-[20%] -translate-y-[20%] z-10 shadow-xl rounded-lg border-4 border-white transition-transform duration-500 hover:scale-105"
+         loading="lazy">
+    <img src="https://via.placeholder.com/600x400/3366FF/FFFFFF?text=Imagem+2"
+         alt="Segunda imagem da colagem"
+         class="absolute w-[70%] h-[70%] object-cover translate-x-[20%] translate-y-[20%] shadow-xl rounded-lg border-4 border-white transition-transform duration-500 hover:scale-105"
+         loading="lazy">
+  </div>
+</section>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const sections = document.querySelectorAll('.section-reveal');
+  
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('section-reveal-active');
+        
+        
+        setTimeout(() => {
+          const titles = entry.target.querySelectorAll('.title-reveal');
+          titles.forEach((title, index) => {
+            setTimeout(() => {
+              title.classList.add('is-visible');
+            }, index * 300); 
+          });
+        }, 400);
+        
+        
+        setTimeout(() => {
+          const icons = entry.target.querySelectorAll('.icon-reveal');
+          icons.forEach((icon, index) => {
+            setTimeout(() => {
+              icon.classList.add('is-visible');
+            }, index * 500); 
+          });
+        }, 1500);
+      }
+    });
+  });
+
+  sections.forEach(section => observer.observe(section));
+});
+</script>
