@@ -1,14 +1,23 @@
 ---
-import Pin from '../assets/Icons/Pin.svg'
-import Car from '../assets/Icons/Car.svg'
-import Ticket from '../assets/Icons/Ticket.svg'
-
+import Pin from '../assets/Icons/Pin.svg';
+import Car from '../assets/Icons/Car.svg';
+import Ticket from '../assets/Icons/Ticket.svg';
+import PlaceholderImage1 from '../assets/image/Placeholder/Placeholder 1.webp';
+import PlaceholderImage2 from '../assets/image/Placeholder/Placeholder 2.webp'
+import { ChevronRight } from 'lucide-astro';
 ---
-
 
 <section id='About' class="section-padding section-reveal flex flex-col md:flex-row items-stretch">
   
   <div class="relative z-10 p-4 md:p-8 flex flex-col w-full md:w-1/2">
+    <button class="btn-nav mb-8 text-black mt-6 inline-flex w-fit items-center gap-2
+         transition-all duration-150 ease-in-out active:scale-95 active:opacity-75"
+>
+  <span class="button-content-initial-text">Lorem Ipsum</span>
+  <div class="btn-cta-icon-wrapper button-content-initial-icon bg-black p-1 rounded-full">
+    <ChevronRight size={20} color="white" />
+  </div>
+</button>
     <div class="header-container flex flex-col items-start">
       <h1 class='text-black title-reveal'>Lorem ipsum dolor sit amet, consectetur.</h1>
       <h2 class='title-reveal mt-4'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent finibus vulputate congue. Suspendisse molestie leo eget massa lacinia, eget condimentum nunc iaculis. Sed nec aliquet odio.</h2>
@@ -41,13 +50,13 @@ import Ticket from '../assets/Icons/Ticket.svg'
   </div>
 
   <div class="relative w-full md:w-1/2 flex items-center justify-center min-h-[300px] md:min-h-0 p-4 overflow-hidden">
-    <img src="https://via.placeholder.com/600x400/FF5733/FFFFFF?text=Imagem+1"
+    <img src={PlaceholderImage1.src}
          alt="Primeira imagem da colagem"
-         class="absolute w-[70%] h-[70%] object-cover -translate-x-[20%] -translate-y-[20%] z-10 shadow-xl rounded-lg border-4 border-white transition-transform duration-500 hover:scale-105"
+         class="absolute w-[70%] h-[70%] object-cover -translate-x-[20%] -translate-y-[20%] z-10 rounded-lg border-8 border-white transition-transform duration-500 hover:scale-105"
          loading="lazy">
-    <img src="https://via.placeholder.com/600x400/3366FF/FFFFFF?text=Imagem+2"
+    <img src={PlaceholderImage2.src}
          alt="Segunda imagem da colagem"
-         class="absolute w-[70%] h-[70%] object-cover translate-x-[20%] translate-y-[20%] shadow-xl rounded-lg border-4 border-white transition-transform duration-500 hover:scale-105"
+         class="absolute w-[70%] h-[70%] object-cover translate-x-[20%] translate-y-[20%] rounded-lg border-8 border-white transition-transform duration-500 hover:scale-105"
          loading="lazy">
   </div>
 </section>
@@ -61,7 +70,6 @@ document.addEventListener('DOMContentLoaded', () => {
       if (entry.isIntersecting) {
         entry.target.classList.add('section-reveal-active');
         
-        
         setTimeout(() => {
           const titles = entry.target.querySelectorAll('.title-reveal');
           titles.forEach((title, index) => {
@@ -70,7 +78,6 @@ document.addEventListener('DOMContentLoaded', () => {
             }, index * 300); 
           });
         }, 400);
-        
         
         setTimeout(() => {
           const icons = entry.target.querySelectorAll('.icon-reveal');
