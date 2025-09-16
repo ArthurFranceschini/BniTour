@@ -2,55 +2,68 @@
 import { ChevronRight } from 'lucide-astro';
 ---
 
-
-  <main>
-    <section
-      id="Hero"
-      class="section-padding section-reveal">
-      
-      <div 
-  class="min-h-screen bg-cover bg-center bg-no-repeat rounded-xl overflow-hidden relative"
-  style="background-image: url('Hero-bg1.webp');">
-  
-  <div class="absolute inset-0" style="background: linear-gradient(45deg, rgba(25, 55, 85, 0.4 ), transparent);"></div>
-  
-  <div class="relative z-10 min-h-screen flex flex-col justify-center items-start p-4 pb-4 md:p-8 md:pb-8">
-          <a href='/' class="btn-cta text-white hover:bg-white/10 mb-8">
-            <span class="button-content-initial-text">Lorem Ipsum dolor</span>
+<main>
+  <section id="Hero" class="section-padding section-reveal">
+    <div 
+      class="min-h-screen bg-cover bg-center bg-no-repeat rounded-xl overflow-hidden relative"
+      style="background-image: url('Hero-bg1.webp');">
+    
+      <div class="absolute inset-0" style="background: linear-gradient(45deg, rgba(25, 55, 85, 0.4 ), transparent);"></div>
+    
+      <div class="relative z-10 min-h-screen flex flex-col justify-center items-start p-4 pb-4 md:p-8 md:pb-8">
+        <a href='/' class="btn-cta text-white hover:bg-white/10 mb-8">
+          <span 
+            class="button-content-initial-text"
+            data-translate="hero.cta.discover"
+          >Conheça mais destinos...</span>
+          <div class="btn-cta-icon-wrapper button-content-initial-icon bg-white/20">
+            <ChevronRight size={20} color="white" />
+          </div>
+        </a>
+        
+        <h1 
+          class="mb-2 text-white title-reveal w-6/8"
+          data-translate="hero.title"
+        >Sua Viagem para Foz do Iguaçu.<br> Experiências Sob Medida, Memórias Para Sempre.</h1>
+        
+        <h2 
+          class="mb-8 text-white title-reveal w-6/8"
+          data-translate="hero.subtitle"
+        >Esqueça o estresse. A BNI Tour transforma sua viagem em Foz do Iguaçu, Paraguai e Argentina em um roteiro premium, exclusivo e inesquecível. Seu desejo é nosso guia...</h2>
+        
+        <div class="flex gap-4 mt-6">
+          <a href='/' class="btn-nav text-black mt-6">
+            <span 
+              class="button-content-initial-text"
+              data-translate="hero.cta.plan"
+            >Planeje Sua Viagem Agora!</span>
+            <div class="btn-cta-icon-wrapper button-content-initial-icon bg-black">
+              <ChevronRight size={20} color="white" />
+            </div>
+          </a>
+          <a href='/' class="btn-cta text-white hover:bg-white/10 mt-6">
+            <span 
+              class="button-content-initial-text"
+              data-translate="hero.cta.tours"
+            >Passeios</span>
             <div class="btn-cta-icon-wrapper button-content-initial-icon bg-white/20">
               <ChevronRight size={20} color="white" />
             </div>
           </a>
-          
-          <h1 class="mb-2 text-white title-reveal w-1/2">Lorem ipsum dolor sit amet, consectetur. </h1>
-          <h2 class="mb-8 text-white title-reveal w-1/2">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean pharetra accumsan orci, in bibendum purus vulputate a. Etiam ultrices odio sapien..</h2>
-          
-          <div class="flex gap-4 mt-6">
-            <a href='/' class="btn-nav text-black mt-6">
-              <span class="button-content-initial-text">Lorem Ipsum</span>
-              <div class="btn-cta-icon-wrapper button-content-initial-icon bg-black">
-                <ChevronRight size={20} color="white" />
-              </div>
-            </a>
-             <a href='/' class="btn-cta text-white hover:bg-white/10 mt-6">
-              <span class="button-content-initial-text">Lorem Ipsum</span>
-              <div class="btn-cta-icon-wrapper button-content-initial-icon bg-white/20">
-                <ChevronRight size={20} color="white" />
-              </div>
-            </a>
-          </div>
-        </div> 
-      </div>
-    </section>
-  </main>
+        </div>
+      </div> 
+    </div>
+  </section>
+</main>
 
-
-<script>
-  document.addEventListener('DOMContentLoaded', () => {
-    const sections = document.querySelectorAll('.section-reveal, .section-reveal-left');
+<script is:inline>
+  document.addEventListener('DOMContentLoaded', function() {
+    console.log('🎬 Hero carregado');
     
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
+    var sections = document.querySelectorAll('.section-reveal, .section-reveal-left');
+    
+    var observer = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
         if (entry.isIntersecting) {
           if (entry.target.classList.contains('section-reveal')) {
             entry.target.classList.add('section-reveal-active');
@@ -59,19 +72,19 @@ import { ChevronRight } from 'lucide-astro';
             entry.target.classList.add('section-reveal-left-active');
           }
           
-          setTimeout(() => {
-            const titles = entry.target.querySelectorAll('.title-reveal');
-            titles.forEach((title, index) => {
-              setTimeout(() => {
+          setTimeout(function() {
+            var titles = entry.target.querySelectorAll('.title-reveal');
+            titles.forEach(function(title, index) {
+              setTimeout(function() {
                 title.classList.add('is-visible');
               }, index * 200); 
             });
           }, 400);
           
-          setTimeout(() => {
-            const buttons = entry.target.querySelectorAll('.btn-cta, .btn-nav');
-            buttons.forEach((button, index) => {
-              setTimeout(() => {
+          setTimeout(function() {
+            var buttons = entry.target.querySelectorAll('.btn-cta, .btn-nav');
+            buttons.forEach(function(button, index) {
+              setTimeout(function() {
                 button.classList.add('is-revealed');
               }, index * 200); 
             });
@@ -80,6 +93,40 @@ import { ChevronRight } from 'lucide-astro';
       });
     });
 
-    sections.forEach(section => observer.observe(section));
+    sections.forEach(function(section) {
+      observer.observe(section);
+    });
+
+    function tryInitialTranslation() {
+      if (window.headerLangSwitcher) {
+        console.log('🌍 HeaderLangSwitcher encontrado, atualizando conteúdo do Hero...');
+        window.headerLangSwitcher.updateContent();
+      } else if (window.globalTranslator) {
+        console.log('🌍 GlobalTranslator encontrado, traduzindo Hero...');
+        window.globalTranslator.translateAll();
+      } else {
+        console.log('⏳ Aguardando language switcher...');
+        setTimeout(tryInitialTranslation, 100);
+      }
+    }
+
+    setTimeout(tryInitialTranslation, 500);
+  });
+
+  document.addEventListener('languageChanged', function(e) {
+    console.log('🎯 Hero recebeu mudança de idioma:', {
+      de: e.detail.oldLanguage,
+      para: e.detail.newLanguage
+    });
+    
+    if (window.headerLangSwitcher) {
+      setTimeout(function() {
+        window.headerLangSwitcher.updateContent();
+      }, 50);
+    } else if (window.globalTranslator) {
+      setTimeout(function() {
+        window.globalTranslator.translateAll();
+      }, 50);
+    }
   });
 </script>

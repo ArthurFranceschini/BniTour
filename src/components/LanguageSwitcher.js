@@ -1,49 +1,27 @@
+import translations from '../data/translations.js'; 
+
+
+
 const languages = {
     pt: {
         name: 'Português',
-        flag: '🇧��',
+        flag: '🇧🇷', 
         code: 'pt-BR'
     },
     en: {
         name: 'English',
-        flag: '🇺🇸',
+        flag: '🇺��', 
         code: 'en-US'
     },
     es: {
         name: 'Español',
-        flag: '🇪🇸',
+        flag: '🇪��', 
         code: 'es-ES'
     }
 };
 
-const translations = {
-    pt: {
-        cta: "CTA",
-        home: "Início",
-        tours: "Passeios",
-        about: "Sobre",
-        testimonials: "Depoimentos",
-        blog: "Blog"
-    },
-    en: {
-        cta: "CTA",
-        home: "Home",
-        tours: "Tours",
-        about: "About",
-        testimonials: "Testimonials",
-        blog: "Blog"
-    },
-    es: {
-        cta: "CTA",
-        home: "Inicio",
-        tours: "Tours",
-        about: "Acerca de",
-        testimonials: "Testimonios",
-        blog: "Blog"
-    }
-};
 
-class LanguageSwitcher {
+export class LanguageSwitcher {
     constructor(options = {}) {
         this.currentLanguage = options.defaultLanguage || 'pt';
         this.storageKey = options.storageKey || 'preferred-language';
@@ -59,6 +37,7 @@ class LanguageSwitcher {
         this.updatePageLanguage();
         this.bindDropdownEvents();
         this.updateDropdownDisplay();
+        this.updateActiveOption(); 
     }
 
     loadSavedLanguage() {
@@ -112,7 +91,9 @@ class LanguageSwitcher {
             option.addEventListener('click', (e) => {
                 e.stopPropagation();
                 const lang = option.dataset.lang;
-                this.changeLanguage(lang);
+                if (lang) { 
+                    this.changeLanguage(lang);
+                }
                 dropdown.classList.add('hidden');
                 
                 const arrow = dropdownBtn.querySelector('.dropdown-arrow');
@@ -152,7 +133,7 @@ class LanguageSwitcher {
         
         if (currentFlag && currentLang) {
             const langInfo = languages[this.currentLanguage];
-            currentFlag.textContent = langInfo.flag;
+            currentFlag.textContent = langInfo.flag; 
             currentLang.textContent = this.currentLanguage.toUpperCase();
         }
     }
@@ -173,10 +154,13 @@ class LanguageSwitcher {
             const key = element.dataset.i18n;
             const translation = this.getTranslation(key);
             
-            if (translation) {
-                if (element.dataset.i18nAttr) {
+            if (translation !== null && translation !== undefined) {
+                if (element.dataset.i18nAttr) { .
                     element.setAttribute(element.dataset.i18nAttr, translation);
-                } else {
+                } else if (element.dataset.i18nHtml === 'true') { 
+                    element.innerHTML = translation;
+                } 
+                else { 
                     element.textContent = translation;
                 }
             }
@@ -188,7 +172,12 @@ class LanguageSwitcher {
     }
 
     getTranslation(key) {
-        return translations[this.currentLanguage][key] || key;
+        
+        const currentLangTranslations = translations[this.currentLanguage];
+        if (currentLangTranslations) {
+            return currentLangTranslations[key] || key;
+        }
+        return key; 
     }
 
     dispatchLanguageChangeEvent(newLang, oldLang) {
@@ -207,10 +196,12 @@ class LanguageSwitcher {
     }
 }
 
+// Exporta a classe para que possa ser importada
 window.LanguageSwitcher = LanguageSwitcher;
 
+// Quando o DOM estiver carregado, inicializa o LanguageSwitcher
 document.addEventListener('DOMContentLoaded', () => {
-    if (window.LanguageSwitcher && !window.headerLangSwitcher) {
+    if (!window.headerLangSwitcher) {
         window.headerLangSwitcher = new window.LanguageSwitcher({
             defaultLanguage: 'pt',
             storageKey: 'preferred-language',
@@ -219,4 +210,41 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }
+
+    // --- Animações do Header (código inalterado) ---
+    const header = document.querySelector('.header-fade-in');
+    if (header) {
+        setTimeout(() => {
+            header.classList.add('is-visible');
+        }, 200);
+    }
+
+    const navItems = document.querySelectorAll('.nav-item');
+    setTimeout(() => {
+        navItems.forEach((item, index) => {
+            setTimeout(() => {
+                item.classList.add('is-revealed');
+            }, index * 100); 
+        });
+    }, 600); 
+
+    const headerBtns = document.querySelectorAll('.btn-cta'); 
+    setTimeout(() => {
+        headerBtns.forEach((btn, index) => {
+            setTimeout(() => {
+                btn.classList.add('is-revealed');
+            }, index * 200); 
+        });
+    }, 1000);
+
+    const langSwitcher = document.querySelector('.language-switcher-container');
+    if (langSwitcher) {
+        setTimeout(() => {
+            langSwitcher.classList.add('is-revealed');
+        }, 800);
+    }
+});
+
+document.addEventListener('languageChanged', (e) => {
+    console.log('Evento de mudança de idioma:', e.detail);
 });

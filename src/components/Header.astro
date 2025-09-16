@@ -1,6 +1,5 @@
 ---
 import { ChevronRight } from 'lucide-astro';
-// Importar as bandeiras SVG
 import FlagBR from '../assets/Icons/flag-br.svg?raw';
 import FlagEUA from '../assets/Icons/flag-usa.svg?raw';
 import FlagESP from '../assets/Icons/flag-esp.svg?raw';
@@ -11,9 +10,9 @@ import FlagESP from '../assets/Icons/flag-esp.svg?raw';
         
         <div class="flex-shrink-0">
             <a href='/' class="btn-nav border-1 border-black text-black header-btn">
-                <span class="button-content-initial-text" data-i18n="cta">CTA</span>
+                <span class="button-content-initial-text" data-translate="header.cta">Fale Conosco</span>
                 <div class="btn-cta-icon-wrapper button-content-initial-icon bg-black">
-                    <ChevronRight size={20} color="white" />
+                    <ChevronRight size={20} class="text-white" />
                 </div>
             </a>
         </div>
@@ -24,10 +23,10 @@ import FlagESP from '../assets/Icons/flag-esp.svg?raw';
         
         <div class="flex items-center gap-4">
             <div class="flex gap-4 nav-links">
-                <a href="/" class="nav-item hover:text-white" data-i18n="home">Início</a>
-                <a href="/" class="nav-item" data-i18n="tours">Passeios</a>
-                <a href="/" class="nav-item" data-i18n="about">Sobre</a>
-                <a href="/" class="nav-item" data-i18n="testimonials">Depoimentos</a>
+                <a href="/" class="nav-item hover:text-white" data-translate="header.home">Início</a>
+                <a href="/" class="nav-item" data-translate="header.tours">Passeios</a>
+                <a href="/" class="nav-item" data-translate="header.about">Sobre</a>
+                <a href="/" class="nav-item" data-translate="header.testimonials">Depoimentos</a>
             </div>
             
             <div class="language-switcher-container">
@@ -56,290 +55,256 @@ import FlagESP from '../assets/Icons/flag-esp.svg?raw';
             </div>
 
             <a href='/' class="btn-cta border-1 border-black text-black header-btn">
-                <span class="button-content-initial-text" data-i18n="blog">Blog</span>
+                <span class="button-content-initial-text" data-translate="header.blog">Blog</span>
                 <div class="btn-cta-icon-wrapper button-content-initial-icon bg-black">
-                    <ChevronRight size={20} color="white" />
+                    <ChevronRight size={20} class="text-white" />
                 </div>
             </a>
         </div>
-
     </div>
 </header>
 
 <script is:inline define:vars={{ FlagBR, FlagEUA, FlagESP }}>
-    const languages = {
-        pt: {
-            name: 'Português',
-            flag: FlagBR, 
-            code: 'pt-BR'
-        },
-        en: {
-            name: 'English',
-            flag: FlagEUA, 
-            code: 'en-US'
-        },
-        es: {
-            name: 'Español',
-            flag: FlagESP, 
-            code: 'es-ES'
-        }
-    };
+    // Evita múltiplas instâncias
+    if (window.globalTranslator) {
+        console.log('🔄 GlobalTranslator já existe, reutilizando...');
+    } else {
+        console.log('🚀 Criando novo GlobalTranslator...');
+        
+        const languages = {
+            pt: { name: 'Português', flag: FlagBR, code: 'pt-BR' },
+            en: { name: 'English', flag: FlagEUA, code: 'en-US' },
+            es: { name: 'Español', flag: FlagESP, code: 'es-ES' }
+        };
 
-    const translations = {
-        pt: {
-            cta: "CTA",
-            home: "Início",
-            tours: "Passeios",
-            about: "Sobre",
-            testimonials: "Depoimentos",
-            blog: "Blog"
-        },
-        en: {
-            cta: "CTA",
-            home: "Home",
-            tours: "Tours",
-            about: "About",
-            testimonials: "Testimonials",
-            blog: "Blog"
-        },
-        es: {
-            cta: "CTA",
-            home: "Inicio",
-            tours: "Tours",
-            about: "Acerca de",
-            testimonials: "Testimonios",
-            blog: "Blog"
-        }
-    };
-
-    class LanguageSwitcher {
-        constructor(options = {}) {
-            this.currentLanguage = options.defaultLanguage || 'pt';
-            this.storageKey = options.storageKey || 'preferred-language';
-            this.onLanguageChange = options.onLanguageChange || null;
-            
-            this.init();
-        }
-
-        init() {
-            this.loadSavedLanguage();
-            this.detectBrowserLanguage();
-            this.updateContent();
-            this.updatePageLanguage();
-            this.bindDropdownEvents();
-            this.updateDropdownDisplay();
-        }
-
-        loadSavedLanguage() {
-            const saved = localStorage.getItem(this.storageKey);
-            if (saved && languages[saved]) {
-                this.currentLanguage = saved;
+        // Traduções diretas no código
+        const translations = {
+            pt: {
+                'header.cta': "Fale Conosco",
+                'header.home': "Início",
+                'header.tours': "Passeios",
+                'header.about': "Sobre",
+                'header.testimonials': "Depoimentos",
+                'header.blog': "Blog",
+                'hero.cta.discover': "Conheça mais destinos...",
+                'hero.title': "Sua Viagem para Foz do Iguaçu.<br> Experiências Sob Medida, Memórias Para Sempre.",
+                'hero.subtitle': "Esqueça o estresse. A BNI Tour transforma sua viagem em Foz do Iguaçu, Paraguai e Argentina em um roteiro premium, exclusivo e inesquecível. Seu desejo é nosso guia...",
+                'hero.cta.plan': "Planeje Sua Viagem Agora!",
+                'hero.cta.tours': "Passeios"
+            },
+            en: {
+                'header.cta': "Contact Us",
+                'header.home': "Home",
+                'header.tours': "Tours",
+                'header.about': "About",
+                'header.testimonials': "Testimonials",
+                'header.blog': "Blog",
+                'hero.cta.discover': "Discover more destinations...",
+                'hero.title': "Your Trip to Foz do Iguaçu.<br> Tailor-made Experiences, Memories Forever.",
+                'hero.subtitle': "Forget the stress. BNI Tour transforms your trip to Foz do Iguaçu, Paraguay, and Argentina into a premium, exclusive, and unforgettable experience. Your desire is our guide...",
+                'hero.cta.plan': "Plan Your Trip Now!",
+                'hero.cta.tours': "Tours"
+            },
+            es: {
+                'header.cta': "Contáctenos",
+                'header.home': "Inicio",
+                'header.tours': "Tours",
+                'header.about': "Acerca de",
+                'header.testimonials': "Testimonios",
+                'header.blog': "Blog",
+                'hero.cta.discover': "Descubre más destinos...",
+                'hero.title': "Tu Viaje a Foz do Iguaçu.<br> Experiencias a Medida, Recuerdos para Siempre.",
+                'hero.subtitle': "Olvídate del estrés. BNI Tour transforma tu viaje a Foz do Iguaçu, Paraguay y Argentina en un itinerario premium, exclusivo e inolvidable. Tu deseo es nuestra guía...",
+                'hero.cta.plan': "¡Planifica Tu Viaje Ahora!",
+                'hero.cta.tours': "Paseos"
             }
-        }
+        };
 
-        detectBrowserLanguage() {
-            if (localStorage.getItem(this.storageKey)) return;
-            
-            const browserLang = navigator.language.toLowerCase();
-            const langCode = browserLang.split('-')[0];
-            
-            if (languages[langCode]) {
-                this.currentLanguage = langCode;
+        class GlobalTranslator {
+            constructor() {
+                this.currentLanguage = 'pt';
+                this.translations = translations;
             }
-        }
 
-        bindDropdownEvents() {
-            const dropdownBtn = document.getElementById('language-dropdown-btn');
-            const dropdown = document.getElementById('language-dropdown');
-            const langOptions = document.querySelectorAll('.lang-option');
+            init() {
+                console.log('🚀 Inicializando tradutor...');
+                this.loadSavedLanguage();
+                
+                setTimeout(() => {
+                    this.translateAll();
+                }, 100);
+            }
 
-            if (dropdownBtn && dropdown) {
-                dropdownBtn.addEventListener('click', (e) => {
-                    e.stopPropagation();
-                    dropdown.classList.toggle('hidden');
+            setLanguage(lang) {
+                console.log('🌍 Mudando idioma para:', lang);
+                
+                if (this.translations[lang]) {
+                    const oldLanguage = this.currentLanguage;
+                    this.currentLanguage = lang;
                     
-                    const arrow = dropdownBtn.querySelector('.dropdown-arrow');
-                    if (arrow) {
-                        arrow.style.transform = dropdown.classList.contains('hidden') 
-                            ? 'rotate(0deg)' 
-                            : 'rotate(180deg)';
-                    }
-                });
+                    console.log('🔄 Executando tradução...');
+                    this.translateAll();
+                    
+                    this.saveLanguage(lang);
+                    this.dispatchLanguageChangeEvent(lang, oldLanguage);
+                    
+                    console.log('✅ Idioma alterado com sucesso!');
+                } else {
+                    console.error('❌ Idioma não encontrado:', lang);
+                }
+            }
 
-                document.addEventListener('click', (e) => {
-                    if (!dropdownBtn.contains(e.target) && !dropdown.contains(e.target)) {
-                        dropdown.classList.add('hidden');
-                        const arrow = dropdownBtn.querySelector('.dropdown-arrow');
-                        if (arrow) {
-                            arrow.style.transform = 'rotate(0deg)';
+            translateAll() {
+                console.log('🔄 Traduzindo tudo para:', this.currentLanguage);
+                
+                const elements = document.querySelectorAll('[data-translate]');
+                console.log('📝 Total de elementos encontrados:', elements.length);
+                
+                let translatedCount = 0;
+                
+                elements.forEach((element, index) => {
+                    const key = element.getAttribute('data-translate');
+                    
+                    if (key) {
+                        const translation = this.translations[this.currentLanguage]?.[key];
+                        
+                        if (translation) {
+                            if (key.startsWith('header.')) {
+                                element.textContent = translation;
+                            } else {
+                                element.innerHTML = translation;
+                            }
+                            translatedCount++;
+                            console.log(`✅ [${index}] ${key} → "${translation}"`);
+                        } else {
+                            console.warn(`⚠️ Tradução não encontrada: ${key}`);
                         }
                     }
                 });
+                
+                console.log(`🎯 Total traduzido: ${translatedCount}/${elements.length}`);
             }
 
-            langOptions.forEach(option => {
-                option.addEventListener('click', (e) => {
-                    e.stopPropagation();
-                    const lang = option.dataset.lang;
-                    this.changeLanguage(lang);
-                    dropdown.classList.add('hidden');
-                    
-                    const arrow = dropdownBtn.querySelector('.dropdown-arrow');
-                    if (arrow) {
-                        arrow.style.transform = 'rotate(0deg)';
+            saveLanguage(lang) {
+                localStorage.setItem('preferred-language', lang);
+            }
+
+            loadSavedLanguage() {
+                const saved = localStorage.getItem('preferred-language');
+                if (saved && this.translations[saved]) {
+                    this.currentLanguage = saved;
+                    console.log('📖 Idioma carregado:', saved);
+                }
+            }
+
+            dispatchLanguageChangeEvent(newLang, oldLang) {
+                console.log('📡 Disparando evento languageChanged');
+                
+                const event = new CustomEvent('languageChanged', {
+                    detail: { 
+                        newLanguage: newLang, 
+                        oldLanguage: oldLang 
                     }
                 });
-            });
-        }
-
-        changeLanguage(langCode) {
-            if (!languages[langCode] || langCode === this.currentLanguage) return;
-
-            const oldLang = this.currentLanguage;
-            this.currentLanguage = langCode;
-
-            this.saveLanguagePreference();
-            this.updateContent();
-            this.updatePageLanguage();
-            this.updateDropdownDisplay();
-            this.updateActiveOption();
-
-            if (this.onLanguageChange) {
-                this.onLanguageChange(langCode, oldLang);
-            }
-
-            this.dispatchLanguageChangeEvent(langCode, oldLang);
-        }
-
-        saveLanguagePreference() {
-            localStorage.setItem(this.storageKey, this.currentLanguage);
-        }
-
-        updateDropdownDisplay() {
-            const currentFlag = document.getElementById('current-flag');
-            const currentLang = document.getElementById('current-lang');
-            
-            if (currentFlag && currentLang) {
-                const langInfo = languages[this.currentLanguage];
-                currentFlag.innerHTML = langInfo.flag;
-                currentLang.textContent = this.currentLanguage.toUpperCase();
-            }
-        }
-
-        updateActiveOption() {
-            document.querySelectorAll('.lang-option').forEach(option => {
-                option.classList.remove('active');
-                if (option.dataset.lang === this.currentLanguage) {
-                    option.classList.add('active');
-                }
-            });
-        }
-
-        updateContent() {
-            const elements = document.querySelectorAll('[data-i18n]');
-            
-            elements.forEach(element => {
-                const key = element.dataset.i18n;
-                const translation = this.getTranslation(key);
                 
-                if (translation) {
-                    if (element.dataset.i18nAttr) {
-                        element.setAttribute(element.dataset.i18nAttr, translation);
-                    } else {
-                        element.textContent = translation;
-                    }
-                }
-            });
+                setTimeout(() => {
+                    document.dispatchEvent(event);
+                }, 50);
+            }
+
+            getCurrentLanguage() {
+                return this.currentLanguage;
+            }
         }
 
-        updatePageLanguage() {
-            document.documentElement.lang = languages[this.currentLanguage].code;
-        }
-
-        getTranslation(key) {
-            return translations[this.currentLanguage][key] || key;
-        }
-
-        dispatchLanguageChangeEvent(newLang, oldLang) {
-            const event = new CustomEvent('languageChanged', {
-                detail: { newLanguage: newLang, oldLanguage: oldLang }
-            });
-            document.dispatchEvent(event);
-        }
-
-        getCurrentLanguage() {
-            return this.currentLanguage;
-        }
-
-        getCurrentLanguageInfo() {
-            return languages[this.currentLanguage];
-        }
+        window.globalTranslator = new GlobalTranslator();
+        window.languages = languages;
     }
 
-    window.LanguageSwitcher = LanguageSwitcher;
-
     document.addEventListener('DOMContentLoaded', () => {
-        if (window.LanguageSwitcher && !window.headerLangSwitcher) {
-            window.headerLangSwitcher = new window.LanguageSwitcher({
-                defaultLanguage: 'pt',
-                storageKey: 'preferred-language',
-                onLanguageChange: (newLang, oldLang) => {
-                    console.log(`Idioma alterado: ${oldLang} → ${newLang}`);
+        console.log('🚀 Header carregado');
+        
+        window.globalTranslator.init();
+        
+        setTimeout(() => {
+            updateDropdownDisplay(window.globalTranslator.getCurrentLanguage());
+        }, 200);
+
+        const dropdownBtn = document.getElementById('language-dropdown-btn');
+        const dropdown = document.getElementById('language-dropdown');
+        const langOptions = document.querySelectorAll('.lang-option');
+
+        if (dropdownBtn && dropdown) {
+            dropdownBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                dropdown.classList.toggle('hidden');
+            });
+
+            document.addEventListener('click', (e) => {
+                if (e.target && !dropdownBtn.contains(e.target) && !dropdown.contains(e.target)) {
+                    dropdown.classList.add('hidden');
                 }
             });
         }
+
+        langOptions.forEach(option => {
+            option.addEventListener('click', (e) => {
+                e.stopPropagation();
+                const lang = option.dataset.lang;
+                
+                if (lang) {
+                    console.log('🎯 Clique no idioma:', lang);
+                    
+                    window.globalTranslator.setLanguage(lang);
+                    updateDropdownDisplay(lang);
+                    updateActiveOption(lang);
+                    
+                    if (dropdown) dropdown.classList.add('hidden');
+                }
+            });
+        });
 
         const header = document.querySelector('.header-fade-in');
         if (header) {
-            setTimeout(() => {
-                header.classList.add('is-visible');
-            }, 200);
+            setTimeout(() => header.classList.add('is-visible'), 200);
         }
 
         const navItems = document.querySelectorAll('.nav-item');
         setTimeout(() => {
             navItems.forEach((item, index) => {
-                setTimeout(() => {
-                    item.classList.add('is-revealed');
-                }, index * 100); 
+                setTimeout(() => item.classList.add('is-revealed'), index * 100);
             });
-        }, 600); 
+        }, 600);
 
         const headerBtns = document.querySelectorAll('.header-btn');
         setTimeout(() => {
             headerBtns.forEach((btn, index) => {
-                setTimeout(() => {
-                    btn.classList.add('is-revealed');
-                }, index * 200); 
+                setTimeout(() => btn.classList.add('is-revealed'), index * 200);
             });
         }, 1000);
 
         const langSwitcher = document.querySelector('.language-switcher-container');
         if (langSwitcher) {
-            setTimeout(() => {
-                langSwitcher.classList.add('is-revealed');
-            }, 800);
+            setTimeout(() => langSwitcher.classList.add('is-revealed'), 800);
         }
     });
 
-    document.addEventListener('languageChanged', (e) => {
-        console.log('Evento de mudança de idioma:', e.detail);
-    });
+    function updateDropdownDisplay(lang) {
+        const currentFlag = document.getElementById('current-flag');
+        const currentLang = document.getElementById('current-lang');
+        
+        if (currentFlag && currentLang && window.languages[lang]) {
+            currentFlag.innerHTML = window.languages[lang].flag;
+            currentLang.textContent = lang.toUpperCase();
+        }
+    }
+
+    function updateActiveOption(lang) {
+        document.querySelectorAll('.lang-option').forEach(option => {
+            option.classList.remove('active');
+            if (option.dataset.lang === lang) {
+                option.classList.add('active');
+            }
+        });
+    }
 </script>
-
-<style>
-    .flag-icon {
-        width: 20px;
-        height: 15px;
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-    }
-
-    .flag-icon svg {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        border-radius: 2px;
-    }
-</style>
