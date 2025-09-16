@@ -1,5 +1,9 @@
 ---
 import { ChevronRight } from 'lucide-astro';
+// Importar as bandeiras SVG
+import FlagBR from '../assets/Icons/flag-br.svg?raw';
+import FlagEUA from '../assets/Icons/flag-usa.svg?raw';
+import FlagESP from '../assets/Icons/flag-esp.svg?raw';
 ---
 
 <header class="section-padding flex items-center header-fade-in relative w-full bg-white z-50 transition-colors duration-300">
@@ -7,7 +11,7 @@ import { ChevronRight } from 'lucide-astro';
         
         <div class="flex-shrink-0">
             <a href='/' class="btn-nav border-1 border-black text-black header-btn">
-                <span class="button-content-initial-text">CTA</span>
+                <span class="button-content-initial-text" data-i18n="cta">CTA</span>
                 <div class="btn-cta-icon-wrapper button-content-initial-icon bg-black">
                     <ChevronRight size={20} color="white" />
                 </div>
@@ -20,13 +24,39 @@ import { ChevronRight } from 'lucide-astro';
         
         <div class="flex items-center gap-4">
             <div class="flex gap-4 nav-links">
-                <a href="/" class="nav-item hover:text-white">Home</a>
-                <a href="/" class="nav-item">Passeios</a>
-                <a href="/" class="nav-item">Sobre</a>
-                <a href="/" class="nav-item">Depoimentos</a>
+                <a href="/" class="nav-item hover:text-white" data-i18n="home">Início</a>
+                <a href="/" class="nav-item" data-i18n="tours">Passeios</a>
+                <a href="/" class="nav-item" data-i18n="about">Sobre</a>
+                <a href="/" class="nav-item" data-i18n="testimonials">Depoimentos</a>
             </div>
+            
+            <div class="language-switcher-container">
+                <button id="language-dropdown-btn" class="language-btn">
+                    <div id="current-flag" class="flag-icon" set:html={FlagBR}></div>
+                    <span id="current-lang">PT</span>
+                    <svg class="dropdown-arrow" width="12" height="12" viewBox="0 0 12 12">
+                        <path d="M3 4.5L6 7.5L9 4.5" stroke="currentColor" stroke-width="1.5" fill="none"/>
+                    </svg>
+                </button>
+                
+                <div id="language-dropdown" class="language-dropdown hidden">
+                    <button data-lang="pt" class="lang-option active">
+                        <div class="flag-icon" set:html={FlagBR}></div>
+                        <span>Português</span>
+                    </button>
+                    <button data-lang="en" class="lang-option">
+                        <div class="flag-icon" set:html={FlagEUA}></div>
+                        <span>English</span>
+                    </button>
+                    <button data-lang="es" class="lang-option">
+                        <div class="flag-icon" set:html={FlagESP}></div>
+                        <span>Español</span>
+                    </button>
+                </div>
+            </div>
+
             <a href='/' class="btn-cta border-1 border-black text-black header-btn">
-                <span class="button-content-initial-text">Blog</span>
+                <span class="button-content-initial-text" data-i18n="blog">Blog</span>
                 <div class="btn-cta-icon-wrapper button-content-initial-icon bg-black">
                     <ChevronRight size={20} color="white" />
                 </div>
@@ -36,8 +66,228 @@ import { ChevronRight } from 'lucide-astro';
     </div>
 </header>
 
-<script>
+<script is:inline define:vars={{ FlagBR, FlagEUA, FlagESP }}>
+    const languages = {
+        pt: {
+            name: 'Português',
+            flag: FlagBR, 
+            code: 'pt-BR'
+        },
+        en: {
+            name: 'English',
+            flag: FlagEUA, 
+            code: 'en-US'
+        },
+        es: {
+            name: 'Español',
+            flag: FlagESP, 
+            code: 'es-ES'
+        }
+    };
+
+    const translations = {
+        pt: {
+            cta: "CTA",
+            home: "Início",
+            tours: "Passeios",
+            about: "Sobre",
+            testimonials: "Depoimentos",
+            blog: "Blog"
+        },
+        en: {
+            cta: "CTA",
+            home: "Home",
+            tours: "Tours",
+            about: "About",
+            testimonials: "Testimonials",
+            blog: "Blog"
+        },
+        es: {
+            cta: "CTA",
+            home: "Inicio",
+            tours: "Tours",
+            about: "Acerca de",
+            testimonials: "Testimonios",
+            blog: "Blog"
+        }
+    };
+
+    class LanguageSwitcher {
+        constructor(options = {}) {
+            this.currentLanguage = options.defaultLanguage || 'pt';
+            this.storageKey = options.storageKey || 'preferred-language';
+            this.onLanguageChange = options.onLanguageChange || null;
+            
+            this.init();
+        }
+
+        init() {
+            this.loadSavedLanguage();
+            this.detectBrowserLanguage();
+            this.updateContent();
+            this.updatePageLanguage();
+            this.bindDropdownEvents();
+            this.updateDropdownDisplay();
+        }
+
+        loadSavedLanguage() {
+            const saved = localStorage.getItem(this.storageKey);
+            if (saved && languages[saved]) {
+                this.currentLanguage = saved;
+            }
+        }
+
+        detectBrowserLanguage() {
+            if (localStorage.getItem(this.storageKey)) return;
+            
+            const browserLang = navigator.language.toLowerCase();
+            const langCode = browserLang.split('-')[0];
+            
+            if (languages[langCode]) {
+                this.currentLanguage = langCode;
+            }
+        }
+
+        bindDropdownEvents() {
+            const dropdownBtn = document.getElementById('language-dropdown-btn');
+            const dropdown = document.getElementById('language-dropdown');
+            const langOptions = document.querySelectorAll('.lang-option');
+
+            if (dropdownBtn && dropdown) {
+                dropdownBtn.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    dropdown.classList.toggle('hidden');
+                    
+                    const arrow = dropdownBtn.querySelector('.dropdown-arrow');
+                    if (arrow) {
+                        arrow.style.transform = dropdown.classList.contains('hidden') 
+                            ? 'rotate(0deg)' 
+                            : 'rotate(180deg)';
+                    }
+                });
+
+                document.addEventListener('click', (e) => {
+                    if (!dropdownBtn.contains(e.target) && !dropdown.contains(e.target)) {
+                        dropdown.classList.add('hidden');
+                        const arrow = dropdownBtn.querySelector('.dropdown-arrow');
+                        if (arrow) {
+                            arrow.style.transform = 'rotate(0deg)';
+                        }
+                    }
+                });
+            }
+
+            langOptions.forEach(option => {
+                option.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    const lang = option.dataset.lang;
+                    this.changeLanguage(lang);
+                    dropdown.classList.add('hidden');
+                    
+                    const arrow = dropdownBtn.querySelector('.dropdown-arrow');
+                    if (arrow) {
+                        arrow.style.transform = 'rotate(0deg)';
+                    }
+                });
+            });
+        }
+
+        changeLanguage(langCode) {
+            if (!languages[langCode] || langCode === this.currentLanguage) return;
+
+            const oldLang = this.currentLanguage;
+            this.currentLanguage = langCode;
+
+            this.saveLanguagePreference();
+            this.updateContent();
+            this.updatePageLanguage();
+            this.updateDropdownDisplay();
+            this.updateActiveOption();
+
+            if (this.onLanguageChange) {
+                this.onLanguageChange(langCode, oldLang);
+            }
+
+            this.dispatchLanguageChangeEvent(langCode, oldLang);
+        }
+
+        saveLanguagePreference() {
+            localStorage.setItem(this.storageKey, this.currentLanguage);
+        }
+
+        updateDropdownDisplay() {
+            const currentFlag = document.getElementById('current-flag');
+            const currentLang = document.getElementById('current-lang');
+            
+            if (currentFlag && currentLang) {
+                const langInfo = languages[this.currentLanguage];
+                currentFlag.innerHTML = langInfo.flag;
+                currentLang.textContent = this.currentLanguage.toUpperCase();
+            }
+        }
+
+        updateActiveOption() {
+            document.querySelectorAll('.lang-option').forEach(option => {
+                option.classList.remove('active');
+                if (option.dataset.lang === this.currentLanguage) {
+                    option.classList.add('active');
+                }
+            });
+        }
+
+        updateContent() {
+            const elements = document.querySelectorAll('[data-i18n]');
+            
+            elements.forEach(element => {
+                const key = element.dataset.i18n;
+                const translation = this.getTranslation(key);
+                
+                if (translation) {
+                    if (element.dataset.i18nAttr) {
+                        element.setAttribute(element.dataset.i18nAttr, translation);
+                    } else {
+                        element.textContent = translation;
+                    }
+                }
+            });
+        }
+
+        updatePageLanguage() {
+            document.documentElement.lang = languages[this.currentLanguage].code;
+        }
+
+        getTranslation(key) {
+            return translations[this.currentLanguage][key] || key;
+        }
+
+        dispatchLanguageChangeEvent(newLang, oldLang) {
+            const event = new CustomEvent('languageChanged', {
+                detail: { newLanguage: newLang, oldLanguage: oldLang }
+            });
+            document.dispatchEvent(event);
+        }
+
+        getCurrentLanguage() {
+            return this.currentLanguage;
+        }
+
+        getCurrentLanguageInfo() {
+            return languages[this.currentLanguage];
+        }
+    }
+
+    window.LanguageSwitcher = LanguageSwitcher;
+
     document.addEventListener('DOMContentLoaded', () => {
+        if (window.LanguageSwitcher && !window.headerLangSwitcher) {
+            window.headerLangSwitcher = new window.LanguageSwitcher({
+                defaultLanguage: 'pt',
+                storageKey: 'preferred-language',
+                onLanguageChange: (newLang, oldLang) => {
+                    console.log(`Idioma alterado: ${oldLang} → ${newLang}`);
+                }
+            });
+        }
 
         const header = document.querySelector('.header-fade-in');
         if (header) {
@@ -63,5 +313,33 @@ import { ChevronRight } from 'lucide-astro';
                 }, index * 200); 
             });
         }, 1000);
+
+        const langSwitcher = document.querySelector('.language-switcher-container');
+        if (langSwitcher) {
+            setTimeout(() => {
+                langSwitcher.classList.add('is-revealed');
+            }, 800);
+        }
+    });
+
+    document.addEventListener('languageChanged', (e) => {
+        console.log('Evento de mudança de idioma:', e.detail);
     });
 </script>
+
+<style>
+    .flag-icon {
+        width: 20px;
+        height: 15px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .flag-icon svg {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 2px;
+    }
+</style>
