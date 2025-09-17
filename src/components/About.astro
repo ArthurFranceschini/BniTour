@@ -13,15 +13,15 @@ import { ChevronRight } from 'lucide-astro';
     <button class="btn-nav mb-8 text-black mt-6 inline-flex w-fit items-center gap-2
          transition-all duration-150 ease-in-out active:scale-95 active:opacity-75"
 >
-  <span class="button-content-initial-text">Lorem Ipsum</span>
+  <span class="button-content-initial-text">Próximo Guia</span>
   <div class="btn-cta-icon-wrapper button-content-initial-icon bg-black p-1 rounded-full">
     <ChevronRight size={20} color="white" />
   </div>
 </button>
-    <div class="header-container flex flex-col items-start">
-      <h1 class='text-black title-reveal'>Lorem ipsum dolor sit amet, consectetur.</h1>
-      <h2 class='title-reveal mt-4'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent finibus vulputate congue. Suspendisse molestie leo eget massa lacinia, eget condimentum nunc iaculis. Sed nec aliquet odio.</h2>
-    </div>
+   <div class="header-container flex flex-col items-start w-full">
+   <h1 class='text-black title-reveal !text-left'>Por Que Escolher a BNI Tour?</h1>
+   <h2 class='subtitle-reveal mt-4 !text-left'>Não Somos uma Empresa, Somos a Sua Ideia de Viagem Perfeita.</h2>
+</div>
    <div class="allign-left space-y-8 mt-8">
      <div class="flex items-center icon-reveal">
        <Car height={96} width="auto"/>
@@ -70,26 +70,41 @@ document.addEventListener('DOMContentLoaded', () => {
       if (entry.isIntersecting) {
         entry.target.classList.add('section-reveal-active');
         
-        setTimeout(() => {
-          const titles = entry.target.querySelectorAll('.title-reveal');
-          titles.forEach((title, index) => {
-            setTimeout(() => {
-              title.classList.add('is-visible');
-            }, index * 300); 
-          });
-        }, 400);
+        const h1Element = entry.target.querySelector('h1.title-reveal');
+        if (h1Element) {
+          setTimeout(() => {
+            h1Element.classList.add('is-visible');
+          }, 400); 
+        }
         
+       
+        const iconElements = entry.target.querySelectorAll('.icon-reveal');
+        const iconStartDelay = 800; 
+        const iconStagger = 200; 
         setTimeout(() => {
-          const icons = entry.target.querySelectorAll('.icon-reveal');
-          icons.forEach((icon, index) => {
+          iconElements.forEach((icon, index) => {
             setTimeout(() => {
               icon.classList.add('is-visible');
-            }, index * 500); 
+            }, index * iconStagger); 
           });
-        }, 1500);
+        }, iconStartDelay); 
+
+    
+        const h2Element = entry.target.querySelector('h2.subtitle-reveal');
+        if (h2Element) {
+        
+          const numberOfIcons = iconElements.length;
+          const lastIconAnimationStartTime = numberOfIcons > 0 ? iconStartDelay + (numberOfIcons - 1) * iconStagger : iconStartDelay;
+          const h2AppearanceDelay = lastIconAnimationStartTime + 300; 
+          
+          setTimeout(() => {
+            h2Element.classList.add('is-visible');
+          }, h2AppearanceDelay);
+        }
+       
       }
     });
-  });
+  }, { threshold: 0.1 }); 
 
   sections.forEach(section => observer.observe(section));
 });
