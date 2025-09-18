@@ -1,0 +1,130 @@
+---
+import { MessageCircle, FileText, ChevronRight, Phone, Mail } from 'lucide-astro';
+---
+
+<section id="FinalCTA" class="section-padding section-reveal bg-gradient-to-br from-blue-50 via-white to-purple-50">
+  <div class="max-w-4xl mx-auto px-4 md:px-8 text-center">
+    
+    <div class="mb-12">
+      <h1 class="title-reveal text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight">
+        Seu Próximo Capítulo de Aventura Espera Por Você
+      </h1>
+      
+      <p class="subtitle-reveal text-xl md:text-2xl text-gray-600 leading-relaxed max-w-3xl mx-auto">
+        Não deixe a organização da sua viagem tirar o brilho da sua expectativa. Confie na BNI Tour para transformar sua ideia de passeio em uma realidade impecável, repleta de momentos premium e memórias que durarão para sempre.
+      </p>
+    </div>
+
+    <div class="cta-container space-y-6 mb-8">
+      
+      <div class="primary-cta">
+        <a href="https://wa.me/5545999999999"  class="btn-nav bg-green-500 text-white header-btn inline-flex">
+          <span class="button-content-initial-text">Quero Meu Roteiro Personalizado</span>
+          <div class="btn-cta-icon-wrapper button-content-initial-icon bg-green-700">
+            <ChevronRight size={20} class="text-white" />
+          </div>
+        </a>
+      </div>
+
+      <div class="separator-cta flex items-center justify-center my-6">
+        <div class="flex-1 h-px bg-gray-300"></div>
+        <span class="px-4 text-gray-500 font-medium">OU</span>
+        <div class="flex-1 h-px bg-gray-300"></div>
+      </div>
+
+      <div class="secondary-cta">
+        <a href="/contato" class="btn-nav border-1 border-black text-black header-btn">
+          <span class="button-content-initial-text">Prefiro Preencher o Formulário</span>
+          <div class="btn-cta-icon-wrapper button-content-initial-icon bg-black">
+            <ChevronRight size={20} class="text-white" />
+          </div>
+        </a>
+      </div>
+    </div>
+
+    <div class="contact-info mt-12 grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
+      
+      <div class="contact-item opacity-0 transform translate-y-4">
+        <div class="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition-all duration-300">
+          <MessageCircle size={32} class="text-green-500 mx-auto mb-3" />
+          <h3 class="font-bold text-gray-900 mb-2">WhatsApp</h3>
+          <p class="text-gray-600 text-sm">Resposta imediata</p>
+        </div>
+      </div>
+
+      <div class="contact-item opacity-0 transform translate-y-4">
+        <div class="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition-all duration-300">
+          <Phone size={32} class="text-blue-500 mx-auto mb-3" />
+          <h3 class="font-bold text-gray-900 mb-2">Telefone</h3>
+          <p class="text-gray-600 text-sm">(45) 9999-9999</p>
+        </div>
+      </div>
+
+      <div class="contact-item opacity-0 transform translate-y-4">
+        <div class="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition-all duration-300">
+          <Mail size={32} class="text-purple-500 mx-auto mb-3" />
+          <h3 class="font-bold text-gray-900 mb-2">E-mail</h3>
+          <p class="text-gray-600 text-sm">contato@bnitour.com</p>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<script is:inline>
+  document.addEventListener('DOMContentLoaded', function() {
+    const observerOptions = {
+      root: null,
+      rootMargin: '0px',
+      threshold: 0.1
+    };
+
+    const sectionObserver = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          const section = entry.target;
+          section.classList.add('section-reveal-active');
+
+          if (section.id === 'FinalCTA') {
+            const title = section.querySelector('.title-reveal');
+            if (title) {
+              setTimeout(function() {
+                title.classList.add('is-visible');
+              }, 200);
+            }
+
+            const subtitle = section.querySelector('.subtitle-reveal');
+            if (subtitle) {
+              setTimeout(function() {
+                subtitle.classList.add('is-visible');
+              }, 500);
+            }
+
+            const ctaContainer = section.querySelector('.cta-container');
+            if (ctaContainer) {
+              setTimeout(function() {
+                ctaContainer.classList.add('is-visible');
+              }, 800);
+            }
+
+            const contactItems = section.querySelectorAll('.contact-item');
+            for (let i = 0; i < contactItems.length; i++) {
+              setTimeout(function() {
+                contactItems[i].classList.add('is-visible');
+              }, 1100 + (i * 150));
+            }
+          }
+
+          sectionObserver.unobserve(section);
+        }
+      });
+    }, observerOptions);
+
+    const revealSections = document.querySelectorAll('.section-reveal');
+    for (let i = 0; i < revealSections.length; i++) {
+      sectionObserver.observe(revealSections[i]);
+    }
+  });
+</script>

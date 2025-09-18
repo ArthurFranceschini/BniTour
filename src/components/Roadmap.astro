@@ -1,0 +1,158 @@
+---
+import { MessageCircle, FileText, Heart, ChevronRight } from 'lucide-astro';
+---
+
+<section id="Roadmap" class="section-padding section-reveal bg-gray-50">
+  <div class="px-4 md:px-8">
+    <div class="text-left mb-16">
+      <h1 class="title-reveal mb-4 whitespace-nowrap">
+        Planejar Sua Viagem Premium Nunca Foi Tão Fácil
+      </h1>
+      <h2 class="subtitle-reveal mb-4">
+        Seu roteiro perfeito em apenas 3 passos simples
+      </h2>
+    </div>
+
+    <div class="relative max-w-6xl mx-auto">
+      <div class="hidden md:block absolute top-10 left-0 right-0 z-0">
+        <div class="roadmap-line h-1 bg-gradient-to-r from-blue-500 via-green-500 to-purple-500 rounded-full mx-[10%]"></div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12 relative z-10">
+        
+        <div class="roadmap-step flex flex-col items-center text-center">
+          <div class="roadmap-icon-wrapper relative mb-6">
+            <div class="roadmap-icon bg-blue-500 text-white w-20 h-20 rounded-full flex items-center justify-center shadow-lg transform transition-all duration-300 hover:scale-110 relative z-10">
+              <MessageCircle size={32} />
+            </div>
+            <div class="roadmap-number absolute -top-2 -right-2 bg-white text-blue-500 w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold shadow-md z-20">
+              1
+            </div>
+          </div>
+          
+          <div class="roadmap-content">
+            <h3 class="mb-4">
+              Fale Conosco Pelo WhatsApp
+            </h3>
+            <p class="text-gray-600 leading-relaxed">
+              Compartilhe seus sonhos, interesses e com quem você vai viajar. Nossos especialistas estão prontos para ouvir e entender o que torna uma viagem perfeita para você.
+            </p>
+          </div>
+        </div>
+
+        <div class="roadmap-step flex flex-col items-center text-center">
+          <div class="roadmap-icon-wrapper relative mb-6">
+            <div class="roadmap-icon bg-green-500 text-white w-20 h-20 rounded-full flex items-center justify-center shadow-lg transform transition-all duration-300 hover:scale-110 relative z-10">
+              <FileText size={32} />
+            </div>
+            <div class="roadmap-number absolute -top-2 -right-2 bg-white text-green-500 w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold shadow-md z-20">
+              2
+            </div>
+          </div>
+          
+          <div class="roadmap-content">
+            <h3 class="mb-4 whitespace-nowrap">
+              Roteiro Personalizado e Detalhado
+            </h3>
+            <p class="text-gray-600 leading-relaxed">
+              Em pouco tempo, você terá em mãos uma sugestão de roteiro completa, otimizada e pensada nos mínimos detalhes, com os melhores passeios e a logística ideal.
+            </p>
+          </div>
+        </div>
+
+        <div class="roadmap-step flex flex-col items-center text-center">
+          <div class="roadmap-icon-wrapper relative mb-6">
+            <div class="roadmap-icon bg-purple-500 text-white w-20 h-20 rounded-full flex items-center justify-center shadow-lg transform transition-all duration-300 hover:scale-110 relative z-10">
+              <Heart size={32} />
+            </div>
+            <div class="roadmap-number absolute -top-2 -right-2 bg-white text-purple-500 w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold shadow-md z-20">
+              3
+            </div>
+          </div>
+          
+          <div class="roadmap-content">
+            <h3 class="mb-4">
+              Aproveite Cada Momento
+            </h3>
+            <p class="text-gray-600 leading-relaxed">
+              Com tudo organizado, sua única missão será relaxar, desfrutar da comodidade e criar memórias inesquecíveis. Do começo ao fim, cuidamos de tudo.
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="text-center mt-16">
+     <a href="/" class="btn-nav border-1 border-black text-black header-btn 2xl:self-auto self-start cta-button">
+                <span class="button-content-initial-text">Começar Minha Viagem</span>
+                <div class="btn-cta-icon-wrapper button-content-initial-icon bg-black">
+                    <ChevronRight size={20} class="text-white" />
+                </div>
+            </a>
+    </div>
+  </div>
+</section>
+
+<script is:inline>
+  document.addEventListener('DOMContentLoaded', function() {
+    const observerOptions = {
+      root: null,
+      rootMargin: '0px',
+      threshold: 0.1
+    };
+
+    const sectionObserver = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          const section = entry.target;
+          section.classList.add('section-reveal-active');
+
+          if (section.id === 'Roadmap') {
+            const title = section.querySelector('.title-reveal');
+            if (title) {
+              setTimeout(function() {
+                title.classList.add('is-visible');
+              }, 200);
+            }
+
+            const subtitle = section.querySelector('.subtitle-reveal');
+            if (subtitle) {
+              setTimeout(function() {
+                subtitle.classList.add('is-visible');
+              }, 400);
+            }
+
+            const line = section.querySelector('.roadmap-line');
+            if (line) {
+              setTimeout(function() {
+                line.classList.add('is-visible');
+              }, 600);
+            }
+
+            const steps = section.querySelectorAll('.roadmap-step');
+            for (let i = 0; i < steps.length; i++) {
+              setTimeout(function() {
+                steps[i].classList.add('is-visible');
+              }, 800 + (i * 200));
+            }
+
+            const ctaButton = section.querySelector('.cta-button');
+            if (ctaButton) {
+              setTimeout(function() {
+                ctaButton.classList.add('is-visible');
+              }, 1600);
+            }
+          }
+
+          sectionObserver.unobserve(section);
+        }
+      });
+    }, observerOptions);
+
+    const revealSections = document.querySelectorAll('.section-reveal');
+    for (let i = 0; i < revealSections.length; i++) {
+      sectionObserver.observe(revealSections[i]);
+    }
+  });
+</script>
