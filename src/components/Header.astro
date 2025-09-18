@@ -5,7 +5,7 @@ import FlagEUA from '../assets/Icons/flag-usa.svg?raw';
 import FlagESP from '../assets/Icons/flag-esp.svg?raw';
 ---
 
-<header class="section-padding flex items-center header-fade-in relative w-full bg-white z-50 transition-colors duration-300">
+<header class="header-padding flex items-center header-fade-in relative w-full bg-white z-50 transition-colors duration-300">
     <div class="flex items-center justify-between w-full">
         
         <div class="flex-shrink-0">
@@ -27,6 +27,7 @@ import FlagESP from '../assets/Icons/flag-esp.svg?raw';
                 <a href="/" class="nav-item" data-translate="header.tours">Passeios</a>
                 <a href="/" class="nav-item" data-translate="header.about">Sobre</a>
                 <a href="/" class="nav-item" data-translate="header.testimonials">Depoimentos</a>
+                <a href="/" class="nav-item" data-translate="header.blog">Blog</a>
             </div>
             
             <div class="language-switcher-container">
@@ -53,19 +54,11 @@ import FlagESP from '../assets/Icons/flag-esp.svg?raw';
                     </button>
                 </div>
             </div>
-
-            <a href='/' class="btn-cta border-1 border-black text-black header-btn">
-                <span class="button-content-initial-text" data-translate="header.blog">Blog</span>
-                <div class="btn-cta-icon-wrapper button-content-initial-icon bg-black">
-                    <ChevronRight size={20} class="text-white" />
-                </div>
-            </a>
         </div>
     </div>
 </header>
 
 <script is:inline define:vars={{ FlagBR, FlagEUA, FlagESP }}>
-    // Evita múltiplas instâncias
     if (window.globalTranslator) {
         console.log('🔄 GlobalTranslator já existe, reutilizando...');
     } else {
@@ -77,7 +70,6 @@ import FlagESP from '../assets/Icons/flag-esp.svg?raw';
             es: { name: 'Español', flag: FlagESP, code: 'es-ES' }
         };
 
-        // Traduções diretas no código
         const translations = {
             pt: {
                 'header.cta': "Fale Conosco",
