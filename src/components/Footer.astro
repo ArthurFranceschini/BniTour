@@ -2,45 +2,52 @@
 import Layout from '../layouts/Layout.astro';
 import { Instagram, ChevronRight } from 'lucide-astro'; 
 ---
+
 <Layout Title="Footer">
 <section id="footer" class="section-padding bg-black text-white">
     <div class="text-center footer-animated-wrapper">
-        <div class="p-2 md:p-2 md:pb-2">
-            <h1 class="title-reveal animate-on-scroll" data-delay="0">Lorem Ipsum</h1>
+        <div class="mb-8 title-reveal animate-on-scroll" data-delay="0">
+            <img src="/logoipsum-332.svg" alt="Logo" class="h-12 mx-auto">
         </div>
-        <div>
-            <p class="pb-8 title-reveal animate-on-scroll" data-delay="200">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod.<br> Tempor incididunt ut labore et dolore magna aliqua. </p>
-        </div>
-
-        <div class="newsletter-form mt-4 mb-8 title-reveal animate-on-scroll" data-delay="400">
-            <form class="flex flex-col md:flex-row items-center justify-center gap-4">
-                <div class="relative md:w-80 w-full">
-                    <input
-                        type="email"
-                        placeholder="Assine Nossa Newsletter"  
-                        class="p-3 pr-11 rounded-full border border-black bg-white text-black focus:outline-none focus:ring-2 focus:ring-blue-500 w-full"
-                        aria-label="Seu endereço de e-mail para a newsletter"
-                    />
-                    <button
-                        type="submit"
-                        class="absolute right-0 top-1/2 -translate-y-1/2 mr-1 h-10 w-10 bg-black text-white rounded-full flex items-center justify-center transition duration-300 ease-in-out hover:bg-gray-900"
-                        aria-label="Assinar newsletter"
-                    >
-                        <ChevronRight class="w-8 h-8" />
-                    </button>
-                </div>
-            </form> 
+        
+        <div class="flex justify-center gap-4 mt-8 title-reveal animate-on-scroll" data-delay="200">
+            <a href="/" class="nav-item text-white hover:text-gray-300 transition-colors" data-translate="header.home">Início</a>
+            <a href="/" class="nav-item text-white hover:text-gray-300 transition-colors" data-translate="header.about">Sobre</a>
+            <a href="/" class="nav-item text-white hover:text-gray-300 transition-colors" data-translate="header.services">Serviços</a>
+            <a href="/" class="nav-item text-white hover:text-gray-300 transition-colors" data-translate="header.portfolio">Portfólio</a>
+            <a href="/" class="nav-item text-white hover:text-gray-300 transition-colors" data-translate="header.contact">Contato</a>
+            <a href="/" class="nav-item text-white hover:text-gray-300 transition-colors" data-translate="header.blog">Blog</a>
         </div>
 
-        <div class="instagram-button-wrapper mt-4 title-reveal animate-on-scroll" data-delay="600">
-            <a href="/" aria-label="Link para o Instagram" class="inline-block p-2 rounded-full bg-white hover:bg-gray-200 transition duration-300">
-                <Instagram class="w-8 h-8 text-black"/>
+        <div class="social-buttons-wrapper mb-8 flex justify-center gap-8 mt-8 title-reveal animate-on-scroll" data-delay="400">
+            <a href="/" aria-label="Link para o Instagram" class="inline-block p-2 hover:opacity-80 transition-opacity">
+                <Instagram class="w-8 h-8 text-white"/>
             </a>
+            <a href="/" aria-label="Link para o Tiktok" class="inline-block p-2 hover:opacity-80 transition-opacity">
+                <img src="/tiktok.svg" alt="TikTok" class="w-8 h-8 tiktok-icon"/>
+            </a>
+            <a href="/" aria-label="Link para o Tripadvisor" class="inline-block p-2 hover:opacity-80 transition-opacity">
+                <img src="/tripadvisor.svg" alt="Tripadvisor" class="w-8 h-8 tripadvisor-icon"/>
+            </a>
+        </div>
+
+        <div class="divider-gradient mt-12 mb-8 title-reveal animate-on-scroll" data-delay="600"></div>
+
+        <div class="section-padding footer-bottom flex flex-col md:flex-row justify-between items-center gap-4 title-reveal animate-on-scroll" data-delay="800">
+            <p class="text-gray-400 text-sm">
+                © 2024 Todos os direitos reservados
+            </p>
+                 <p class="text-sm sm:text-base text-white text-center sm:text-right">
+                Feito por 
+                <a href="https://www.brevard.com.br" class="relative group bg-gradient-to-r from-yellow-300 via-pink-500 to-blue-600 bg-clip-text text-transparent duration-200">
+        Brevard
+        <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-yellow-300 via-pink-500 to-blue-600 group-hover:w-full transition-all duration-200"></span>
+    </a>
         </div>
     </div>
 </section>
-
 </Layout>
+
 
 <script is:inline>
   document.addEventListener('DOMContentLoaded', () => {

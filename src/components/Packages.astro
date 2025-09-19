@@ -214,7 +214,7 @@ import { ChevronLeft, ChevronRight } from 'lucide-astro';
           setTimeout(() => {
             const titles = entry.target.querySelectorAll('.title-reveal');
             titles.forEach((title, index) => {
-              setTimeout(() => {
+              setTimeout(() => { 
                 title.classList.add('is-visible');
               }, index * 200); 
             });

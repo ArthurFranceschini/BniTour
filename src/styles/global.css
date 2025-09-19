@@ -814,8 +814,51 @@ html {
     transform: translateY(20px);
   }
 }
+
+    .tiktok-icon {
+        filter: brightness(0) invert(1);
+        
+    }
     
+    .tiktok-icon:hover {
+        filter: brightness(0) invert(0.8);
+        transition: filter 0.3s ease;
+    }
+    
+    .tripadvisor-icon {
+        filter: brightness(0) invert(1);
+        
+    }
+    
+    .tripadvisor-icon:hover {
+        filter: brightness(0) invert(0.8);
+        transition: filter 0.3s ease;
+    }
+ 
+    .divider-gradient {
+        height: 1px;
+        background: linear-gradient(90deg, 
+            transparent 0%, 
+            rgba(255, 255, 255, 0.2) 20%, 
+            rgba(255, 255, 255, 0.8) 50%, 
+            rgba(255, 255, 255, 0.2) 80%, 
+            transparent 100%
+        );
+        width: 100%;
+        max-width: 600px;
+        margin: 0 auto;
+    }
 
 
+    .nav-item {
+        font-size: 0.9rem;
+        padding: 4px 8px;
+        border-radius: 4px;
+    }
 
+    @media (max-width: 768px) {
+        .footer-bottom {
+            text-align: center;
+        }
+    }
 }
