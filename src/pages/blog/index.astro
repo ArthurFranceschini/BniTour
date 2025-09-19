@@ -1,0 +1,70 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import { getCollection } from 'astro:content';
+import type { CollectionEntry } from 'astro:content';
+
+const allBlogPosts = (await getCollection('blog')).sort(
+  (a: CollectionEntry<'blog'>, b: CollectionEntry<'blog'>) => b.data.pubDate.getTime() - a.data.pubDate.getTime()
+);
+
+---
+
+<Layout title="Blog - Bni">
+  <Header/>
+  <section class= 'section-padding'id="Blog">
+    <main class="section-padding">
+      <h1 class="mb-8">Blog</h1>
+      <p class="md:w-2/3 text-lg leading-[2rem]">
+        Welcome to my blog! Here you'll find a collection of my thoughts and
+        experiences. I hope you enjoy reading them as much as I enjoy writing
+        them.
+      </p>
+    </main>
+
+    <section class="app-container py-12">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {allBlogPosts.map((post: CollectionEntry<'blog'>) => (
+          <a href={`/blog/${post.slug}`} class="block group transform hover:scale-[1.02] transition-transform duration-300 ease-in-out">
+            <article class="bg-white dark:bg-gray-800 rounded-xl shadow-md overflow-hidden h-full flex flex-col border border-gray-200 dark:border-gray-700">
+              {post.data.heroImage && (
+                <div class="relative w-full h-48 overflow-hidden">
+                  <img
+                    src={post.data.heroImage}
+                    alt={post.data.title}
+                    loading="lazy"
+                    class="absolute inset-0 w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                  />
+                </div>
+              )}
+              <div class="p-6 flex flex-col flex-grow">
+                <h2 class="text-2xl font-semibold mb-2 text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 leading-tight">
+                  {post.data.title}
+                </h2>
+                {post.data.description && (
+                  <p class="text-gray-600 dark:text-gray-400 mb-4 flex-grow line-clamp-3">
+                    {post.data.description}
+                  </p>
+                )}
+                {post.data.tags && (
+                  <div class="flex flex-wrap gap-2 mb-4">
+                    {post.data.tags.map((tag: string) => ( 
+                      <span class="bg-blue-50 dark:bg-blue-900 text-blue-600 dark:text-blue-300 text-xs font-medium px-2.5 py-0.5 rounded-full">
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                )}
+                <p class="text-sm text-gray-500 dark:text-gray-400 mt-auto">
+                  Publicado em: {post.data.pubDate.toLocaleDateString('pt-BR')}
+                </p>
+              </div>
+            </article>
+          </a>
+        ))}
+      </div>
+    </section>
+  </section>
+  <Footer />
+</Layout>

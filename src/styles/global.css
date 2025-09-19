@@ -114,10 +114,9 @@ html {
       @apply py-16 px-2 md:px-2 lg:px-4 lg:py-16;
     }
 
-    .header-padding {
-      @apply py-4 px-2 md:px-2 lg:px-4 lg:py-4;
-    
-    }
+.header-padding {
+  @apply mt-8 px-2 md:px-2 lg:px-4; 
+}
     .section-reveal {
       @apply opacity-0 translate-y-8 transition-all duration-1000 ease-out;
     }
