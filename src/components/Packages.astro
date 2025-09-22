@@ -15,7 +15,7 @@ import { ChevronLeft, ChevronRight } from 'lucide-astro';
 <section id='Packages' class="section-padding section-reveal">
   <div class="relative z-10 p-4 md:p-8">
     <div class="header-container flex justify-between items-center mb-4">
-      <h1 class='text-black title-reveal w-/4'>Descubra Nossas Experiências</h1>
+      <h1 class='text-black title-reveal w-full'>Descubra Nossas Experiências</h1>
       
       <div class="carousel-controls flex-shrink-0"> 
         <button class="carousel-btn carousel-btn-prev" id="prevBtn" style="display: none;">
@@ -121,7 +121,7 @@ import { ChevronLeft, ChevronRight } from 'lucide-astro';
             <div class="card-content relative z-10">
               <div class="card-content-wrapper">
                 <div class="card-text">
-                <h1 class="mb-2 w-full">CIty Tour Argentina</h1>
+                <h1 class="mb-2 w-full">City Tour Argentina</h1>
                   <p>Marcos das três fronteiras, jantar, vinhoteca, cassino e muito mais...</p>
                 </div>
                 <a href='/' class="btn-cta text-white hover:bg-white/10">
@@ -142,7 +142,7 @@ import { ChevronLeft, ChevronRight } from 'lucide-astro';
             <div class="card-content relative z-10">
               <div class="card-content-wrapper">
                 <div class="card-text">
-                 <h1 class="mb-2">Cruzeiro ao <br> Pôr do Sol</h1>
+                 <h1 class="mb-2 whitespace-nowrap">Cruzeiro ao <br> Pôr do Sol</h1>
                   <p>Katamarã: Foz do Iguaçu Sob um Novo Olhar...</p>
                 </div>
                 <a href='/' class="btn-cta text-white hover:bg-white/10">
@@ -182,7 +182,7 @@ import { ChevronLeft, ChevronRight } from 'lucide-astro';
             <div class="card-content relative z-10">
               <div class="card-content-wrapper">
                 <div class="card-text">
-                 <h1 class="mb-2 w-full">City Tour <br> Foz do Iguaçu</h1>
+                 <h1 class="mb-2 whitespace-nowrap">City Tour <br> Foz do Iguaçu</h1>
                   <p>Transfer, Wonder Park, Itaipu, Marco das três fronteiras e muito mais... </p>
                 </div>
                 <a href='/' class="btn-cta text-white hover:bg-white/10">
@@ -294,59 +294,71 @@ html, body {
 }
 </style>
 
-<script>
-  document.addEventListener('DOMContentLoaded', () => {
-    const sections = document.querySelectorAll('.section-reveal');
+<script type="text/javascript">
+(function() {
+  'use strict';
+  
+  document.addEventListener('DOMContentLoaded', function() {
+    var sections = document.querySelectorAll('.section-reveal');
     
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
+    var observer = new IntersectionObserver(function(entries) {
+      for (var i = 0; i < entries.length; i++) {
+        var entry = entries[i];
         if (entry.isIntersecting) {
           entry.target.classList.add('section-reveal-active');
           
-          setTimeout(() => {
-            const titles = entry.target.querySelectorAll('.title-reveal');
-            titles.forEach((title, index) => {
-              setTimeout(() => { 
-                title.classList.add('is-visible');
-              }, index * 200); 
-            });
+          setTimeout(function() {
+            var titles = entry.target.querySelectorAll('.title-reveal');
+            for (var j = 0; j < titles.length; j++) {
+              setTimeout((function(index, title) {
+                return function() { 
+                  title.classList.add('is-visible');
+                };
+              })(j, titles[j]), j * 200); 
+            }
           }, 400);
           
-          setTimeout(() => {
-            const cards = entry.target.querySelectorAll('.card-reveal');
-            cards.forEach((card, index) => {
-              setTimeout(() => {
-                card.classList.add('is-visible');
-              }, index * 200);
-            });
+          setTimeout(function() {
+            var cards = entry.target.querySelectorAll('.card-reveal');
+            for (var k = 0; k < cards.length; k++) {
+              setTimeout((function(index, card) {
+                return function() {
+                  card.classList.add('is-visible');
+                };
+              })(k, cards[k]), k * 200);
+            }
           }, 800);
           
-          setTimeout(() => {
-            const ctaButtons = entry.target.querySelectorAll('.btn-cta');
-            ctaButtons.forEach((button, index) => {
-              setTimeout(() => {
-                button.classList.add('is-revealed');
-              }, index * 200);
-            });
+          setTimeout(function() {
+            var ctaButtons = entry.target.querySelectorAll('.btn-cta');
+            for (var l = 0; l < ctaButtons.length; l++) {
+              setTimeout((function(index, button) {
+                return function() {
+                  button.classList.add('is-revealed');
+                };
+              })(l, ctaButtons[l]), l * 200);
+            }
           }, 1200);
         }
-      });
+      }
     });
 
-    sections.forEach(section => observer.observe(section));
+    for (var m = 0; m < sections.length; m++) {
+      observer.observe(sections[m]);
+    }
     
-    const track = document.getElementById('carousel-track');
-    const prevBtn = document.getElementById('prevBtn');
-    const nextBtn = document.getElementById('nextBtn');
-    const cards = document.querySelectorAll('.image-container');
-    const carouselContainer = document.querySelector('.carousel-container');
+    var track = document.getElementById('carousel-track');
+    var prevBtn = document.getElementById('prevBtn');
+    var nextBtn = document.getElementById('nextBtn');
+    var cards = document.querySelectorAll('.image-container');
+    var carouselContainer = document.querySelector('.carousel-container');
     
     if (!track || !prevBtn || !nextBtn || !carouselContainer || cards.length === 0) {
       return;
     }
     
-    let currentIndex = 0;
-    let autoPlayInterval = null;
+    var currentIndex = 0;
+    var autoPlayInterval = null;
     
     function getCardsToShow() {
       if (window.innerWidth <= 768) return 1;
@@ -359,31 +371,31 @@ html, body {
     }
     
     function updateCarousel() {
-      const cardsToShow = getCardsToShow();
+      var cardsToShow = getCardsToShow();
       
       if (cardsToShow === 1) {
-        track.style.transform = `translateX(-${currentIndex * 100}vw)`;
+        track.style.transform = 'translateX(-' + (currentIndex * 100) + 'vw)';
       } else {
-        const cardWidth = cards[0].offsetWidth;
-        const gap = cardsToShow === 2 ? 24 : 16; 
-        const translateX = -(currentIndex * (cardWidth + gap));
-        track.style.transform = `translateX(${translateX}px)`;
+        var cardWidth = cards[0].offsetWidth;
+        var gap = cardsToShow === 2 ? 24 : 16; 
+        var translateX = -(currentIndex * (cardWidth + gap));
+        track.style.transform = 'translateX(' + translateX + 'px)';
       }
       
-      const maxIndex = getMaxIndex();
+      var maxIndex = getMaxIndex();
       
       prevBtn.style.display = currentIndex === 0 ? 'none' : 'flex';
       nextBtn.style.display = currentIndex >= maxIndex ? 'none' : 'flex';
     }
     
     function goToSlide(index) {
-      const maxIndex = getMaxIndex();
+      var maxIndex = getMaxIndex();
       currentIndex = Math.max(0, Math.min(index, maxIndex));
       updateCarousel();
     }
     
     function nextSlide() {
-      const maxIndex = getMaxIndex();
+      var maxIndex = getMaxIndex();
       if (currentIndex < maxIndex) {
         goToSlide(currentIndex + 1);
       } else {
@@ -400,17 +412,18 @@ html, body {
     }
     
     function startAutoPlay() {
-      if (autoPlayInterval) {
+      if (autoPlayInterval !== null) {
         clearInterval(autoPlayInterval);
+        autoPlayInterval = null;
       }
       
-      autoPlayInterval = setInterval(() => {
+      autoPlayInterval = setInterval(function() {
         nextSlide();
       }, 4000);
     }
     
     function stopAutoPlay() {
-      if (autoPlayInterval) {
+      if (autoPlayInterval !== null) {
         clearInterval(autoPlayInterval);
         autoPlayInterval = null;
       }
@@ -421,22 +434,27 @@ html, body {
       startAutoPlay();
     }
     
-    prevBtn.addEventListener('click', (e) => {
+    prevBtn.addEventListener('click', function(e) {
       e.preventDefault();
       prevSlide();
       resetAutoPlay();
     });
     
-    nextBtn.addEventListener('click', (e) => {
+    nextBtn.addEventListener('click', function(e) {
       e.preventDefault();
       nextSlide();
       resetAutoPlay();
     });
     
-    carouselContainer.addEventListener('mouseenter', stopAutoPlay);
-    carouselContainer.addEventListener('mouseleave', startAutoPlay);
+    carouselContainer.addEventListener('mouseenter', function() {
+      stopAutoPlay();
+    });
     
-    document.addEventListener('visibilitychange', () => {
+    carouselContainer.addEventListener('mouseleave', function() {
+      startAutoPlay();
+    });
+    
+    document.addEventListener('visibilitychange', function() {
       if (document.hidden) {
         stopAutoPlay();
       } else {
@@ -444,8 +462,8 @@ html, body {
       }
     });
     
-    window.addEventListener('resize', () => {
-      const maxIndex = getMaxIndex();
+    window.addEventListener('resize', function() {
+      var maxIndex = getMaxIndex();
       
       if (currentIndex > maxIndex) {
         currentIndex = maxIndex;
@@ -455,23 +473,27 @@ html, body {
       resetAutoPlay();
     });
     
-    let touchStartX = 0;
-    let touchEndX = 0;
+    var touchStartX = 0;
+    var touchEndX = 0;
     
-    carouselContainer.addEventListener('touchstart', (e) => {
-      touchStartX = e.changedTouches[0].screenX;
+    function onTouchStart(e) {
+      if (e.touches && e.touches.length > 0) {
+        touchStartX = e.touches[0].clientX;
+      }
       stopAutoPlay();
-    });
+    }
     
-    carouselContainer.addEventListener('touchend', (e) => {
-      touchEndX = e.changedTouches[0].screenX;
-      handleSwipe();
+    function onTouchEnd(e) {
+      if (e.changedTouches && e.changedTouches.length > 0) {
+        touchEndX = e.changedTouches[0].clientX;
+        handleSwipe();
+      }
       startAutoPlay();
-    });
+    }
     
     function handleSwipe() {
-      const swipeThreshold = 50;
-      const swipeDistance = touchStartX - touchEndX;
+      var swipeThreshold = 50;
+      var swipeDistance = touchStartX - touchEndX;
       
       if (Math.abs(swipeDistance) > swipeThreshold) {
         if (swipeDistance > 0) {
@@ -482,7 +504,11 @@ html, body {
       }
     }
     
+    carouselContainer.addEventListener('touchstart', onTouchStart);
+    carouselContainer.addEventListener('touchend', onTouchEnd);
+    
     updateCarousel();
     startAutoPlay();
   });
+})();
 </script>
