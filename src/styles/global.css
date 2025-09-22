@@ -113,6 +113,10 @@ html {
     .section-padding {
       @apply py-16 px-2 md:px-2 lg:px-4 lg:py-16;
     }
+    
+    .blog-padding {
+      @apply py-16 px-8 md:px-8 lg:px-16 lg:py-32;
+    }
 
 .header-padding {
   @apply mt-8 px-2 md:px-2 lg:px-4; 

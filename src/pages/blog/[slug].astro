@@ -2,20 +2,31 @@
 import { getCollection } from 'astro:content';
 import Layout from '../../layouts/Layout.astro';
 import type { CollectionEntry } from 'astro:content';
+import Header from '../../components/Header.astro';
 
 interface Props {
-  entry: CollectionEntry<'blog'>; 
+  entry: CollectionEntry<'blog'>;
 }
-
-const { entry } = Astro.props;
 
 export async function getStaticPaths() {
   const blogEntries = await getCollection('blog');
-  return blogEntries.map((entry: { slug: any; }) => ({
+  return blogEntries.map((entry) => ({
     params: { slug: entry.slug },
     props: { entry },
   }));
 }
+
+const { entry } = Astro.props;
 ---
 
-<Layout entry={entry} />
+<Layout entry={entry}>
+  <Header/>
+  <article class="blog-padding prose lg:prose-xl mx-auto py-8">
+    <h1>{entry.data.title}</h1>
+    <p class="text-gray-500">{new Date(entry.data.pubDate).toLocaleDateString("pt-BR")}</p>
+    <img src={entry.data.heroImage} alt={entry.data.title} class="rounded-xl my-4" />
+    <p class="text-lg text-gray-700">{entry.data.description}</p>
+    <hr class="my-6" />
+    {entry.body} 
+  </article>
+</Layout>
