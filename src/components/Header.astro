@@ -1,5 +1,5 @@
 ---
-import { ChevronRight } from 'lucide-astro';
+import { ChevronRight, Menu, X } from 'lucide-astro';
 import FlagBR from '../assets/Icons/flag-br.svg?raw';
 import FlagEUA from '../assets/Icons/flag-usa.svg?raw';
 import FlagESP from '../assets/Icons/flag-esp.svg?raw';
@@ -8,7 +8,14 @@ import FlagESP from '../assets/Icons/flag-esp.svg?raw';
 <header class="header-padding flex items-center header-fade-in relative w-full bg-white z-50 transition-colors duration-300">
     <div class="flex items-center justify-between w-full">
         
-        <div class="flex-shrink-0">
+        <div class="flex-shrink-0 lg:hidden">
+            <button id="mobile-menu-btn" class="mobile-menu-btn p-2 rounded-lg border border-black bg-white">
+                <Menu size={20} class="menu-icon" />
+                <X size={20} class="close-icon hidden" />
+            </button>
+        </div>
+
+        <div class="hidden lg:flex flex-shrink-0">
             <a href='/' class="btn-nav border-1 border-black text-black header-btn">
                 <span class="button-content-initial-text" data-translate="header.cta">Fale Conosco</span>
                 <div class="btn-cta-icon-wrapper button-content-initial-icon bg-black">
@@ -18,12 +25,12 @@ import FlagESP from '../assets/Icons/flag-esp.svg?raw';
         </div>
 
         <div class="absolute left-1/2 transform -translate-x-1/2">
-            <img src="/logoipsum-332.svg" alt="Logo" class="h-8">
+            <img src="/logoipsum-332.svg" alt="Logo" class="h-6 md:h-8">
         </div>
         
-        <div class="flex items-center gap-4">
+        <div class="hidden lg:flex items-center gap-4">
             <div class="flex gap-4 nav-links">
-                <a href="/" class="nav-item hover:text-white" data-translate="header.home">Início</a>
+                <a href="/" class="nav-item hover:text-black" data-translate="header.home">Início</a>
                 <a href="/" class="nav-item" data-translate="header.tours">Passeios</a>
                 <a href="/" class="nav-item" data-translate="header.about">Sobre</a>
                 <a href="/" class="nav-item" data-translate="header.testimonials">Depoimentos</a>
@@ -55,8 +62,283 @@ import FlagESP from '../assets/Icons/flag-esp.svg?raw';
                 </div>
             </div>
         </div>
+
+        <div class="flex lg:hidden language-switcher-container">
+            <button id="mobile-language-dropdown-btn" class="language-btn">
+                <div id="mobile-current-flag" class="flag-icon" set:html={FlagBR}></div>
+                <span id="mobile-current-lang">PT</span>
+                <svg class="dropdown-arrow" width="10" height="10" viewBox="0 0 12 12">
+                    <path d="M3 4.5L6 7.5L9 4.5" stroke="currentColor" stroke-width="1.5" fill="none"/>
+                </svg>
+            </button>
+            
+            <div id="mobile-language-dropdown" class="language-dropdown hidden">
+                <button data-lang="pt" class="mobile-lang-option active">
+                    <div class="flag-icon" set:html={FlagBR}></div>
+                    <span>Português</span>
+                </button>
+                <button data-lang="en" class="mobile-lang-option">
+                    <div class="flag-icon" set:html={FlagEUA}></div>
+                    <span>English</span>
+                </button>
+                <button data-lang="es" class="mobile-lang-option">
+                    <div class="flag-icon" set:html={FlagESP}></div>
+                    <span>Español</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div id="mobile-menu-overlay" class="mobile-menu-overlay">
+        <div class="mobile-menu-content">
+            <nav class="mobile-nav">
+                <a href="/" class="mobile-nav-item" data-translate="header.home">Início</a>
+                <a href="/" class="mobile-nav-item" data-translate="header.tours">Passeios</a>
+                <a href="/" class="mobile-nav-item" data-translate="header.about">Sobre</a>
+                <a href="/" class="mobile-nav-item" data-translate="header.testimonials">Depoimentos</a>
+                <a href="/" class="mobile-nav-item" data-translate="header.blog">Blog</a>
+            </nav>
+
+            <div class="mobile-cta-container">
+                <a href='/' class="btn-nav border-1 border-black text-black w-full justify-center mobile-cta-btn is-revealed">
+                    <span class="button-content-initial-text mobile-cta-text" data-translate="header.cta">Fale Conosco</span>
+                    <div class="btn-cta-icon-wrapper button-content-initial-icon bg-black mobile-cta-icon">
+                        <ChevronRight size={18} class="text-white" />
+                    </div>
+                </a>
+            </div>
+        </div>
     </div>
 </header>
+
+<style>
+
+    /* Só CSS mobile  */
+    .mobile-menu-btn {
+        transition: all 0.3s ease;
+        position: relative;
+        width: 40px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .mobile-menu-btn:hover {
+        background: #f9f9f9;
+    }
+
+    .mobile-menu-btn.active .menu-icon {
+        display: none;
+    }
+
+    .mobile-menu-btn.active .close-icon {
+        display: block;
+    }
+
+    /* Mobile Menu Overlay */
+    .mobile-menu-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.5);
+        backdrop-filter: blur(4px);
+        z-index: 40;
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.3s ease;
+        pointer-events: none;
+    }
+
+    .mobile-menu-overlay.active {
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+    }
+
+    .mobile-menu-content {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 280px;
+        height: 100vh;
+        background: white;
+        padding: 80px 24px 24px;
+        transform: translateX(-100%);
+        transition: transform 0.3s ease;
+        display: flex;
+        flex-direction: column;
+        gap: 32px;
+    }
+
+    .mobile-menu-overlay.active .mobile-menu-content {
+        transform: translateX(0);
+    }
+
+    /* Mobile Navigation */
+    .mobile-nav {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    .mobile-nav-item {
+        padding: 16px 0;
+        font-size: 18px;
+        font-weight: 500;
+        color: #1f2937;
+        text-decoration: none;
+        border-bottom: 1px solid #f3f4f6;
+        transition: color 0.2s ease;
+        opacity: 0;
+        transform: translateX(-20px);
+    }
+
+    .mobile-menu-overlay.active .mobile-nav-item {
+        animation: slideInLeft 0.3s ease forwards;
+    }
+
+    .mobile-nav-item:hover {
+        color: #374151;
+    }
+
+    .mobile-menu-overlay.active .mobile-nav-item:nth-child(1) { animation-delay: 0.1s; }
+    .mobile-menu-overlay.active .mobile-nav-item:nth-child(2) { animation-delay: 0.15s; }
+    .mobile-menu-overlay.active .mobile-nav-item:nth-child(3) { animation-delay: 0.2s; }
+    .mobile-menu-overlay.active .mobile-nav-item:nth-child(4) { animation-delay: 0.25s; }
+    .mobile-menu-overlay.active .mobile-nav-item:nth-child(5) { animation-delay: 0.3s; }
+
+    @keyframes slideInLeft {
+        to {
+            opacity: 1;
+            transform: translateX(0);
+        }
+    }
+
+    .mobile-cta-container {
+        margin-top: auto;
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    .mobile-menu-overlay.active .mobile-cta-container {
+        animation: slideInUp 0.3s ease forwards 0.4s;
+    }
+
+    @keyframes slideInUp {
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    .mobile-cta-btn .mobile-cta-text {
+        opacity: 1 !important;
+        transform: translateX(0) !important;
+        transition: none !important;
+    }
+
+    .mobile-cta-btn .mobile-cta-icon {
+        opacity: 1 !important;
+        transform: translateX(0) !important;
+        transition: none !important;
+    }
+
+    .language-dropdown {
+        position: absolute !important;
+        top: calc(100% + 4px) !important;
+        right: 0 !important;
+        background: white !important;
+        border: 1px solid #e5e5e5 !important;
+        border-radius: 8px !important;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1) !important;
+        min-width: 140px !important;
+        z-index: 1000 !important;
+        opacity: 1 !important;
+        transform: translateY(0) !important;
+        transition: all 0.2s ease !important;
+        visibility: visible !important;
+        display: block !important;
+    }
+
+    .language-dropdown.hidden {
+        opacity: 0 !important;
+        transform: translateY(-10px) !important;
+        pointer-events: none !important;
+        visibility: hidden !important;
+    }
+
+    .lang-option,
+    .mobile-lang-option {
+        display: flex !important;
+        align-items: center !important;
+        gap: 8px !important;
+        width: 100% !important;
+        padding: 10px 12px !important;
+        border: none !important;
+        background: none !important;
+        cursor: pointer !important;
+        transition: background 0.2s ease !important;
+        font-size: 14px !important;
+        text-align: left !important;
+        color: #374151 !important;
+    }
+
+    .lang-option:hover,
+    .mobile-lang-option:hover {
+        background: #f5f5f5 !important;
+    }
+
+    .lang-option.active,
+    .mobile-lang-option.active {
+        background: #f0f0f0 !important;
+        font-weight: 500 !important;
+    }
+
+    .lang-option:first-child,
+    .mobile-lang-option:first-child {
+        border-radius: 8px 8px 0 0 !important;
+    }
+
+    .lang-option:last-child,
+    .mobile-lang-option:last-child {
+        border-radius: 0 0 8px 8px !important;
+    }
+
+    @media (max-width: 768px) {
+        .header-padding {
+            padding-left: 16px;
+            padding-right: 16px;
+        }
+
+        .language-btn {
+            padding: 6px 8px;
+            font-size: 12px;
+            gap: 4px;
+        }
+
+        .flag-icon {
+            width: 16px;
+            height: 12px;
+        }
+
+        .language-dropdown {
+            min-width: 120px !important;
+        }
+
+        .lang-option,
+        .mobile-lang-option {
+            padding: 8px 10px !important;
+            font-size: 12px !important;
+        }
+    }
+
+    body.menu-open {
+        overflow: hidden;
+    }
+</style>
 
 <script is:inline define:vars={{ FlagBR, FlagEUA, FlagESP }}>
     if (window.globalTranslator) {
@@ -134,7 +416,7 @@ import FlagESP from '../assets/Icons/flag-esp.svg?raw';
                     const oldLanguage = this.currentLanguage;
                     this.currentLanguage = lang;
                     
-                    console.log('🔄 Executando tradução...');
+                    console.log('�� Executando tradução...');
                     this.translateAll();
                     
                     this.saveLanguage(lang);
@@ -218,8 +500,58 @@ import FlagESP from '../assets/Icons/flag-esp.svg?raw';
         
         window.globalTranslator.init();
         
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenuOverlay = document.getElementById('mobile-menu-overlay');
+        const mobileNavItems = document.querySelectorAll('.mobile-nav-item');
+
+        if (mobileMenuBtn && mobileMenuOverlay) {
+            mobileMenuBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                const isActive = mobileMenuOverlay.classList.contains('active');
+                
+                if (isActive) {
+                    closeMobileMenu();
+                } else {
+                    openMobileMenu();
+                }
+            });
+
+            mobileMenuOverlay.addEventListener('click', (e) => {
+                if (e.target === mobileMenuOverlay) {
+                    closeMobileMenu();
+                }
+            });
+
+            mobileNavItems.forEach(item => {
+                item.addEventListener('click', () => {
+                    closeMobileMenu();
+                });
+            });
+
+            document.addEventListener('click', (e) => {
+                if (!mobileMenuBtn.contains(e.target) && !mobileMenuOverlay.contains(e.target)) {
+                    if (mobileMenuOverlay.classList.contains('active')) {
+                        closeMobileMenu();
+                    }
+                }
+            });
+        }
+
+        function openMobileMenu() {
+            mobileMenuBtn.classList.add('active');
+            mobileMenuOverlay.classList.add('active');
+            document.body.classList.add('menu-open');
+        }
+
+        function closeMobileMenu() {
+            mobileMenuBtn.classList.remove('active');
+            mobileMenuOverlay.classList.remove('active');
+            document.body.classList.remove('menu-open');
+        }
+
         setTimeout(() => {
             updateDropdownDisplay(window.globalTranslator.getCurrentLanguage());
+            updateMobileDropdownDisplay(window.globalTranslator.getCurrentLanguage());
         }, 200);
 
         const dropdownBtn = document.getElementById('language-dropdown-btn');
@@ -230,10 +562,15 @@ import FlagESP from '../assets/Icons/flag-esp.svg?raw';
             dropdownBtn.addEventListener('click', (e) => {
                 e.stopPropagation();
                 dropdown.classList.toggle('hidden');
+                
+                const mobileDropdown = document.getElementById('mobile-language-dropdown');
+                if (mobileDropdown) {
+                    mobileDropdown.classList.add('hidden');
+                }
             });
 
             document.addEventListener('click', (e) => {
-                if (e.target && !dropdownBtn.contains(e.target) && !dropdown.contains(e.target)) {
+                if (!dropdownBtn.contains(e.target) && !dropdown.contains(e.target)) {
                     dropdown.classList.add('hidden');
                 }
             });
@@ -245,13 +582,55 @@ import FlagESP from '../assets/Icons/flag-esp.svg?raw';
                 const lang = option.dataset.lang;
                 
                 if (lang) {
-                    console.log('🎯 Clique no idioma:', lang);
+                    console.log('🎯 Clique no idioma desktop:', lang);
                     
                     window.globalTranslator.setLanguage(lang);
                     updateDropdownDisplay(lang);
+                    updateMobileDropdownDisplay(lang);
                     updateActiveOption(lang);
+                    updateMobileActiveOption(lang);
                     
-                    if (dropdown) dropdown.classList.add('hidden');
+                    dropdown.classList.add('hidden');
+                }
+            });
+        });
+
+        const mobileDropdownBtn = document.getElementById('mobile-language-dropdown-btn');
+        const mobileDropdown = document.getElementById('mobile-language-dropdown');
+        const mobileLangOptions = document.querySelectorAll('.mobile-lang-option');
+
+        if (mobileDropdownBtn && mobileDropdown) {
+            mobileDropdownBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                mobileDropdown.classList.toggle('hidden');
+                
+                if (dropdown) {
+                    dropdown.classList.add('hidden');
+                }
+            });
+
+            document.addEventListener('click', (e) => {
+                if (!mobileDropdownBtn.contains(e.target) && !mobileDropdown.contains(e.target)) {
+                    mobileDropdown.classList.add('hidden');
+                }
+            });
+        }
+
+        mobileLangOptions.forEach(option => {
+            option.addEventListener('click', (e) => {
+                e.stopPropagation();
+                const lang = option.dataset.lang;
+                
+                if (lang) {
+                    console.log('🎯 Clique no idioma mobile:', lang);
+                    
+                    window.globalTranslator.setLanguage(lang);
+                    updateDropdownDisplay(lang);
+                    updateMobileDropdownDisplay(lang);
+                    updateActiveOption(lang);
+                    updateMobileActiveOption(lang);
+                    
+                    mobileDropdown.classList.add('hidden');
                 }
             });
         });
@@ -275,10 +654,12 @@ import FlagESP from '../assets/Icons/flag-esp.svg?raw';
             });
         }, 1000);
 
-        const langSwitcher = document.querySelector('.language-switcher-container');
-        if (langSwitcher) {
-            setTimeout(() => langSwitcher.classList.add('is-revealed'), 800);
-        }
+        const langSwitchers = document.querySelectorAll('.language-switcher-container');
+        setTimeout(() => {
+            langSwitchers.forEach((switcher, index) => {
+                setTimeout(() => switcher.classList.add('is-revealed'), 800 + (index * 100));
+            });
+        }, 800);
     });
 
     function updateDropdownDisplay(lang) {
@@ -291,8 +672,27 @@ import FlagESP from '../assets/Icons/flag-esp.svg?raw';
         }
     }
 
+    function updateMobileDropdownDisplay(lang) {
+        const mobileCurrentFlag = document.getElementById('mobile-current-flag');
+        const mobileCurrentLang = document.getElementById('mobile-current-lang');
+        
+        if (mobileCurrentFlag && mobileCurrentLang && window.languages[lang]) {
+            mobileCurrentFlag.innerHTML = window.languages[lang].flag;
+            mobileCurrentLang.textContent = lang.toUpperCase();
+        }
+    }
+
     function updateActiveOption(lang) {
         document.querySelectorAll('.lang-option').forEach(option => {
+            option.classList.remove('active');
+            if (option.dataset.lang === lang) {
+                option.classList.add('active');
+            }
+        });
+    }
+
+    function updateMobileActiveOption(lang) {
+        document.querySelectorAll('.mobile-lang-option').forEach(option => {
             option.classList.remove('active');
             if (option.dataset.lang === lang) {
                 option.classList.add('active');

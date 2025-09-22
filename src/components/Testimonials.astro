@@ -4,26 +4,25 @@ import { ChevronLeft, ChevronRight } from "lucide-astro";
 
 <section id="Testimonials" class="section-padding section-reveal">
   <div class="p-4 md:p-8">
-    <div class="header-container flex flex-col md:flex-row justify-between items-start md:items-center mb-4 gap-4">
-      <div class="flex-1">
-        <h1 class="title-reveal">Histórias Que Inspiram: Nossos Clientes Falam.</h1>
-      </div>
+    <div class="header-container flex justify-between items-center mb-4">
+      <h1 class="title-reveal w-full">Histórias Que Inspiram: Nossos Clientes Falam.</h1>
       
-      <div class="carousel-controls flex gap-2 self-end md:self-auto flex-shrink-0"> 
-        <button class="carousel-btn carousel-btn-prev bg-gray-200 hover:bg-gray-300 rounded-full p-3 transition-all duration-200" id="prevBtnTestimonials" aria-label="Previous slide">
-          <ChevronLeft size={20} class="text-gray-700" />
+      <div class="carousel-controls flex-shrink-0"> 
+        <button class="carousel-btn carousel-btn-prev" id="prevBtnTestimonials" style="display: none;">
+          <ChevronLeft size={20} />
         </button>
-        <button class="carousel-btn carousel-btn-next bg-gray-200 hover:bg-gray-300 rounded-full p-3 transition-all duration-200" id="nextBtnTestimonials" aria-label="Next slide">
-          <ChevronRight size={20} class="text-gray-700" />
+        <button class="carousel-btn carousel-btn-next" id="nextBtnTestimonials">
+          <ChevronRight size={20} />
         </button>
       </div>
     </div>
     
     <div class="carousel-wrapper-outer relative">
-      <div class="carousel-container overflow-hidden relative z-10 px-4 pb-8 rounded-lg">
-        <div class="carousel-track flex transition-transform duration-500 ease-in-out gap-6 pb-4"> 
-          <div class="testimonial-reveal rounded-lg group flex-none w-full md:w-[calc(50%-12px)] lg:w-[calc(33.333%-16px)] xl:w-[calc(25%-18px)]">
-            <div class="p-4 bg-white rounded-lg shadow-md group-hover:z-10 relative hover:shadow-lg flex flex-col min-h-[280px]">
+      <div class="carousel-container overflow-hidden relative z-10 pb-8">
+        <div class="carousel-track flex transition-transform duration-500 ease-in-out pb-4 items-stretch" id="testimonials-track">
+          
+          <div class="testimonial-card testimonial-reveal flex-none">
+            <div class="testimonial-content p-4 bg-white rounded-lg shadow-md hover:shadow-lg flex flex-col">
               <p class="text-gray-700 text-lg mb-4 flex-grow">"A BNI Tour superou todas as nossas expectativas! Cada detalhe da viagem foi planejado com maestria para a nossa família. Uma experiência incrível do início ao fim!"</p>
               <div class="flex flex-col 2xl:flex-row 2xl:items-center 2xl:justify-between gap-3 mt-auto">
                 <div class="flex-shrink-0">
@@ -33,15 +32,15 @@ import { ChevronLeft, ChevronRight } from "lucide-astro";
                 <a href='https://www.tripadvisor.com.br/Attraction_Review-g303444-d17724059-Reviews-Bni_Tour-Foz_do_Iguacu_State_of_Parana.html' class="btn-nav border-1 border-black text-black header-btn 2xl:self-auto self-start">
                   <span class="button-content-initial-text">Ver no Tripadvisor</span>
                   <div class="btn-cta-icon-wrapper button-content-initial-icon bg-black">
-                      <ChevronRight size={20} class="text-white" />
+                    <ChevronRight size={20} class="text-white" />
                   </div>
-              </a>
+                </a>
               </div>
             </div>
           </div>
 
-          <div class="testimonial-reveal rounded-lg group flex-none w-full md:w-[calc(50%-12px)] lg:w-[calc(33.333%-16px)] xl:w-[calc(25%-18px)]">
-            <div class="p-4 bg-white rounded-lg shadow-md group-hover:z-10 relative hover:shadow-lg flex flex-col min-h-[280px]">
+          <div class="testimonial-card testimonial-reveal flex-none">
+            <div class="testimonial-content p-4 bg-white rounded-lg shadow-md hover:shadow-lg flex flex-col">
               <p class="text-gray-700 text-lg mb-4 flex-grow">"Nunca imaginei que uma viagem pudesse ser tão tranquila e personalizada. Os roteiros da BNI Tour nos permitiram aproveitar cada momento sem preocupações. Altamente recomendado!"</p>
               <div class="flex flex-col 2xl:flex-row 2xl:items-center 2xl:justify-between gap-3 mt-auto">
                 <div class="flex-shrink-0">
@@ -51,15 +50,15 @@ import { ChevronLeft, ChevronRight } from "lucide-astro";
                 <a href='https://www.google.com/travel' class="btn-nav border-1 border-black text-black header-btn 2xl:self-auto self-start">
                   <span class="button-content-initial-text">Avaliar no Google</span>
                   <div class="btn-cta-icon-wrapper button-content-initial-icon bg-black">
-                      <ChevronRight size={20} class="text-white" />
+                    <ChevronRight size={20} class="text-white" />
                   </div>
-              </a>
+                </a>
               </div>
             </div>
           </div>
 
-          <div class="testimonial-reveal rounded-lg group flex-none w-full md:w-[calc(50%-12px)] lg:w-[calc(33.333%-16px)] xl:w-[calc(25%-18px)]">
-            <div class="p-4 bg-white rounded-lg shadow-md group-hover:z-10 relative hover:shadow-lg flex flex-col min-h-[280px]">
+          <div class="testimonial-card testimonial-reveal flex-none">
+            <div class="testimonial-content p-4 bg-white rounded-lg shadow-md hover:shadow-lg flex flex-col">
               <p class="text-gray-700 text-lg mb-4 flex-grow">"Simplesmente perfeito! Desde o atendimento inicial até o retorno, a equipe da BNI Tour foi impecável. Minha família e eu tivemos uma experiência inesquecível em Foz do Iguaçu."</p>
               <div class="flex flex-col 2xl:flex-row 2xl:items-center 2xl:justify-between gap-3 mt-auto">
                 <div class="flex-shrink-0">
@@ -69,15 +68,15 @@ import { ChevronLeft, ChevronRight } from "lucide-astro";
                 <a href='https://www.tripadvisor.com.br/Attraction_Review-g303444-d17724059-Reviews-Bni_Tour-Foz_do_Iguacu_State_of_Parana.html' class="btn-nav border-1 border-black text-black header-btn 2xl:self-auto self-start">
                   <span class="button-content-initial-text">Ver no Tripadvisor</span>
                   <div class="btn-cta-icon-wrapper button-content-initial-icon bg-black">
-                      <ChevronRight size={20} class="text-white" />
+                    <ChevronRight size={20} class="text-white" />
                   </div>
-              </a>
+                </a>
               </div>
             </div>
           </div>
 
-          <div class="testimonial-reveal rounded-lg group flex-none w-full md:w-[calc(50%-12px)] lg:w-[calc(33.333%-16px)] xl:w-[calc(25%-18px)]">
-            <div class="p-4 bg-white rounded-lg shadow-md group-hover:z-10 relative hover:shadow-lg flex flex-col min-h-[280px]">
+          <div class="testimonial-card testimonial-reveal flex-none">
+            <div class="testimonial-content p-4 bg-white rounded-lg shadow-md hover:shadow-lg flex flex-col">
               <p class="text-gray-700 text-lg mb-4 flex-grow">"Viajar com a BNI Tour é garantia de tranquilidade. Roteiros excelentes e motoristas muito atenciosos. Recomendo para quem busca uma viagem sem preocupações!"</p>
               <div class="flex flex-col 2xl:flex-row 2xl:items-center 2xl:justify-between gap-3 mt-auto">
                 <div class="flex-shrink-0">
@@ -87,33 +86,33 @@ import { ChevronLeft, ChevronRight } from "lucide-astro";
                 <a href='https://www.google.com/travel' class="btn-nav border-1 border-black text-black header-btn 2xl:self-auto self-start">
                   <span class="button-content-initial-text">Avaliar no Google</span>
                   <div class="btn-cta-icon-wrapper button-content-initial-icon bg-black">
-                      <ChevronRight size={20} class="text-white" />
+                    <ChevronRight size={20} class="text-white" />
                   </div>
-              </a>
+                </a>
               </div>
             </div>
           </div>
 
-          <div class="testimonial-reveal rounded-lg group flex-none w-full md:w-[calc(50%-12px)] lg:w-[calc(33.333%-16px)] xl:w-[calc(25%-18px)]">
-            <div class="p-4 bg-white rounded-lg shadow-md group-hover:z-10 relative hover:shadow-lg flex flex-col min-h-[280px]">
+          <div class="testimonial-card testimonial-reveal flex-none">
+            <div class="testimonial-content p-4 bg-white rounded-lg shadow-md hover:shadow-lg flex flex-col">
               <p class="text-gray-700 text-lg mb-4 flex-grow">"Experiência incrível na tríplice fronteira! A BNI Tour nos proporcionou momentos inesquecíveis, com todo o conforto e segurança. Mal podemos esperar para a próxima!"</p>
               <div class="flex flex-col 2xl:flex-row 2xl:items-center 2xl:justify-between gap-3 mt-auto">
                 <div class="flex-shrink-0">
                   <p class="font-semibold text-gray-900">Fernanda L.</p>
                   <p class="text-sm text-gray-500">Exploradora</p>
                 </div>
-               <a href='https://www.tripadvisor.com.br/Attraction_Review-g303444-d17724059-Reviews-Bni_Tour-Foz_do_Iguacu_State_of_Parana.html' class="btn-nav border-1 border-black text-black header-btn 2xl:self-auto self-start">
+                <a href='https://www.tripadvisor.com.br/Attraction_Review-g303444-d17724059-Reviews-Bni_Tour-Foz_do_Iguacu_State_of_Parana.html' class="btn-nav border-1 border-black text-black header-btn 2xl:self-auto self-start">
                   <span class="button-content-initial-text">Ver no Tripadvisor</span>
                   <div class="btn-cta-icon-wrapper button-content-initial-icon bg-black">
-                      <ChevronRight size={20} class="text-white" />
+                    <ChevronRight size={20} class="text-white" />
                   </div>
-              </a>
+                </a>
               </div>
             </div>
           </div>
 
-          <div class="testimonial-reveal rounded-lg group flex-none w-full md:w-[calc(50%-12px)] lg:w-[calc(33.333%-16px)] xl:w-[calc(25%-18px)]">
-            <div class="p-4 bg-white rounded-lg shadow-md group-hover:z-10 relative hover:shadow-lg flex flex-col min-h-[280px]">
+          <div class="testimonial-card testimonial-reveal flex-none">
+            <div class="testimonial-content p-4 bg-white rounded-lg shadow-md hover:shadow-lg flex flex-col">
               <p class="text-gray-700 text-lg mb-4 flex-grow">"Atendimento personalizado e guias muito bem informados. Minha viagem para as Cataratas foi perfeita, graças ao planejamento cuidadoso da BNI Tour."</p>
               <div class="flex flex-col 2xl:flex-row 2xl:items-center 2xl:justify-between gap-3 mt-auto">
                 <div class="flex-shrink-0">
@@ -123,160 +122,330 @@ import { ChevronLeft, ChevronRight } from "lucide-astro";
                 <a href='https://www.google.com/travel' class="btn-nav border-1 border-black text-black header-btn 2xl:self-auto self-start">
                   <span class="button-content-initial-text">Avaliar no Google</span>
                   <div class="btn-cta-icon-wrapper button-content-initial-icon bg-black">
-                      <ChevronRight size={20} class="text-white" />
+                    <ChevronRight size={20} class="text-white" />
                   </div>
-              </a>
+                </a>
               </div>
             </div>
           </div>
+          
         </div>
       </div>
     </div>
   </div>
 </section>
 
+<style>
+html, body {
+  overflow-x: hidden !important;
+  max-width: 100vw !important;
+}
+
+@media (max-width: 768px) {
+  .header-container {
+    position: relative;
+    margin-bottom: 120px;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .header-container h1 {
+    width: 100% !important;
+  }
+  
+  .carousel-controls {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    margin-top: 60px; 
+  }
+  
+  .carousel-container {
+    width: 100vw;
+    margin-left: calc(-50vw + 50%);
+    overflow: hidden !important;
+  }
+  
+  .carousel-track {
+    display: flex;
+    transition: transform 0.3s ease;
+    gap: 0;
+  }
+  
+  .testimonial-card {
+    flex: 0 0 100vw;
+    width: 100vw;
+    padding: 0 20px;
+    box-sizing: border-box;
+  }
+  
+  .testimonial-content {
+    border-radius: 0 !important;
+    min-height: 320px;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1023px) {
+  .header-container {
+    flex-direction: row;
+    margin-bottom: 2rem;
+  }
+  
+  .carousel-track {
+    gap: 1.5rem;
+  }
+  
+  .testimonial-card {
+    width: calc(50% - 0.75rem);
+  }
+}
+
+/* Desktop Layout - 3+ cards */
+@media (min-width: 1024px) {
+  .header-container {
+    flex-direction: row;
+    margin-bottom: 2rem;
+  }
+  
+  .carousel-track {
+    gap: 1rem;
+  }
+  
+  .testimonial-card {
+    width: calc(33.333% - 0.667rem);
+  }
+}
+
+@media (min-width: 1280px) {
+  .testimonial-card {
+    width: calc(25% - 0.75rem);
+  }
+}
+</style>
+
 <script>
-  document.addEventListener('DOMContentLoaded', () => {
-    const testimonialSection = document.getElementById('Testimonials');
-    if (!testimonialSection) return;
+document.addEventListener('DOMContentLoaded', () => {
+  const testimonialSection = document.getElementById('Testimonials');
+  if (!testimonialSection) return;
 
-    const carouselTrack = testimonialSection.querySelector('.carousel-track') as HTMLElement;
-    const prevBtn = testimonialSection.querySelector('#prevBtnTestimonials') as HTMLButtonElement;
-    const nextBtn = testimonialSection.querySelector('#nextBtnTestimonials') as HTMLButtonElement;
-    const cards = Array.from(carouselTrack.children) as HTMLElement[];
+  const sections = document.querySelectorAll('.section-reveal');
+  
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('section-reveal-active');
+        
+        setTimeout(() => {
+          const titles = entry.target.querySelectorAll('.title-reveal');
+          titles.forEach((title, index) => {
+            setTimeout(() => { 
+              title.classList.add('is-visible');
+            }, index * 200); 
+          });
+        }, 400);
+        
+        setTimeout(() => {
+          const cards = entry.target.querySelectorAll('.testimonial-reveal');
+          cards.forEach((card, index) => {
+            setTimeout(() => {
+              card.classList.add('is-visible');
+            }, index * 200);
+          });
+        }, 800);
+        
+        setTimeout(() => {
+          const ctaButtons = entry.target.querySelectorAll('.btn-nav');
+          ctaButtons.forEach((button, index) => {
+            setTimeout(() => {
+              button.classList.add('is-revealed');
+            }, index * 200);
+          });
+        }, 1200);
+      }
+    });
+  });
 
-    if (!carouselTrack || !prevBtn || !nextBtn || cards.length === 0) {
-      console.warn("Carrossel de depoimentos não inicializado: Elementos essenciais não encontrados ou cards vazios.");
-      return;
+  sections.forEach(section => observer.observe(section));
+
+  const carouselTrack = testimonialSection.querySelector('.carousel-track');
+  const prevBtn = testimonialSection.querySelector('#prevBtnTestimonials');
+  const nextBtn = testimonialSection.querySelector('#nextBtnTestimonials');
+  const cards = testimonialSection.querySelectorAll('.testimonial-card');
+  const carouselContainer = testimonialSection.querySelector('.carousel-container');
+
+  if (!carouselTrack || !prevBtn || !nextBtn || !carouselContainer || cards.length === 0) {
+    return;
+  }
+
+  let currentIndex = 0;
+  let autoPlayInterval = null;
+
+  function getCardsToShow() {
+    if (window.innerWidth <= 768) return 1;
+    if (window.innerWidth <= 1023) return 2;
+    if (window.innerWidth <= 1279) return 3;
+    return 4;
+  }
+
+  function getMaxIndex() {
+    return Math.max(0, cards.length - getCardsToShow());
+  }
+
+  function updateCarousel() {
+    const cardsToShow = getCardsToShow();
+    
+    if (cardsToShow === 1) {
+      carouselTrack.style.transform = `translateX(-${currentIndex * 100}vw)`;
+    } else {
+      const cardWidth = cards[0].offsetWidth;
+      let gap;
+      if (cardsToShow === 2) gap = 24;
+      else if (cardsToShow === 3) gap = 16;
+      else gap = 16;
+      
+      const translateX = -(currentIndex * (cardWidth + gap));
+      carouselTrack.style.transform = `translateX(${translateX}px)`;
     }
     
-    let currentSlide = 0;
-    let cardsPerPage = 1;
-    let cardWidth = 0;
-    const carouselGap = 24; 
+    const maxIndex = getMaxIndex();
+    
+    prevBtn.style.display = currentIndex === 0 ? 'none' : 'flex';
+    nextBtn.style.display = currentIndex >= maxIndex ? 'none' : 'flex';
+  }
 
-    function updateCardsPerPage() {
-      if (window.innerWidth >= 1280) { 
-        cardsPerPage = 4;
-      } else if (window.innerWidth >= 1024) { 
-        cardsPerPage = 3;
-      } else if (window.innerWidth >= 768) { 
-        cardsPerPage = 2;
-      } else { 
-        cardsPerPage = 1;
-      }
+  function goToSlide(index) {
+    const maxIndex = getMaxIndex();
+    currentIndex = Math.max(0, Math.min(index, maxIndex));
+    updateCarousel();
+  }
+
+  function nextSlide() {
+    const maxIndex = getMaxIndex();
+    if (currentIndex < maxIndex) {
+      goToSlide(currentIndex + 1);
+    } else {
+      goToSlide(0); 
     }
+  }
 
-    function calculateCardWidth() {
-      if (cards.length > 0) {
-        cardWidth = cards[0].offsetWidth; 
-      } else {
-        cardWidth = 0;
-      }
+  function prevSlide() {
+    if (currentIndex > 0) {
+      goToSlide(currentIndex - 1);
+    } else {
+      goToSlide(getMaxIndex()); 
+    }
+  }
+
+  function startAutoPlay() {
+    if (autoPlayInterval) {
+      clearInterval(autoPlayInterval);
     }
     
-    function updateCarouselPosition() {
-      const offset = (cardWidth + carouselGap) * currentSlide;
-      carouselTrack.style.transform = `translateX(-${offset}px)`;
-      updateButtonStates();
-    }
+    autoPlayInterval = setInterval(() => {
+      nextSlide();
+    }, 4000);
+  }
 
-    function updateButtonStates() {
-      if (currentSlide === 0) {
-        prevBtn.style.display = 'none'; 
+  function stopAutoPlay() {
+    if (autoPlayInterval) {
+      clearInterval(autoPlayInterval);
+      autoPlayInterval = null;
+    }
+  }
+
+  function resetAutoPlay() {
+    stopAutoPlay();
+    startAutoPlay();
+  }
+
+  prevBtn.addEventListener('click', (e) => {
+    e.preventDefault();
+    prevSlide();
+    resetAutoPlay();
+  });
+
+  nextBtn.addEventListener('click', (e) => {
+    e.preventDefault();
+    nextSlide();
+    resetAutoPlay();
+  });
+
+  carouselContainer.addEventListener('mouseenter', stopAutoPlay);
+  carouselContainer.addEventListener('mouseleave', startAutoPlay);
+
+  document.addEventListener('visibilitychange', () => {
+    if (document.hidden) {
+      stopAutoPlay();
+    } else {
+      startAutoPlay();
+    }
+  });
+
+  window.addEventListener('resize', () => {
+    const maxIndex = getMaxIndex();
+    
+    if (currentIndex > maxIndex) {
+      currentIndex = maxIndex;
+    }
+    
+    updateCarousel();
+    resetAutoPlay();
+  });
+
+  let touchStartX = 0;
+  let touchEndX = 0;
+
+  carouselContainer.addEventListener('touchstart', (e) => {
+    touchStartX = e.changedTouches[0].screenX;
+    stopAutoPlay();
+  });
+
+  carouselContainer.addEventListener('touchend', (e) => {
+    touchEndX = e.changedTouches[0].screenX;
+    handleSwipe();
+    startAutoPlay();
+  });
+
+  function handleSwipe() {
+    const swipeThreshold = 50;
+    const swipeDistance = touchStartX - touchEndX;
+    
+    if (Math.abs(swipeDistance) > swipeThreshold) {
+      if (swipeDistance > 0) {
+        nextSlide();
       } else {
-        prevBtn.style.display = 'flex'; 
-      }
-
-      const maxIndex = Math.max(0, cards.length - cardsPerPage);
-      if (currentSlide >= maxIndex) {
-        nextBtn.style.display = 'none'; 
-      } else {
-        nextBtn.style.display = 'flex'; 
+        prevSlide();
       }
     }
+  }
 
-    function showNextSlide() {
-      const maxIndex = Math.max(0, cards.length - cardsPerPage);
-      if (currentSlide < maxIndex) {
-        currentSlide++;
-      } else {
-        currentSlide = 0; 
-      }
-      updateCarouselPosition();
-    }
+  function equalizeHeights() {
+    const testimonialContents = document.querySelectorAll('#Testimonials .testimonial-content');
+    
+    let maxHeight = 0;
 
-    function showPrevSlide() {
-      if (currentSlide > 0) {
-        currentSlide--;
-      } else {
-        currentSlide = Math.max(0, cards.length - cardsPerPage); 
-      }
-      updateCarouselPosition();
-    }
-
-    function initializeCarousel() {
-      updateCardsPerPage();
-      calculateCardWidth();
-      updateCarouselPosition();
-    }
-
-    let resizeTimeout: number | null = null; 
-    window.addEventListener('resize', () => {
-      if (resizeTimeout) {
-        clearTimeout(resizeTimeout);
-      }
-      resizeTimeout = setTimeout(() => {
-        initializeCarousel();
-        const maxSlide = Math.max(0, cards.length - cardsPerPage);
-        if (currentSlide > maxSlide) {
-          currentSlide = maxSlide;
-        }
-        updateCarouselPosition();
-      }, 250) as unknown as number; 
+    testimonialContents.forEach(content => {
+      content.style.height = 'auto'; 
+      maxHeight = Math.max(maxHeight, content.offsetHeight); 
     });
 
-    prevBtn.addEventListener('click', showPrevSlide);
-    nextBtn.addEventListener('click', showNextSlide);
-
-    initializeCarousel();
-
-    const observerOptions = {
-        root: null,
-        rootMargin: '0px',
-        threshold: 0.1
-    };
-
-    const sectionObserverCallback = (entries: IntersectionObserverEntry[], observer: IntersectionObserver) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                const section = entry.target as HTMLElement;
-                section.classList.add('section-reveal-active');
-
-                if (section.id === 'Testimonials') {
-                    const testimonialTitle = section.querySelector('.title-reveal') as HTMLElement;
-                    if (testimonialTitle) {
-                        setTimeout(() => { 
-                            testimonialTitle.classList.add('is-visible'); 
-                        }, 300); 
-                    }
-
-                    const testimonialCards = section.querySelectorAll('.testimonial-reveal') as NodeListOf<HTMLElement>;
-                    testimonialCards.forEach((card: HTMLElement, index: number) => {
-                        setTimeout(() => { 
-                            card.classList.add('is-visible'); 
-                        }, 600 + (index * 150)); 
-                    });
-                }
-                observer.unobserve(section);
-            }
-        });
-    };
-
-    const sectionObserver = new IntersectionObserver(sectionObserverCallback, observerOptions);
-    const revealSections = document.querySelectorAll('.section-reveal');
-    revealSections.forEach(section => {
-        sectionObserver.observe(section);
+    testimonialContents.forEach(content => {
+      content.style.height = maxHeight + 'px';
     });
+  }
+
+  window.addEventListener('resize', () => {
+    if (window.innerWidth <= 1366) {
+      equalizeHeights();
+    } else {
+      const testimonialContents = document.querySelectorAll('#Testimonials .testimonial-content');
+      testimonialContents.forEach(content => content.style.height = 'auto');
+    }
+  });
+
+  // Inicializar
+  updateCarousel();
+  startAutoPlay();
+  equalizeHeights();
 });
 </script>

@@ -5,49 +5,55 @@ import { ChevronRight } from 'lucide-astro';
 <main>
   <section id="Hero" class="section-padding section-reveal">
     <div 
-      class="min-h-screen bg-cover bg-center bg-no-repeat rounded-xl overflow-hidden relative"
+      id="hero-carousel"
+      class="min-h-screen bg-cover bg-center bg-no-repeat rounded-xl overflow-hidden relative transition-all duration-700"
       style="background-image: url('Hero-bg1.webp');">
     
       <div class="absolute inset-0" style="background: linear-gradient(45deg, rgba(0, 0, 0, 0.6 ), transparent);"></div>
     
+      <div id="hero-loader" class="absolute inset-0 flex items-center justify-center bg-black/50 backdrop-blur-md opacity-0 pointer-events-none transition-opacity duration-500">
+        <div class="w-8 h-8 md:w-10 md:h-10 border-4 border-white border-t-transparent rounded-full animate-spin"></div>
+      </div>
+
+      <div id="slide-overlay" class="absolute inset-0 bg-cover bg-center bg-no-repeat transform translate-x-full transition-transform duration-700 ease-in-out"></div>
+
       <div class="relative z-10 min-h-screen flex flex-col justify-center items-start p-4 pb-4 md:p-8 md:pb-8">
-        <a href='/' class="btn-cta text-white hover:bg-white/10 mb-8">
-          <span 
-            class="button-content-initial-text"
-            data-translate="hero.cta.discover"
-          >Conheça mais destinos...</span>
+        
+        <button id="next-destino" class="btn-cta text-white hover:bg-white/10 mb-6 md:mb-8">
+          <span class="button-content-initial-text" data-translate="hero.cta.discover">
+            Conheça mais destinos...
+          </span>
           <div class="btn-cta-icon-wrapper button-content-initial-icon bg-white/20">
-            <ChevronRight size={20} color="white" />
+            <ChevronRight size={20} class="text-white" />
           </div>
-        </a>
+        </button>
         
-        <h1 
-          class="mb-4 text-white title-reveal w-6/8"
-          data-translate="hero.title"
-        >Sua Viagem para Foz do Iguaçu.<br> Experiências Sob Medida, Memórias Para Sempre.</h1>
+        <div class="text-content-wrapper overflow-hidden w-full">
+          <h1 id="hero-title" class="mb-3 md:mb-4 text-white title-reveal w-full" data-translate="hero.title">
+            Sua Viagem para Foz do Iguaçu.<br> Experiências Sob Medida, Memórias Para Sempre.
+          </h1>
+          
+          <h2 id="hero-subtitle" class="mb-6 md:mb-8 text-white subtitle-reveal w-full md:w-4/5 lg:w-3/4" data-translate="hero.subtitle">
+            Esqueça o estresse. A BNI Tour transforma sua viagem em Foz do Iguaçu, Paraguai e Argentina em um roteiro premium, exclusivo e inesquecível. Seu desejo é nosso guia...
+          </h2>
+        </div>
         
-        <h2 
-          class="mb-8 text-white title-reveal w-6/8"
-          data-translate="hero.subtitle"
-        >Esqueça o estresse. A BNI Tour transforma sua viagem em Foz do Iguaçu, Paraguai e Argentina em um roteiro premium, exclusivo e inesquecível. Seu desejo é nosso guia...</h2>
-        
-        <div class="flex gap-4 mt-6">
-          <a href='/' class="btn-nav text-black mt-6">
-            <span 
-              class="button-content-initial-text"
-              data-translate="hero.cta.plan"
-            >Planeje Sua Viagem Agora!</span>
+        <div class="flex flex-col md:flex-row gap-3 md:gap-4 mt-4 md:mt-6 w-full md:w-auto">
+          <a href='/' class="btn-nav text-black w-full md:w-auto justify-center md:justify-start">
+            <span class="button-content-initial-text" data-translate="hero.cta.plan">
+              Planeje Sua Viagem Agora!
+            </span>
             <div class="btn-cta-icon-wrapper button-content-initial-icon bg-black">
-              <ChevronRight size={20} color="white" />
+              <ChevronRight size={20} class="text-white" />
             </div>
           </a>
-          <a href='/' class="btn-cta text-white hover:bg-white/10 mt-6">
-            <span 
-              class="button-content-initial-text"
-              data-translate="hero.cta.tours"
-            >Passeios</span>
+          
+          <a href='/' class="btn-cta text-white hover:bg-white/10 w-full md:w-auto justify-center md:justify-start">
+            <span class="button-content-initial-text" data-translate="hero.cta.tours">
+              Passeios
+            </span>
             <div class="btn-cta-icon-wrapper button-content-initial-icon bg-white/20">
-              <ChevronRight size={20} color="white" />
+              <ChevronRight size={20} class="text-white" />
             </div>
           </a>
         </div>
@@ -59,9 +65,155 @@ import { ChevronRight } from 'lucide-astro';
 <script is:inline>
   document.addEventListener('DOMContentLoaded', function() {
     console.log('🎬 Hero carregado');
+
+    const slides = [
+      {
+        image: 'Hero-bg1.webp',
+        title: 'Sua Viagem para Foz do Iguaçu.<br> Experiências Sob Medida, Memórias Para Sempre.',
+        subtitle: 'Esqueça o estresse. A BNI Tour transforma sua viagem em Foz do Iguaçu, Paraguai e Argentina em um roteiro premium, exclusivo e inesquecível. Seu desejo é nosso guia...'
+      },
+      {
+        image: 'Hero-bg2.webp',
+        title: 'Paraguai e Argentina.<br> Compras e Cultura em Uma Só Viagem.',
+        subtitle: 'Descubra as maravilhas do Paraguai e Argentina com roteiros personalizados. Shopping, gastronomia e pontos turísticos únicos te aguardam nesta aventura inesquecível.'
+      },
+      {
+        image: 'Hero-bg3.webp',
+        title: 'Cataratas do Iguaçu.<br> A Oitava Maravilha do Mundo Te Espera.',
+        subtitle: 'Viva a experiência única das Cataratas do Iguaçu pelos lados brasileiro e argentino. Natureza exuberante e momentos que ficarão para sempre na sua memória.'
+      }
+    ];
     
+    let currentSlide = 0;
+    let isAnimating = false;
+    let isMobile = window.innerWidth <= 768;
+
+    const hero = document.getElementById('hero-carousel');
+    const slideOverlay = document.getElementById('slide-overlay');
+    const loader = document.getElementById('hero-loader');
+    const nextBtn = document.getElementById('next-destino');
+    const heroTitle = document.getElementById('hero-title');
+    const heroSubtitle = document.getElementById('hero-subtitle');
+
+    window.addEventListener('resize', function() {
+      isMobile = window.innerWidth <= 768;
+    });
+
+    function showLoader() {
+      loader.classList.remove('opacity-0', 'pointer-events-none');
+      loader.classList.add('opacity-100');
+    }
+
+    function hideLoader() {
+      loader.classList.remove('opacity-100');
+      loader.classList.add('opacity-0', 'pointer-events-none');
+    }
+
+    function animateTextOut() {
+      heroTitle.classList.add('text-slide-out');
+      heroSubtitle.classList.add('text-slide-out');
+      heroTitle.classList.remove('text-visible');
+      heroSubtitle.classList.remove('text-visible');
+    }
+
+    function animateTextIn(slideData) {
+      heroTitle.classList.add('text-slide-in');
+      heroSubtitle.classList.add('text-slide-in');
+      heroTitle.classList.remove('text-visible', 'text-slide-out');
+      heroSubtitle.classList.remove('text-visible', 'text-slide-out');
+      
+      heroTitle.innerHTML = slideData.title;
+      heroSubtitle.innerHTML = slideData.subtitle;
+      
+      setTimeout(() => {
+        heroTitle.classList.remove('text-slide-in');
+        heroTitle.classList.add('text-visible');
+        
+        setTimeout(() => {
+          heroSubtitle.classList.remove('text-slide-in');
+          heroSubtitle.classList.add('text-visible');
+        }, 150);
+      }, 100);
+    }
+
+    function nextSlide() {
+      if (isAnimating) return;
+      
+      console.log('🎬 Iniciando animação do slide');
+      isAnimating = true;
+      showLoader();
+      
+      const nextSlideIndex = (currentSlide + 1) % slides.length;
+      const nextSlideData = slides[nextSlideIndex];
+
+      animateTextOut();
+      
+      slideOverlay.style.backgroundImage = `url('${nextSlideData.image}')`;
+      
+      const loaderDuration = isMobile ? 400 : 600;
+      const animationDuration = isMobile ? 500 : 700;
+      
+      setTimeout(() => {
+        hideLoader();
+        
+        slideOverlay.style.transform = 'translateX(0%)';
+        
+        setTimeout(() => {
+          animateTextIn(nextSlideData);
+        }, 200);
+        
+        setTimeout(() => {
+          hero.style.backgroundImage = `url('${nextSlideData.image}')`;
+          
+          slideOverlay.style.transform = 'translateX(100%)';
+          
+          currentSlide = nextSlideIndex;
+          
+          isAnimating = false;
+          console.log('🎬 Animação concluída');
+        }, animationDuration);
+        
+      }, loaderDuration); 
+    }
+
+    function initializeSlide() {
+      heroTitle.classList.add('text-visible');
+      heroSubtitle.classList.add('text-visible');
+      heroTitle.classList.remove('text-slide-in', 'text-slide-out');
+      heroSubtitle.classList.remove('text-slide-in', 'text-slide-out');
+    }
+
+    function initializeAnimations() {
+      const section = document.getElementById('Hero');
+      
+      setTimeout(() => {
+        section.classList.add('section-reveal-active');
+      }, 200);
+      
+      setTimeout(() => {
+        heroTitle.classList.add('is-visible');
+      }, 600);
+      
+      setTimeout(() => {
+        heroSubtitle.classList.add('is-visible');
+      }, 800);
+      
+      setTimeout(() => {
+        const buttons = document.querySelectorAll('#Hero .btn-cta, #Hero .btn-nav');
+        buttons.forEach((button, index) => {
+          setTimeout(() => {
+            button.classList.add('is-revealed');
+          }, index * 200);
+        });
+      }, 1200);
+    }
+
+    nextBtn.addEventListener('click', nextSlide);
+
+    setTimeout(initializeSlide, 200);
+    setTimeout(initializeAnimations, 300);
+
     var sections = document.querySelectorAll('.section-reveal, .section-reveal-left');
-    
     var observer = new IntersectionObserver(function(entries) {
       entries.forEach(function(entry) {
         if (entry.isIntersecting) {
@@ -73,7 +225,7 @@ import { ChevronRight } from 'lucide-astro';
           }
           
           setTimeout(function() {
-            var titles = entry.target.querySelectorAll('.title-reveal');
+            var titles = entry.target.querySelectorAll('.title-reveal, .subtitle-reveal');
             titles.forEach(function(title, index) {
               setTimeout(function() {
                 title.classList.add('is-visible');
@@ -92,41 +244,26 @@ import { ChevronRight } from 'lucide-astro';
         }
       });
     });
-
+    
     sections.forEach(function(section) {
       observer.observe(section);
     });
 
     function tryInitialTranslation() {
-      if (window.headerLangSwitcher) {
-        console.log('🌍 HeaderLangSwitcher encontrado, atualizando conteúdo do Hero...');
-        window.headerLangSwitcher.updateContent();
-      } else if (window.globalTranslator) {
-        console.log('🌍 GlobalTranslator encontrado, traduzindo Hero...');
+      if (window.globalTranslator) {
         window.globalTranslator.translateAll();
       } else {
-        console.log('⏳ Aguardando language switcher...');
         setTimeout(tryInitialTranslation, 100);
       }
     }
-
     setTimeout(tryInitialTranslation, 500);
-  });
 
-  document.addEventListener('languageChanged', function(e) {
-    console.log('🎯 Hero recebeu mudança de idioma:', {
-      de: e.detail.oldLanguage,
-      para: e.detail.newLanguage
+    document.addEventListener('languageChanged', function(e) {
+      if (window.globalTranslator) {
+        setTimeout(function() {
+          window.globalTranslator.translateAll();
+        }, 50);
+      }
     });
-    
-    if (window.headerLangSwitcher) {
-      setTimeout(function() {
-        window.headerLangSwitcher.updateContent();
-      }, 50);
-    } else if (window.globalTranslator) {
-      setTimeout(function() {
-        window.globalTranslator.translateAll();
-      }, 50);
-    }
   });
 </script>

@@ -15,7 +15,7 @@ import { ChevronLeft, ChevronRight } from 'lucide-astro';
 <section id='Packages' class="section-padding section-reveal">
   <div class="relative z-10 p-4 md:p-8">
     <div class="header-container flex justify-between items-center mb-4">
-      <h1 class='text-black title-reveal w-1/4'>Descubra Nossas Experiências</h1>
+      <h1 class='text-black title-reveal w-/4'>Descubra Nossas Experiências</h1>
       
       <div class="carousel-controls flex-shrink-0"> 
         <button class="carousel-btn carousel-btn-prev" id="prevBtn" style="display: none;">
@@ -27,21 +27,21 @@ import { ChevronLeft, ChevronRight } from 'lucide-astro';
       </div>
     </div>
     
-    <h2 class='-mt-4 mb-8 w-1/2'>Viva o Melhor de Foz do Iguaçu e região com a BNI Tour...</h2>
+    <h2 class='-mt-4 mb-8 w-2/2'>Viva o Melhor de Foz do Iguaçu e região com a BNI Tour...</h2>
     
     <div class="carousel-container">
       <div class="carousel-wrapper">
         <div class="carousel-track" id="carousel-track">
           
-              <div class="image-container card-reveal">
+          <div class="image-container card-reveal" data-index="0">
             <div class="card-tag card-tag-green">Foz do Iguaçu - Brasil</div>
             <img src={ParqueImg.src} alt="Foz do Iguaçu - Brasil">
             <div class="absolute inset-0" style="background: linear-gradient(90deg, rgba(0, 0, 0, 0.5), transparent);"></div>
             <div class="card-content relative z-10">
               <div class="card-content-wrapper">
                 <div class="card-text">
-                 <h1 class="mb-2 w-1/2">Joias Naturais</h1>
-                  <p> Cataratas do Iguaçu e Parque das Aves.<br> A Força da Natureza...</p>
+                 <h1 class="mb-2 w-2/2">Joias <br> Naturais</h1>
+                  <p> Cataratas do Iguaçu e Parque das Aves. A Força da Natureza...</p>
                 </div>
                 <a href='/' class="btn-cta text-white hover:bg-white/10">
                   <span class="button-content-initial-text">Ver Mais</span>
@@ -53,7 +53,7 @@ import { ChevronLeft, ChevronRight } from 'lucide-astro';
             </div>
           </div>
           
-          <div class="image-container card-reveal">
+          <div class="image-container card-reveal" data-index="1">
             <div class="card-tag card-tag-blue">Puerto Iguazú - Argentina</div>
             <img src={CataratasArgImg.src} alt="Puerto Iguazú - Argentina">
             <div class="absolute inset-0" style="background: linear-gradient(90deg, rgba(0, 0, 0, 0.5), transparent);"></div>
@@ -61,7 +61,7 @@ import { ChevronLeft, ChevronRight } from 'lucide-astro';
               <div class="card-content-wrapper">
                 <div class="card-text">
                 <h1 class="mb-2 w-full">Cataratas Argentina</h1>
-                  <p>Marcos das três fronteiras, jantar, <br> vinhoteca, cassino e muito mais...</p>
+                  <p>Marcos das três fronteiras, jantar, vinhoteca, cassino e muito mais...</p>
                 </div>
                 <a href='/' class="btn-cta text-white hover:bg-white/10">
                   <span class="button-content-initial-text">Ver Mais</span>
@@ -74,7 +74,7 @@ import { ChevronLeft, ChevronRight } from 'lucide-astro';
             </div>
           </div>
           
-          <div class="image-container card-reveal">
+          <div class="image-container card-reveal" data-index="2">
             <div class="card-tag card-tag-green">Foz do Iguaçu - Brasil</div>
             <img src={MacucoImg.src} alt="Foz do Iguaçu - Brasil">
             <div class="absolute inset-0" style="background: linear-gradient(90deg, rgba(0, 0, 0, 0.5), transparent);"></div>
@@ -94,15 +94,15 @@ import { ChevronLeft, ChevronRight } from 'lucide-astro';
             </div>
           </div>
           
-          <div class="image-container card-reveal">
+          <div class="image-container card-reveal" data-index="3">
             <div class="card-tag card-tag-red">Ciudad del Este - Paraguai</div>
             <img src={ComprasImg.src} alt="Ciudad del Este - Paraguai">
             <div class="absolute inset-0" style="background: linear-gradient(90deg, rgba(0, 0, 0, 0.5), transparent);"></div>
             <div class="card-content relative z-10">
               <div class="card-content-wrapper">
                 <div class="card-text">
-                 <h1 class="mb-2">Compras <br> e Cultura</h1>
-                  <p>Explore e compre em Ciudad del Este. <br> Sem preocupações...</p>
+                 <h1 class="mb-2">Compras e Cultura</h1>
+                  <p>Explore e compre em Ciudad del Este. Sem preocupações...</p>
                 </div>
                 <a href='/' class="btn-cta text-white hover:bg-white/10">
                   <span class="button-content-initial-text">Ver Mais</span>
@@ -114,7 +114,7 @@ import { ChevronLeft, ChevronRight } from 'lucide-astro';
             </div>
           </div>
 
-          <div class="image-container card-reveal">
+          <div class="image-container card-reveal" data-index="4">
             <div class="card-tag card-tag-blue">Puerto Iguazú - Argentina</div>
             <img src={CityTourArgImg.src} alt="Puerto Iguazú - Argentina">
             <div class="absolute inset-0" style="background: linear-gradient(90deg, rgba(0, 0, 0, 0.5), transparent);"></div>
@@ -122,7 +122,7 @@ import { ChevronLeft, ChevronRight } from 'lucide-astro';
               <div class="card-content-wrapper">
                 <div class="card-text">
                 <h1 class="mb-2 w-full">CIty Tour Argentina</h1>
-                  <p>Marcos das três fronteiras, jantar, <br> vinhoteca, cassino e muito mais...</p>
+                  <p>Marcos das três fronteiras, jantar, vinhoteca, cassino e muito mais...</p>
                 </div>
                 <a href='/' class="btn-cta text-white hover:bg-white/10">
                   <span class="button-content-initial-text">Ver Mais</span>
@@ -135,15 +135,15 @@ import { ChevronLeft, ChevronRight } from 'lucide-astro';
             </div>
           </div>
           
-  <div class="image-container card-reveal">
+          <div class="image-container card-reveal" data-index="5">
             <div class="card-tag card-tag-green">Foz do Iguaçu - Brasil</div>
             <img src={KatamaramImg.src} alt="Foz do Iguaçu - Brasil">
             <div class="absolute inset-0" style="background: linear-gradient(90deg, rgba(0, 0, 0, 0.5), transparent);"></div>
             <div class="card-content relative z-10">
               <div class="card-content-wrapper">
                 <div class="card-text">
-                 <h1 class="mb-2 whitespace-nowrap">Cruzeiro ao <br> Pôr do Sol</h1>
-                  <p>Katamarã:<br> Foz do Iguaçu Sob um Novo Olhar...</p>
+                 <h1 class="mb-2">Cruzeiro ao <br> Pôr do Sol</h1>
+                  <p>Katamarã: Foz do Iguaçu Sob um Novo Olhar...</p>
                 </div>
                 <a href='/' class="btn-cta text-white hover:bg-white/10">
                   <span class="button-content-initial-text">Ver Mais</span>
@@ -155,15 +155,15 @@ import { ChevronLeft, ChevronRight } from 'lucide-astro';
             </div>
           </div>
           
-          <div class="image-container card-reveal">
+          <div class="image-container card-reveal" data-index="6">
             <div class="card-tag card-tag-red">Ciudad del Este - Paraguai</div>
             <img src={SaltosDelMondayImg.src} alt="Ciudad del Este - Paraguai">
             <div class="absolute inset-0" style="background: linear-gradient(90deg, rgba(0, 0, 0, 0.5), transparent);"></div>
             <div class="card-content relative z-10">
               <div class="card-content-wrapper">
                 <div class="card-text">
-                 <h1 class="mb-2">City Tour <br> Paraguai</h1>
-                  <p>Lago de Lá Republica, Igreja San Lucas <br> Saltos Monday e muito mais...</p>
+                 <h1 class="mb-2">City Tour Paraguai</h1>
+                  <p>Lago de Lá Republica, Igreja San Lucas Saltos Monday e muito mais...</p>
                 </div>
                 <a href='/' class="btn-cta text-white hover:bg-white/10">
                   <span class="button-content-initial-text">Ver Mais</span>
@@ -175,15 +175,15 @@ import { ChevronLeft, ChevronRight } from 'lucide-astro';
             </div>
           </div>
 
-          <div class="image-container card-reveal">
+          <div class="image-container card-reveal" data-index="7">
             <div class="card-tag card-tag-green">Foz do Iguaçu - Brasil</div>
             <img src={CityTourFozImg.src} alt="Foz do Iguaçu - Brasil">
             <div class="absolute inset-0" style="background: linear-gradient(90deg, rgba(0, 0, 0, 0.5), transparent);"></div>
             <div class="card-content relative z-10">
               <div class="card-content-wrapper">
                 <div class="card-text">
-                 <h1 class="mb-2 w-full">City Tour <br> <span class="whitespace-nowrap">Foz do Iguaçu</span></h1>
-                  <p>Transfer, Wonder Park, Itaipu, <br> Marco das três fronteiras e muito mais... </p>
+                 <h1 class="mb-2 w-full">City Tour <br> Foz do Iguaçu</h1>
+                  <p>Transfer, Wonder Park, Itaipu, Marco das três fronteiras e muito mais... </p>
                 </div>
                 <a href='/' class="btn-cta text-white hover:bg-white/10">
                   <span class="button-content-initial-text">Ver Mais</span>
@@ -201,6 +201,98 @@ import { ChevronLeft, ChevronRight } from 'lucide-astro';
   </div>
 </section>
 
+<style>
+html, body {
+  overflow-x: hidden !important;
+  max-width: 100vw !important;
+}
+
+@media (max-width: 768px) {
+  .header-container {
+    position: relative;
+    margin-bottom: 120px;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .header-container h1 {
+    width: 100% !important;
+  }
+  
+  .header-container + h2 {
+    width: 100% !important;
+  }
+  
+  .carousel-controls {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    margin-top: 60px; 
+  }
+  
+  .carousel-container {
+    width: 100vw;
+    margin-left: calc(-50vw + 50%);
+    overflow: hidden !important;
+  }
+  
+  .carousel-wrapper {
+    width: 100%;
+    overflow: hidden !important;
+  }
+  
+  .carousel-track {
+    display: flex;
+    transition: transform 0.3s ease;
+    gap: 0;
+  }
+  
+  .image-container {
+    flex: 0 0 100vw;
+    width: 100vw;
+    padding: 0 20px;
+    box-sizing: border-box;
+    height: 280px;
+    border-radius: 0 !important;
+  }
+  
+  .image-container img {
+    border-radius: 0 !important;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1023px) {
+  .header-container {
+    flex-direction: row;
+    margin-bottom: 2rem;
+  }
+  
+  .carousel-track {
+    gap: 1.5rem;
+  }
+  
+  .image-container {
+    width: calc(50% - 0.75rem);
+    height: 280px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .header-container {
+    flex-direction: row;
+    margin-bottom: 2rem;
+  }
+  
+  .carousel-track {
+    gap: 1rem;
+  }
+  
+  .image-container {
+    width: calc(33.333% - 0.667rem);
+    height: 300px;
+  }
+}
+</style>
 
 <script>
   document.addEventListener('DOMContentLoaded', () => {
@@ -243,67 +335,71 @@ import { ChevronLeft, ChevronRight } from 'lucide-astro';
 
     sections.forEach(section => observer.observe(section));
     
-    const track = document.getElementById('carousel-track') as HTMLElement;
-    const prevBtn = document.getElementById('prevBtn') as HTMLButtonElement;
-    const nextBtn = document.getElementById('nextBtn') as HTMLButtonElement;
-    const cards = document.querySelectorAll('.image-container') as NodeListOf<HTMLElement>;
-    const carouselContainer = document.querySelector('.carousel-container') as HTMLElement;
+    const track = document.getElementById('carousel-track');
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    const cards = document.querySelectorAll('.image-container');
+    const carouselContainer = document.querySelector('.carousel-container');
     
     if (!track || !prevBtn || !nextBtn || !carouselContainer || cards.length === 0) {
       return;
     }
     
     let currentIndex = 0;
-    let autoPlayInterval: ReturnType<typeof setInterval> | null = null;
+    let autoPlayInterval = null;
     
-    function getCardsToShow(): number {
-      return window.innerWidth >= 1024 ? 3 : window.innerWidth >= 768 ? 2 : 1;
+    function getCardsToShow() {
+      if (window.innerWidth <= 768) return 1;
+      if (window.innerWidth <= 1023) return 2;
+      return 3;
     }
     
-    function getMaxIndex(): number {
+    function getMaxIndex() {
       return Math.max(0, cards.length - getCardsToShow());
     }
     
-    function updateCarousel(): void {
-      const firstCard = cards[0];
-      if (!firstCard) return;
+    function updateCarousel() {
+      const cardsToShow = getCardsToShow();
       
-      const cardWidth = firstCard.offsetWidth;
-      const gap = 24;
-      const translateX = -(currentIndex * (cardWidth + gap));
-      track.style.transform = `translateX(${translateX}px)`;
+      if (cardsToShow === 1) {
+        track.style.transform = `translateX(-${currentIndex * 100}vw)`;
+      } else {
+        const cardWidth = cards[0].offsetWidth;
+        const gap = cardsToShow === 2 ? 24 : 16; 
+        const translateX = -(currentIndex * (cardWidth + gap));
+        track.style.transform = `translateX(${translateX}px)`;
+      }
       
       const maxIndex = getMaxIndex();
       
-      if (currentIndex === 0) {
-        prevBtn.style.display = 'none';
-      } else {
-        prevBtn.style.display = 'flex';
-      }
-      
-      if (currentIndex >= maxIndex) {
-        nextBtn.style.display = 'none';
-      } else {
-        nextBtn.style.display = 'flex';
-      }
+      prevBtn.style.display = currentIndex === 0 ? 'none' : 'flex';
+      nextBtn.style.display = currentIndex >= maxIndex ? 'none' : 'flex';
     }
     
-    function goToSlide(index: number): void {
+    function goToSlide(index) {
       const maxIndex = getMaxIndex();
       currentIndex = Math.max(0, Math.min(index, maxIndex));
       updateCarousel();
     }
     
-    function nextSlide(): void {
+    function nextSlide() {
       const maxIndex = getMaxIndex();
       if (currentIndex < maxIndex) {
         goToSlide(currentIndex + 1);
       } else {
-        goToSlide(0);
+        goToSlide(0); 
       }
     }
     
-    function startAutoPlay(): void {
+    function prevSlide() {
+      if (currentIndex > 0) {
+        goToSlide(currentIndex - 1);
+      } else {
+        goToSlide(getMaxIndex()); 
+      }
+    }
+    
+    function startAutoPlay() {
       if (autoPlayInterval) {
         clearInterval(autoPlayInterval);
       }
@@ -313,35 +409,32 @@ import { ChevronLeft, ChevronRight } from 'lucide-astro';
       }, 4000);
     }
     
-    function stopAutoPlay(): void {
+    function stopAutoPlay() {
       if (autoPlayInterval) {
         clearInterval(autoPlayInterval);
         autoPlayInterval = null;
       }
     }
     
-    function resetAutoPlay(): void {
+    function resetAutoPlay() {
       stopAutoPlay();
       startAutoPlay();
     }
     
-    prevBtn.addEventListener('click', () => {
-      goToSlide(currentIndex - 1);
+    prevBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      prevSlide();
       resetAutoPlay();
     });
     
-    nextBtn.addEventListener('click', () => {
-      goToSlide(currentIndex + 1);
+    nextBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      nextSlide();
       resetAutoPlay();
     });
     
-    carouselContainer.addEventListener('mouseenter', () => {
-      stopAutoPlay();
-    });
-    
-    carouselContainer.addEventListener('mouseleave', () => {
-      startAutoPlay();
-    });
+    carouselContainer.addEventListener('mouseenter', stopAutoPlay);
+    carouselContainer.addEventListener('mouseleave', startAutoPlay);
     
     document.addEventListener('visibilitychange', () => {
       if (document.hidden) {
@@ -361,6 +454,33 @@ import { ChevronLeft, ChevronRight } from 'lucide-astro';
       updateCarousel();
       resetAutoPlay();
     });
+    
+    let touchStartX = 0;
+    let touchEndX = 0;
+    
+    carouselContainer.addEventListener('touchstart', (e) => {
+      touchStartX = e.changedTouches[0].screenX;
+      stopAutoPlay();
+    });
+    
+    carouselContainer.addEventListener('touchend', (e) => {
+      touchEndX = e.changedTouches[0].screenX;
+      handleSwipe();
+      startAutoPlay();
+    });
+    
+    function handleSwipe() {
+      const swipeThreshold = 50;
+      const swipeDistance = touchStartX - touchEndX;
+      
+      if (Math.abs(swipeDistance) > swipeThreshold) {
+        if (swipeDistance > 0) {
+          nextSlide();
+        } else {
+          prevSlide();
+        }
+      }
+    }
     
     updateCarousel();
     startAutoPlay();

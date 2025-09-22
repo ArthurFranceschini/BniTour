@@ -5,26 +5,31 @@ import PlaceholderImage2 from '../assets/image/Placeholder/Placeholder 2.webp';
 ---
 
 <Layout>
-<div class="section-padding">
-  <section id="TextWall1" class="flex flex-col md:flex-row justify-center section-reveal">
+<section id="TextWall1" class="section-padding section-reveal">
+  <div class="flex flex-col md:flex-row justify-center">
     
-    <div class="relative z-10 p-4 md:p-8 w-full md:w-1/2 flex flex-col justify-center">
-      <div class="text-center md:text-left mb-8">
-        <h1 class="mb-8 title-reveal whitespace-nowrap">A Sua Jornada, começa Aqui<span class="dot-reveal-wrapper"><span class="dot-reveal">.</span><span class="dot-reveal">.</span><span class="dot-reveal">.</span></span></h1> 
+    <div class="relative z-10 p-4 md:p-8 w-full md:w-1/2 flex flex-col justify-center order-2 md:order-1">
+      <div class="text-center md:text-left mb-6 md:mb-8">
+        <h1 class="mb-6 md:mb-8 title-reveal">
+          A Sua Jornada, começa Aqui
+          <span class="dot-reveal-wrapper">
+            <span class="dot-reveal">.</span>
+            <span class="dot-reveal">.</span>
+            <span class="dot-reveal">.</span>
+          </span>
+        </h1> 
         <h2 class="subtitle-reveal">Cansado de Roteiros Genéricos? Sua Experiência Merece Ser Única...</h2>
       </div>
+      
       <div class="w-full space-y-4">
-         <p class="leading-relaxed">
+        <p class="leading-relaxed">
           <span class="text-reveal" data-delay="0">Sabemos que sua rotina é agitada.</span>
-       
           <span class="text-reveal" data-delay="100">Quando você viaja, busca mais do que um simples passeio: busca <span class="font-bold">comodidade, exclusividade e a certeza de criar momentos que realmente importam com quem você ama.</span></span>
-        
           <span class="text-reveal" data-delay="200">Casais e famílias como a sua não querem perder tempo com imprevistos ou roteiros 'tamanho único'.</span>
-         
           <span class="text-reveal" data-delay="300">Você sonha com a liberdade de explorar, a tranquilidade de um serviço impecável e a emoção de viver algo feito só para você.</span>
-         </p>
+        </p>
           
-          <p class="leading-relaxed">
+        <p class="leading-relaxed">
           <span class="text-reveal" data-delay="400">Na BNI Tour, não vendemos pacotes.</span>
           <span class="text-reveal font-bold" data-delay="500">Criamos jornadas.</span>
           <span class="text-reveal" data-delay="600">Desde as majestosas Cataratas até o vibrante City Tour no Paraguai e Argentina, cada detalhe é desenhado para superar suas expectativas, garantindo que sua única preocupação seja aproveitar.</span>
@@ -32,8 +37,8 @@ import PlaceholderImage2 from '../assets/image/Placeholder/Placeholder 2.webp';
       </div>
     </div>
 
-    <div class="w-full md:w-1/2 min-h-[300px] md:min-h-0 p-4">
-      <div class="relative h-full w-full flex items-center justify-center overflow-hidden">
+    <div class="w-full md:w-1/2 min-h-[300px] md:min-h-0 p-4 order-1 md:order-2">
+      <div class="relative h-full w-full flex items-center justify-center overflow-hidden min-h-[400px] md:min-h-[500px]">
         <figure class="absolute w-[60%] h-[60%] top-[10%] left-[10%] collage-photo-container transition-transform duration-500 hover:scale-105" style="--rotation: -5deg;">
           <img src={PlaceholderImage1.src} alt="Primeira imagem da colagem" class="collage-photo-image" loading="lazy">
           <figcaption class="collage-photo-caption">Foz do Iguaçu</figcaption>
@@ -45,8 +50,9 @@ import PlaceholderImage2 from '../assets/image/Placeholder/Placeholder 2.webp';
       </div>
     </div>
 
-  </section>
-</div>
+  </div>
+</section>
+</Layout>
 
 <script>
   document.addEventListener('DOMContentLoaded', () => {
@@ -56,44 +62,47 @@ import PlaceholderImage2 from '../assets/image/Placeholder/Placeholder 2.webp';
         threshold: 0.1 
     };
 
-    const sectionObserverCallback = (entries: IntersectionObserverEntry[], observer: IntersectionObserver) => {
+    const sectionObserverCallback = (entries, observer) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                const section = entry.target as HTMLElement;
+                const section = entry.target;
+                
                 section.classList.add('section-reveal-active'); 
 
-                const h1Element = section.querySelector('.title-reveal') as HTMLElement;
+                const h1Element = section.querySelector('.title-reveal');
                 if (h1Element) {
-                    const h1StartDelay = 100; 
-                    const h1TransitionDuration = 600; 
-                    const dotsStartDelay = h1StartDelay + h1TransitionDuration + 50; 
-
                     setTimeout(() => {
                         h1Element.classList.add('is-visible');
-                    }, h1StartDelay);
-
-                    const dotElements = h1Element.querySelectorAll('.dot-reveal') as NodeListOf<HTMLElement>;
-                    dotElements.forEach((dot, dotIndex) => {
-                        setTimeout(() => {
-                            dot.classList.add('is-visible');
-                        }, dotsStartDelay + (dotIndex * 200)); 
-                    });
+                        
+                        const dotElements = h1Element.querySelectorAll('.dot-reveal');
+                        dotElements.forEach((dot, dotIndex) => {
+                            setTimeout(() => {
+                                dot.classList.add('is-visible');
+                            }, 200 + (dotIndex * 200)); 
+                        });
+                    }, 400);
                 }
 
-                const h2Element = section.querySelector('.subtitle-reveal') as HTMLElement;
+                const h2Element = section.querySelector('.subtitle-reveal');
                 if (h2Element) {
-                    setTimeout(() => { h2Element.classList.add('is-visible'); }, 600);
+                    setTimeout(() => { 
+                        h2Element.classList.add('is-visible'); 
+                    }, 600);
                 }
 
-                const textSpans = section.querySelectorAll('p .text-reveal') as NodeListOf<HTMLElement>;
+                const textSpans = section.querySelectorAll('p .text-reveal');
                 textSpans.forEach(span => {
                     const delay = parseInt(span.getAttribute('data-delay') || '0');
-                    setTimeout(() => { span.classList.add('is-visible'); }, 1000 + delay);
+                    setTimeout(() => { 
+                        span.classList.add('is-visible'); 
+                    }, 1000 + delay);
                 });
 
-                const collagePhotos = section.querySelectorAll('.collage-photo-container') as NodeListOf<HTMLElement>;
+                const collagePhotos = section.querySelectorAll('.collage-photo-container');
                 collagePhotos.forEach((photo, index) => {
-                    setTimeout(() => { photo.classList.add('is-visible'); }, 1200 + (index * 300));
+                    setTimeout(() => { 
+                        photo.classList.add('is-visible'); 
+                    }, 1200 + (index * 300));
                 });
 
                 observer.unobserve(section);
@@ -109,4 +118,3 @@ import PlaceholderImage2 from '../assets/image/Placeholder/Placeholder 2.webp';
     });
   });
 </script>
-</Layout>
