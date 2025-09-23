@@ -10,7 +10,7 @@ import PlaceholderImage2 from '../assets/image/Placeholder/Placeholder 2.webp';
     
     <div class="relative z-10 p-4 md:p-8 w-full md:w-1/2 flex flex-col justify-center order-2 md:order-1">
       <div class="text-center md:text-left mb-6 md:mb-8">
-        <h1 class="mb-6 md:mb-8 title-reveal whitespace-nowrap" data-translate="hero.cta.discover">
+        <h1 class="mb-6 md:mb-8 title-reveal whitespace-nowrap" data-translate="textwall.title">
           A Sua Jornada, começa Aqui
           <span class="dot-reveal-wrapper">
             <span class="dot-reveal">.</span>
@@ -18,21 +18,21 @@ import PlaceholderImage2 from '../assets/image/Placeholder/Placeholder 2.webp';
             <span class="dot-reveal">.</span>
           </span>
         </h1> 
-        <h2 class="subtitle-reveal">Cansado de Roteiros Genéricos? Sua Experiência Merece Ser Única...</h2>
+        <h2 class="subtitle-reveal" data-translate="textwall.subtitle">Cansado de Roteiros Genéricos? Sua Experiência Merece Ser Única...</h2>
       </div>
       
       <div class="w-full space-y-4">
         <p class="leading-relaxed">
-          <span class="text-reveal" data-delay="0">Sabemos que sua rotina é agitada.</span>
-          <span class="text-reveal" data-delay="100">Quando você viaja, busca mais do que um simples passeio: busca <span class="font-bold">comodidade, exclusividade e a certeza de criar momentos que realmente importam com quem você ama.</span></span>
-          <span class="text-reveal" data-delay="200">Casais e famílias como a sua não querem perder tempo com imprevistos ou roteiros 'tamanho único'.</span>
-          <span class="text-reveal" data-delay="300">Você sonha com a liberdade de explorar, a tranquilidade de um serviço impecável e a emoção de viver algo feito só para você.</span>
+          <span class="text-reveal" data-delay="0" data-translate="textwall.paragraph1_part1">Sabemos que sua rotina é agitada.</span>
+          <span class="text-reveal" data-delay="100" data-translate="textwall.paragraph1_part2">Quando você viaja, busca mais do que um simples passeio: busca <span class="font-bold">comodidade, exclusividade e a certeza de criar momentos que realmente importam com quem você ama.</span></span>
+          <span class="text-reveal" data-delay="200" data-translate="textwall.paragraph1_part3">Casais e famílias como a sua não querem perder tempo com imprevistos ou roteiros 'tamanho único'.</span>
+          <span class="text-reveal" data-delay="300" data-translate="textwall.paragraph1_part4">Você sonha com a liberdade de explorar, a tranquilidade de um serviço impecável e a emoção de viver algo feito só para você.</span>
         </p>
           
         <p class="leading-relaxed">
-          <span class="text-reveal" data-delay="400">Na BNI Tour, não vendemos pacotes.</span>
-          <span class="text-reveal font-bold" data-delay="500">Criamos jornadas.</span>
-          <span class="text-reveal" data-delay="600">Desde as majestosas Cataratas até o vibrante City Tour no Paraguai e Argentina, cada detalhe é desenhado para superar suas expectativas, garantindo que sua única preocupação seja aproveitar.</span>
+          <span class="text-reveal" data-delay="400" data-translate="textwall.paragraph2_part1">Na BNI Tour, não vendemos pacotes.</span>
+          <span class="text-reveal font-bold" data-delay="500" data-translate="textwall.paragraph2_part2">Criamos jornadas.</span>
+          <span class="text-reveal" data-delay="600" data-translate="textwall.paragraph2_part3">Desde as majestosas Cataratas até o vibrante City Tour no Paraguai e Argentina, cada detalhe é desenhado para superar suas expectativas, garantindo que sua única preocupação seja aproveitar.</span>
         </p>
       </div>
     </div>
@@ -41,11 +41,11 @@ import PlaceholderImage2 from '../assets/image/Placeholder/Placeholder 2.webp';
       <div class="relative h-full w-full flex items-center justify-center overflow-hidden min-h-[400px] md:min-h-[500px]">
         <figure class="absolute w-[60%] h-[60%] top-[10%] left-[10%] collage-photo-container transition-transform duration-500 hover:scale-105" style="--rotation: -5deg;">
           <img src={PlaceholderImage1.src} alt="Primeira imagem da colagem" class="collage-photo-image" loading="lazy">
-          <figcaption class="collage-photo-caption">Foz do Iguaçu</figcaption>
+          <figcaption class="collage-photo-caption" data-translate="textwall.figcaption1">Foz do Iguaçu</figcaption>
         </figure>
         <figure class="absolute w-[60%] h-[60%] bottom-[10%] right-[10%] collage-photo-container transition-transform duration-500 hover:scale-105" style="--rotation: 7deg;">
           <img src={PlaceholderImage2.src} alt="Segunda imagem da colagem" class="collage-photo-image" loading="lazy">
-          <figcaption class="collage-photo-caption">Três Fronteiras</figcaption>
+          <figcaption class="collage-photo-caption" data-translate="textwall.figcaption2">Três Fronteiras</figcaption>
         </figure>
       </div>
     </div>

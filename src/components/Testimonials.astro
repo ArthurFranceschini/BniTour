@@ -5,7 +5,7 @@ import { ChevronLeft, ChevronRight } from "lucide-astro";
 <section id="Testimonials" class="section-padding section-reveal">
   <div class="p-4 md:p-8">
     <div class="header-container flex justify-between items-center mb-4">
-      <h1 class="title-reveal w-full">Histórias Que Inspiram: Nossos Clientes Falam.</h1>
+      <h1 class="title-reveal w-full" data-translate="testimonials.title">Histórias Que Inspiram: Nossos Clientes Falam.</h1>
       
       <div class="carousel-controls flex-shrink-0"> 
         <button class="carousel-btn carousel-btn-prev" id="prevBtnTestimonials" style="display: none;">
@@ -23,14 +23,14 @@ import { ChevronLeft, ChevronRight } from "lucide-astro";
           
           <div class="testimonial-card testimonial-reveal flex-none">
             <div class="testimonial-content p-4 bg-white rounded-lg shadow-md hover:shadow-lg flex flex-col">
-              <p class="text-gray-700 text-lg mb-4 flex-grow">"A BNI Tour superou todas as nossas expectativas! Cada detalhe da viagem foi planejado com maestria para a nossa família. Uma experiência incrível do início ao fim!"</p>
+              <p class="text-gray-700 text-lg mb-4 flex-grow" data-translate="testimonials.ana.quote">"A BNI Tour superou todas as nossas expectativas! Cada detalhe da viagem foi planejado com maestria para a nossa família. Uma experiência incrível do início ao fim!"</p>
               <div class="flex flex-col 2xl:flex-row 2xl:items-center 2xl:justify-between gap-3 mt-auto">
                 <div class="flex-shrink-0">
-                  <p class="font-semibold text-gray-900">Ana Paula S.</p>
-                  <p class="text-sm text-gray-500">Cliente Satisfeita</p>
+                  <p class="font-semibold text-gray-900" data-translate="testimonials.ana.name">Ana Paula S.</p>
+                  <p class="text-sm text-gray-500" data-translate="testimonials.ana.role">Cliente Satisfeita</p>
                 </div>
                 <a href='https://www.tripadvisor.com.br/Attraction_Review-g303444-d17724059-Reviews-Bni_Tour-Foz_do_Iguacu_State_of_Parana.html' class="btn-nav border-1 border-black text-black header-btn 2xl:self-auto self-start">
-                  <span class="button-content-initial-text">Ver no Tripadvisor</span>
+                  <span class="button-content-initial-text" data-translate="testimonials.btn.tripadvisor">Ver no Tripadvisor</span>
                   <div class="btn-cta-icon-wrapper button-content-initial-icon bg-black">
                     <ChevronRight size={20} class="text-white" />
                   </div>
@@ -41,14 +41,14 @@ import { ChevronLeft, ChevronRight } from "lucide-astro";
 
           <div class="testimonial-card testimonial-reveal flex-none">
             <div class="testimonial-content p-4 bg-white rounded-lg shadow-md hover:shadow-lg flex flex-col">
-              <p class="text-gray-700 text-lg mb-4 flex-grow">"Nunca imaginei que uma viagem pudesse ser tão tranquila e personalizada. Os roteiros da BNI Tour nos permitiram aproveitar cada momento sem preocupações. Altamente recomendado!"</p>
+              <p class="text-gray-700 text-lg mb-4 flex-grow" data-translate="testimonials.joao.quote">"Nunca imaginei que uma viagem pudesse ser tão tranquila e personalizada. Os roteiros da BNI Tour nos permitiram aproveitar cada momento sem preocupações. Altamente recomendado!"</p>
               <div class="flex flex-col 2xl:flex-row 2xl:items-center 2xl:justify-between gap-3 mt-auto">
                 <div class="flex-shrink-0">
-                  <p class="font-semibold text-gray-900">João M.</p>
-                  <p class="text-sm text-gray-500">Aventureiro de plantão</p>
+                  <p class="font-semibold text-gray-900" data-translate="testimonials.joao.name">João M.</p>
+                  <p class="text-sm text-gray-500" data-translate="testimonials.joao.role">Aventureiro de plantão</p>
                 </div>
                 <a href='https://www.google.com/travel' class="btn-nav border-1 border-black text-black header-btn 2xl:self-auto self-start">
-                  <span class="button-content-initial-text">Avaliar no Google</span>
+                  <span class="button-content-initial-text" data-translate="testimonials.btn.google">Avaliar no Google</span>
                   <div class="btn-cta-icon-wrapper button-content-initial-icon bg-black">
                     <ChevronRight size={20} class="text-white" />
                   </div>
@@ -59,14 +59,14 @@ import { ChevronLeft, ChevronRight } from "lucide-astro";
 
           <div class="testimonial-card testimonial-reveal flex-none">
             <div class="testimonial-content p-4 bg-white rounded-lg shadow-md hover:shadow-lg flex flex-col">
-              <p class="text-gray-700 text-lg mb-4 flex-grow">"Simplesmente perfeito! Desde o atendimento inicial até o retorno, a equipe da BNI Tour foi impecável. Minha família e eu tivemos uma experiência inesquecível em Foz do Iguaçu."</p>
+              <p class="text-gray-700 text-lg mb-4 flex-grow" data-translate="testimonials.mariana.quote">"Simplesmente perfeito! Desde o atendimento inicial até o retorno, a equipe da BNI Tour foi impecável. Minha família e eu tivemos uma experiência inesquecível em Foz do Iguaçu."</p>
               <div class="flex flex-col 2xl:flex-row 2xl:items-center 2xl:justify-between gap-3 mt-auto">
                 <div class="flex-shrink-0">
-                  <p class="font-semibold text-gray-900">Mariana P.</p>
-                  <p class="text-sm text-gray-500">Amante de viagens</p>
+                  <p class="font-semibold text-gray-900" data-translate="testimonials.mariana.name">Mariana P.</p>
+                  <p class="text-sm text-gray-500" data-translate="testimonials.mariana.role">Amante de viagens</p>
                 </div>
                 <a href='https://www.tripadvisor.com.br/Attraction_Review-g303444-d17724059-Reviews-Bni_Tour-Foz_do_Iguacu_State_of_Parana.html' class="btn-nav border-1 border-black text-black header-btn 2xl:self-auto self-start">
-                  <span class="button-content-initial-text">Ver no Tripadvisor</span>
+                  <span class="button-content-initial-text" data-translate="testimonials.btn.tripadvisor">Ver no Tripadvisor</span>
                   <div class="btn-cta-icon-wrapper button-content-initial-icon bg-black">
                     <ChevronRight size={20} class="text-white" />
                   </div>
@@ -77,14 +77,14 @@ import { ChevronLeft, ChevronRight } from "lucide-astro";
 
           <div class="testimonial-card testimonial-reveal flex-none">
             <div class="testimonial-content p-4 bg-white rounded-lg shadow-md hover:shadow-lg flex flex-col">
-              <p class="text-gray-700 text-lg mb-4 flex-grow">"Viajar com a BNI Tour é garantia de tranquilidade. Roteiros excelentes e motoristas muito atenciosos. Recomendo para quem busca uma viagem sem preocupações!"</p>
+              <p class="text-gray-700 text-lg mb-4 flex-grow" data-translate="testimonials.carlos.quote">"Viajar com a BNI Tour é garantia de tranquilidade. Roteiros excelentes e motoristas muito atenciosos. Recomendo para quem busca uma viagem sem preocupações!"</p>
               <div class="flex flex-col 2xl:flex-row 2xl:items-center 2xl:justify-between gap-3 mt-auto">
                 <div class="flex-shrink-0">
-                  <p class="font-semibold text-gray-900">Carlos R.</p>
-                  <p class="text-sm text-gray-500">Viajante frequente</p>
+                  <p class="font-semibold text-gray-900" data-translate="testimonials.carlos.name">Carlos R.</p>
+                  <p class="text-sm text-gray-500" data-translate="testimonials.carlos.role">Viajante frequente</p>
                 </div>
                 <a href='https://www.google.com/travel' class="btn-nav border-1 border-black text-black header-btn 2xl:self-auto self-start">
-                  <span class="button-content-initial-text">Avaliar no Google</span>
+                  <span class="button-content-initial-text" data-translate="testimonials.btn.google">Avaliar no Google</span>
                   <div class="btn-cta-icon-wrapper button-content-initial-icon bg-black">
                     <ChevronRight size={20} class="text-white" />
                   </div>
@@ -95,14 +95,14 @@ import { ChevronLeft, ChevronRight } from "lucide-astro";
 
           <div class="testimonial-card testimonial-reveal flex-none">
             <div class="testimonial-content p-4 bg-white rounded-lg shadow-md hover:shadow-lg flex flex-col">
-              <p class="text-gray-700 text-lg mb-4 flex-grow">"Experiência incrível na tríplice fronteira! A BNI Tour nos proporcionou momentos inesquecíveis, com todo o conforto e segurança. Mal podemos esperar para a próxima!"</p>
+              <p class="text-gray-700 text-lg mb-4 flex-grow" data-translate="testimonials.fernanda.quote">"Experiência incrível na tríplice fronteira! A BNI Tour nos proporcionou momentos inesquecíveis, com todo o conforto e segurança. Mal podemos esperar para a próxima!"</p>
               <div class="flex flex-col 2xl:flex-row 2xl:items-center 2xl:justify-between gap-3 mt-auto">
                 <div class="flex-shrink-0">
-                  <p class="font-semibold text-gray-900">Fernanda L.</p>
-                  <p class="text-sm text-gray-500">Exploradora</p>
+                  <p class="font-semibold text-gray-900" data-translate="testimonials.fernanda.name">Fernanda L.</p>
+                  <p class="text-sm text-gray-500" data-translate="testimonials.fernanda.role">Exploradora</p>
                 </div>
                 <a href='https://www.tripadvisor.com.br/Attraction_Review-g303444-d17724059-Reviews-Bni_Tour-Foz_do_Iguacu_State_of_Parana.html' class="btn-nav border-1 border-black text-black header-btn 2xl:self-auto self-start">
-                  <span class="button-content-initial-text">Ver no Tripadvisor</span>
+                  <span class="button-content-initial-text" data-translate="testimonials.btn.tripadvisor">Ver no Tripadvisor</span>
                   <div class="btn-cta-icon-wrapper button-content-initial-icon bg-black">
                     <ChevronRight size={20} class="text-white" />
                   </div>
@@ -113,14 +113,14 @@ import { ChevronLeft, ChevronRight } from "lucide-astro";
 
           <div class="testimonial-card testimonial-reveal flex-none">
             <div class="testimonial-content p-4 bg-white rounded-lg shadow-md hover:shadow-lg flex flex-col">
-              <p class="text-gray-700 text-lg mb-4 flex-grow">"Atendimento personalizado e guias muito bem informados. Minha viagem para as Cataratas foi perfeita, graças ao planejamento cuidadoso da BNI Tour."</p>
+              <p class="text-gray-700 text-lg mb-4 flex-grow" data-translate="testimonials.pedro.quote">"Atendimento personalizado e guias muito bem informados. Minha viagem para as Cataratas foi perfeita, graças ao planejamento cuidadoso da BNI Tour."</p>
               <div class="flex flex-col 2xl:flex-row 2xl:items-center 2xl:justify-between gap-3 mt-auto">
                 <div class="flex-shrink-0">
-                  <p class="font-semibold text-gray-900">Pedro H.</p>
-                  <p class="text-sm text-gray-500">Amante da natureza</p>
+                  <p class="font-semibold text-gray-900" data-translate="testimonials.pedro.name">Pedro H.</p>
+                  <p class="text-sm text-gray-500" data-translate="testimonials.pedro.role">Amante da natureza</p>
                 </div>
                 <a href='https://www.google.com/travel' class="btn-nav border-1 border-black text-black header-btn 2xl:self-auto self-start">
-                  <span class="button-content-initial-text">Avaliar no Google</span>
+                  <span class="button-content-initial-text" data-translate="testimonials.btn.google">Avaliar no Google</span>
                   <div class="btn-cta-icon-wrapper button-content-initial-icon bg-black">
                     <ChevronRight size={20} class="text-white" />
                   </div>
@@ -267,38 +267,38 @@ document.addEventListener('DOMContentLoaded', () => {
 
   sections.forEach(section => observer.observe(section));
 
-  const carouselTrack = testimonialSection.querySelector('.carousel-track');
-  const prevBtn = testimonialSection.querySelector('#prevBtnTestimonials');
-  const nextBtn = testimonialSection.querySelector('#nextBtnTestimonials');
-  const cards = testimonialSection.querySelectorAll('.testimonial-card');
-  const carouselContainer = testimonialSection.querySelector('.carousel-container');
+  const carouselTrack = testimonialSection.querySelector('.carousel-track') as HTMLElement;
+  const prevBtn = testimonialSection.querySelector('#prevBtnTestimonials') as HTMLButtonElement;
+  const nextBtn = testimonialSection.querySelector('#nextBtnTestimonials') as HTMLButtonElement;
+  const cards = testimonialSection.querySelectorAll('.testimonial-card') as NodeListOf<HTMLElement>;
+  const carouselContainer = testimonialSection.querySelector('.carousel-container') as HTMLElement;
 
   if (!carouselTrack || !prevBtn || !nextBtn || !carouselContainer || cards.length === 0) {
     return;
   }
 
   let currentIndex = 0;
-  let autoPlayInterval = null;
+  let autoPlayInterval: number | null = null;
 
-  function getCardsToShow() {
+  function getCardsToShow(): number {
     if (window.innerWidth <= 768) return 1;
     if (window.innerWidth <= 1023) return 2;
     if (window.innerWidth <= 1279) return 3;
     return 4;
   }
 
-  function getMaxIndex() {
+  function getMaxIndex(): number {
     return Math.max(0, cards.length - getCardsToShow());
   }
 
-  function updateCarousel() {
+  function updateCarousel(): void {
     const cardsToShow = getCardsToShow();
     
     if (cardsToShow === 1) {
       carouselTrack.style.transform = `translateX(-${currentIndex * 100}vw)`;
     } else {
       const cardWidth = cards[0].offsetWidth;
-      let gap;
+      let gap: number;
       if (cardsToShow === 2) gap = 24;
       else if (cardsToShow === 3) gap = 16;
       else gap = 16;
@@ -313,13 +313,13 @@ document.addEventListener('DOMContentLoaded', () => {
     nextBtn.style.display = currentIndex >= maxIndex ? 'none' : 'flex';
   }
 
-  function goToSlide(index) {
+  function goToSlide(index: number): void {
     const maxIndex = getMaxIndex();
     currentIndex = Math.max(0, Math.min(index, maxIndex));
     updateCarousel();
   }
 
-  function nextSlide() {
+  function nextSlide(): void {
     const maxIndex = getMaxIndex();
     if (currentIndex < maxIndex) {
       goToSlide(currentIndex + 1);
@@ -328,7 +328,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  function prevSlide() {
+  function prevSlide(): void {
     if (currentIndex > 0) {
       goToSlide(currentIndex - 1);
     } else {
@@ -336,35 +336,35 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  function startAutoPlay() {
+  function startAutoPlay(): void {
     if (autoPlayInterval) {
       clearInterval(autoPlayInterval);
     }
     
-    autoPlayInterval = setInterval(() => {
+    autoPlayInterval = window.setInterval(() => {
       nextSlide();
     }, 4000);
   }
 
-  function stopAutoPlay() {
+  function stopAutoPlay(): void {
     if (autoPlayInterval) {
       clearInterval(autoPlayInterval);
       autoPlayInterval = null;
     }
   }
 
-  function resetAutoPlay() {
+  function resetAutoPlay(): void {
     stopAutoPlay();
     startAutoPlay();
   }
 
-  prevBtn.addEventListener('click', (e) => {
+  prevBtn.addEventListener('click', (e: Event) => {
     e.preventDefault();
     prevSlide();
     resetAutoPlay();
   });
 
-  nextBtn.addEventListener('click', (e) => {
+  nextBtn.addEventListener('click', (e: Event) => {
     e.preventDefault();
     nextSlide();
     resetAutoPlay();
@@ -395,18 +395,18 @@ document.addEventListener('DOMContentLoaded', () => {
   let touchStartX = 0;
   let touchEndX = 0;
 
-  carouselContainer.addEventListener('touchstart', (e) => {
+  carouselContainer.addEventListener('touchstart', (e: TouchEvent) => {
     touchStartX = e.changedTouches[0].screenX;
     stopAutoPlay();
   });
 
-  carouselContainer.addEventListener('touchend', (e) => {
+  carouselContainer.addEventListener('touchend', (e: TouchEvent) => {
     touchEndX = e.changedTouches[0].screenX;
     handleSwipe();
     startAutoPlay();
   });
 
-  function handleSwipe() {
+  function handleSwipe(): void {
     const swipeThreshold = 50;
     const swipeDistance = touchStartX - touchEndX;
     
@@ -419,8 +419,8 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  function equalizeHeights() {
-    const testimonialContents = document.querySelectorAll('#Testimonials .testimonial-content');
+  function equalizeHeights(): void {
+    const testimonialContents = document.querySelectorAll('#Testimonials .testimonial-content') as NodeListOf<HTMLElement>;
     
     let maxHeight = 0;
 
@@ -438,12 +438,11 @@ document.addEventListener('DOMContentLoaded', () => {
     if (window.innerWidth <= 1366) {
       equalizeHeights();
     } else {
-      const testimonialContents = document.querySelectorAll('#Testimonials .testimonial-content');
+      const testimonialContents = document.querySelectorAll('#Testimonials .testimonial-content') as NodeListOf<HTMLElement>;
       testimonialContents.forEach(content => content.style.height = 'auto');
     }
   });
 
-  // Inicializar
   updateCarousel();
   startAutoPlay();
   equalizeHeights();
