@@ -15,7 +15,7 @@ import { ChevronLeft, ChevronRight } from 'lucide-astro';
 <section id='Packages' class="section-padding section-reveal">
   <div class="relative z-10 p-4 md:p-8">
     <div class="header-container flex justify-between items-center mb-4">
-      <h1 class='text-black title-reveal w-full'>Descubra Nossas Experiências</h1>
+      <h1 class='text-black title-reveal w-full' data-translate="packages.title">Descubra Nossas Experiências</h1>
       
       <div class="carousel-controls flex-shrink-0"> 
         <button class="carousel-btn carousel-btn-prev" id="prevBtn" style="display: none;">
@@ -27,24 +27,24 @@ import { ChevronLeft, ChevronRight } from 'lucide-astro';
       </div>
     </div>
     
-    <h2 class='-mt-4 mb-8 w-2/2'>Viva o Melhor de Foz do Iguaçu e região com a BNI Tour...</h2>
+    <h2 class='-mt-4 mb-8 w-2/2' data-translate="packages.subtitle">Viva o Melhor de Foz do Iguaçu e região com a BNI Tour...</h2>
     
     <div class="carousel-container">
       <div class="carousel-wrapper">
         <div class="carousel-track" id="carousel-track">
           
           <div class="image-container card-reveal" data-index="0">
-            <div class="card-tag card-tag-green">Foz do Iguaçu - Brasil</div>
+            <div class="card-tag card-tag-green" data-translate="packages.card_tag.foz_brasil">Foz do Iguaçu - Brasil</div>
             <img src={ParqueImg.src} alt="Foz do Iguaçu - Brasil">
             <div class="absolute inset-0" style="background: linear-gradient(90deg, rgba(0, 0, 0, 0.5), transparent);"></div>
             <div class="card-content relative z-10">
               <div class="card-content-wrapper">
                 <div class="card-text">
-                 <h1 class="mb-2 w-2/2">Joias <br> Naturais</h1>
-                  <p> Cataratas do Iguaçu e Parque das Aves. A Força da Natureza...</p>
+                 <h1 class="mb-2 w-2/2" data-translate="packages.joias_naturais.titulo">Joias <br> Naturais</h1>
+                  <p data-translate="packages.joias_naturais.descricao"> Cataratas do Iguaçu e Parque das Aves. A Força da Natureza...</p>
                 </div>
                 <a href='/' class="btn-cta text-white hover:bg-white/10">
-                  <span class="button-content-initial-text">Ver Mais</span>
+                  <span class="button-content-initial-text" data-translate="packages.see_more_button">Ver Mais</span>
                   <div class="btn-cta-icon-wrapper button-content-initial-icon bg-white/20">
                     <ChevronRight size={20} color="white" />
                   </div>
@@ -54,17 +54,17 @@ import { ChevronLeft, ChevronRight } from 'lucide-astro';
           </div>
           
           <div class="image-container card-reveal" data-index="1">
-            <div class="card-tag card-tag-blue">Puerto Iguazú - Argentina</div>
+            <div class="card-tag card-tag-blue" data-translate="packages.card_tag.puerto_argentina">Puerto Iguazú - Argentina</div>
             <img src={CataratasArgImg.src} alt="Puerto Iguazú - Argentina">
             <div class="absolute inset-0" style="background: linear-gradient(90deg, rgba(0, 0, 0, 0.5), transparent);"></div>
             <div class="card-content relative z-10">
               <div class="card-content-wrapper">
                 <div class="card-text">
-                <h1 class="mb-2 w-full">Cataratas Argentina</h1>
-                  <p>Marcos das três fronteiras, jantar, vinhoteca, cassino e muito mais...</p>
+                <h1 class="mb-2 w-full" data-translate="packages.cataratas_argentina.titulo">Cataratas Argentina</h1>
+                  <p data-translate="packages.cataratas_argentina.descricao">Marcos das três fronteiras, jantar, vinhoteca, cassino e muito mais...</p>
                 </div>
                 <a href='/' class="btn-cta text-white hover:bg-white/10">
-                  <span class="button-content-initial-text">Ver Mais</span>
+                  <span class="button-content-initial-text" data-translate="packages.see_more_button">Ver Mais</span>
                   <div class="btn-cta-icon-wrapper button-content-initial-icon bg-white/20">
                     <ChevronRight size={20} color="white" />
                   </div>
@@ -75,17 +75,17 @@ import { ChevronLeft, ChevronRight } from 'lucide-astro';
           </div>
           
           <div class="image-container card-reveal" data-index="2">
-            <div class="card-tag card-tag-green">Foz do Iguaçu - Brasil</div>
+            <div class="card-tag card-tag-green" data-translate="packages.card_tag.foz_brasil">Foz do Iguaçu - Brasil</div>
             <img src={MacucoImg.src} alt="Foz do Iguaçu - Brasil">
             <div class="absolute inset-0" style="background: linear-gradient(90deg, rgba(0, 0, 0, 0.5), transparent);"></div>
             <div class="card-content relative z-10">
               <div class="card-content-wrapper">
                 <div class="card-text">
-                 <h1 class="mb-2 w-fill whitespace-nowrap">Aventura e <br> Emoção</h1>
-                  <p> Para os amantes da aventura. Que tal um passeio de barco nas Cataratas?</p>
+                 <h1 class="mb-2 w-fill whitespace-nowrap" data-translate="packages.aventura_emocao.titulo">Aventura e <br> Emoção</h1>
+                  <p data-translate="packages.aventura_emocao.descricao"> Para os amantes da aventura. Que tal um passeio de barco nas Cataratas?</p>
                 </div>
                 <a href='/' class="btn-cta text-white hover:bg-white/10">
-                  <span class="button-content-initial-text">Ver Mais</span>
+                  <span class="button-content-initial-text" data-translate="packages.see_more_button">Ver Mais</span>
                   <div class="btn-cta-icon-wrapper button-content-initial-icon bg-white/20">
                     <ChevronRight size={20} color="white" />
                   </div>
@@ -95,17 +95,17 @@ import { ChevronLeft, ChevronRight } from 'lucide-astro';
           </div>
           
           <div class="image-container card-reveal" data-index="3">
-            <div class="card-tag card-tag-red">Ciudad del Este - Paraguai</div>
+            <div class="card-tag card-tag-red" data-translate="packages.card_tag.ciudad_paraguai">Ciudad del Este - Paraguai</div>
             <img src={ComprasImg.src} alt="Ciudad del Este - Paraguai">
             <div class="absolute inset-0" style="background: linear-gradient(90deg, rgba(0, 0, 0, 0.5), transparent);"></div>
             <div class="card-content relative z-10">
               <div class="card-content-wrapper">
                 <div class="card-text">
-                 <h1 class="mb-2">Compras e Cultura</h1>
-                  <p>Explore e compre em Ciudad del Este. Sem preocupações...</p>
+                 <h1 class="mb-2" data-translate="packages.compras_cultura.titulo">Compras e Cultura</h1>
+                  <p data-translate="packages.compras_cultura.descricao">Explore e compre em Ciudad del Este. Sem preocupações...</p>
                 </div>
                 <a href='/' class="btn-cta text-white hover:bg-white/10">
-                  <span class="button-content-initial-text">Ver Mais</span>
+                  <span class="button-content-initial-text" data-translate="packages.see_more_button">Ver Mais</span>
                   <div class="btn-cta-icon-wrapper button-content-initial-icon bg-white/20">
                     <ChevronRight size={20} color="white" />
                   </div>
@@ -115,17 +115,17 @@ import { ChevronLeft, ChevronRight } from 'lucide-astro';
           </div>
 
           <div class="image-container card-reveal" data-index="4">
-            <div class="card-tag card-tag-blue">Puerto Iguazú - Argentina</div>
+            <div class="card-tag card-tag-blue" data-translate="packages.card_tag.puerto_argentina">Puerto Iguazú - Argentina</div>
             <img src={CityTourArgImg.src} alt="Puerto Iguazú - Argentina">
             <div class="absolute inset-0" style="background: linear-gradient(90deg, rgba(0, 0, 0, 0.5), transparent);"></div>
             <div class="card-content relative z-10">
               <div class="card-content-wrapper">
                 <div class="card-text">
-                <h1 class="mb-2 w-full">City Tour Argentina</h1>
-                  <p>Marcos das três fronteiras, jantar, vinhoteca, cassino e muito mais...</p>
+                <h1 class="mb-2 w-full" data-translate="packages.city_tour_argentina.titulo">City Tour Argentina</h1>
+                  <p data-translate="packages.city_tour_argentina.descricao">Marcos das três fronteiras, jantar, vinhoteca, cassino e muito mais...</p>
                 </div>
                 <a href='/' class="btn-cta text-white hover:bg-white/10">
-                  <span class="button-content-initial-text">Ver Mais</span>
+                  <span class="button-content-initial-text" data-translate="packages.see_more_button">Ver Mais</span>
                   <div class="btn-cta-icon-wrapper button-content-initial-icon bg-white/20">
                     <ChevronRight size={20} color="white" />
                   </div>
@@ -136,17 +136,17 @@ import { ChevronLeft, ChevronRight } from 'lucide-astro';
           </div>
           
           <div class="image-container card-reveal" data-index="5">
-            <div class="card-tag card-tag-green">Foz do Iguaçu - Brasil</div>
+            <div class="card-tag card-tag-green" data-translate="packages.card_tag.foz_brasil">Foz do Iguaçu - Brasil</div>
             <img src={KatamaramImg.src} alt="Foz do Iguaçu - Brasil">
             <div class="absolute inset-0" style="background: linear-gradient(90deg, rgba(0, 0, 0, 0.5), transparent);"></div>
             <div class="card-content relative z-10">
               <div class="card-content-wrapper">
                 <div class="card-text">
-                 <h1 class="mb-2 whitespace-nowrap">Cruzeiro ao <br> Pôr do Sol</h1>
-                  <p>Katamarã: Foz do Iguaçu Sob um Novo Olhar...</p>
+                 <h1 class="mb-2 whitespace-nowrap" data-translate="packages.cruzeiro_por_do_sol.titulo">Cruzeiro ao <br> Pôr do Sol</h1>
+                  <p data-translate="packages.cruzeiro_por_do_sol.descricao">Katamarã: Foz do Iguaçu Sob um Novo Olhar...</p>
                 </div>
                 <a href='/' class="btn-cta text-white hover:bg-white/10">
-                  <span class="button-content-initial-text">Ver Mais</span>
+                  <span class="button-content-initial-text" data-translate="packages.see_more_button">Ver Mais</span>
                   <div class="btn-cta-icon-wrapper button-content-initial-icon bg-white/20">
                     <ChevronRight size={20} color="white" />
                   </div>
@@ -156,17 +156,17 @@ import { ChevronLeft, ChevronRight } from 'lucide-astro';
           </div>
           
           <div class="image-container card-reveal" data-index="6">
-            <div class="card-tag card-tag-red">Ciudad del Este - Paraguai</div>
+            <div class="card-tag card-tag-red" data-translate="packages.card_tag.ciudad_paraguai">Ciudad del Este - Paraguai</div>
             <img src={SaltosDelMondayImg.src} alt="Ciudad del Este - Paraguai">
             <div class="absolute inset-0" style="background: linear-gradient(90deg, rgba(0, 0, 0, 0.5), transparent);"></div>
             <div class="card-content relative z-10">
               <div class="card-content-wrapper">
                 <div class="card-text">
-                 <h1 class="mb-2">City Tour Paraguai</h1>
-                  <p>Lago de Lá Republica, Igreja San Lucas Saltos Monday e muito mais...</p>
+                 <h1 class="mb-2" data-translate="packages.city_tour_paraguai.titulo">City Tour Paraguai</h1>
+                  <p data-translate="packages.city_tour_paraguai.descricao">Lago de Lá Republica, Igreja San Lucas Saltos Monday e muito mais...</p>
                 </div>
                 <a href='/' class="btn-cta text-white hover:bg-white/10">
-                  <span class="button-content-initial-text">Ver Mais</span>
+                  <span class="button-content-initial-text" data-translate="packages.see_more_button">Ver Mais</span>
                   <div class="btn-cta-icon-wrapper button-content-initial-icon bg-white/20">
                     <ChevronRight size={20} color="white" />
                   </div>
@@ -176,17 +176,17 @@ import { ChevronLeft, ChevronRight } from 'lucide-astro';
           </div>
 
           <div class="image-container card-reveal" data-index="7">
-            <div class="card-tag card-tag-green">Foz do Iguaçu - Brasil</div>
+            <div class="card-tag card-tag-green" data-translate="packages.card_tag.foz_brasil">Foz do Iguaçu - Brasil</div>
             <img src={CityTourFozImg.src} alt="Foz do Iguaçu - Brasil">
             <div class="absolute inset-0" style="background: linear-gradient(90deg, rgba(0, 0, 0, 0.5), transparent);"></div>
             <div class="card-content relative z-10">
               <div class="card-content-wrapper">
                 <div class="card-text">
-                 <h1 class="mb-2 whitespace-nowrap">City Tour <br> Foz do Iguaçu</h1>
-                  <p>Transfer, Wonder Park, Itaipu, Marco das três fronteiras e muito mais... </p>
+                 <h1 class="mb-2 whitespace-nowrap" data-translate="packages.city_tour_foz.titulo">City Tour <br> Foz do Iguaçu</h1>
+                  <p data-translate="packages.city_tour_foz.descricao">Transfer, Wonder Park, Itaipu, Marco das três fronteiras e muito mais... </p>
                 </div>
                 <a href='/' class="btn-cta text-white hover:bg-white/10">
-                  <span class="button-content-initial-text">Ver Mais</span>
+                  <span class="button-content-initial-text" data-translate="packages.see_more_button">Ver Mais</span>
                   <div class="btn-cta-icon-wrapper button-content-initial-icon bg-white/20">
                     <ChevronRight size={20} color="white" />
                   </div>

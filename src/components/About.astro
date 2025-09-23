@@ -17,30 +17,36 @@ import { ChevronRight } from 'lucide-astro';
    <h2 class='subtitle-reveal mt-4 text-left'>Não Somos uma Empresa, Somos a Sua Ideia de Viagem Perfeita.</h2>
 </div>
    <div class="allign-left space-y-8 mt-8">
-     <div class="flex items-center icon-reveal">
-       <Car height={96} width="auto"/>
-       <div class="flex flex-col ml-4"> 
-         <h2>Lorem Ipsum</h2>
-         <h2 class="mt-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</h2>
-       </div>
-     </div>
+  <div class="flex items-center icon-reveal gap-4">
+    <div class="flex-shrink-0 w-24 flex justify-center">
+      <Car height={96} width={96}/>
+    </div>
+    <div class="flex flex-col justify-center text-left">
+      <h2 data-translate="about.feature1.title" class="text-left">Transporte Confortável</h2>
+      <h2 class="mt-2 text-left" data-translate="about.feature1.description">Veículos modernos e seguros para sua jornada.</h2>
+    </div>
+  </div>
 
-     <div class="flex items-center icon-reveal">
-       <Ticket height={96} width="auto"/>
-       <div class="flex flex-col ml-4">
-         <h2>Lorem Ipsum</h2>
-         <h2 class="mt-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</h2>
-       </div>
-     </div>
+  <div class="flex items-center icon-reveal gap-4">
+    <div class="flex-shrink-0 w-24 flex justify-center">
+      <Ticket height={96} width={96}/>
+    </div>
+    <div class="flex flex-col justify-center text-left"> 
+      <h2 data-translate="about.feature2.title" class="text-left">Experiências Únicas</h2>
+      <h2 class="mt-2 text-left" data-translate="about.feature2.description">Roteiros personalizados para momentos inesquecíveis.</h2>
+    </div>
+  </div>
 
-     <div class="flex items-center icon-reveal">
-       <Pin height={96} width="auto"/>
-       <div class="flex flex-col ml-4">
-         <h2>Lorem Ipsum</h2>
-         <h2 class="mt-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</h2>
-       </div>
-     </div>
-   </div>
+  <div class="flex items-center icon-reveal gap-4">
+    <div class="flex-shrink-0 w-24 flex justify-center">
+      <Pin height={96} width={96}/>
+    </div>
+    <div class="flex flex-col justify-center text-left"> 
+      <h2 data-translate="about.feature3.title" class="text-left">Destinos Incríveis</h2>
+      <h2 class="mt-2 text-left" data-translate="about.feature3.description">Lugares especiais selecionados especialmente para você.</h2>
+    </div>
+  </div>
+</div>
   </div>
 
   <div class="relative w-full md:w-1/2 flex items-center justify-center min-h-[300px] md:min-h-0 p-4 overflow-hidden">
