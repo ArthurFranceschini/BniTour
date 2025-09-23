@@ -19,17 +19,18 @@ import { ChevronRight } from 'lucide-astro';
 
       <div class="relative z-10 min-h-screen flex flex-col justify-center items-start p-4 pb-4 md:p-8 md:pb-8">
         
-        <button id="next-destino" class="btn-cta text-white hover:bg-white/10 mb-6 md:mb-8">
-          <span class="button-content-initial-text" data-translate="hero.cta.discover">
-            Conheça mais destinos...
-          </span>
-          <div class="btn-cta-icon-wrapper button-content-initial-icon bg-white/20">
-            <ChevronRight size={20} class="text-white" />
-          </div>
-        </button>
+        <button id="next-destino" class="btn-cta text-white hover:bg-white/10 mb-6 md:mb-8 header-btn">
+  <span class="button-content-initial-text" data-translate="hero.cta.discover">
+    Conheça mais destinos...
+  </span>
+  <div class="btn-cta-icon-wrapper button-content-initial-icon bg-white/20">
+    <ChevronRight size={20} class="text-white" />
+  </div>
+</button>
+
         
         <div class="text-content-wrapper overflow-hidden w-full">
-          <h1 id="hero-title" class="mb-3 md:mb-4 text-white title-reveal w-full" data-translate="hero.title">
+          <h1 id="hero-title" class="mb-3 md:mb-4 text-white title-reveal w-full" data-translate="hero.slide1.title">
             Sua Viagem para Foz do Iguaçu.<br> Experiências Sob Medida, Memórias Para Sempre.
           </h1>
           
@@ -38,49 +39,51 @@ import { ChevronRight } from 'lucide-astro';
           </h2>
         </div>
         
-        <div class="flex flex-col md:flex-row gap-3 md:gap-4 mt-4 md:mt-6 w-full md:w-auto">
-          <a href='/' class="btn-nav text-black w-full md:w-auto justify-center md:justify-start">
-            <span class="button-content-initial-text" data-translate="hero.cta.plan">
-              Planeje Sua Viagem Agora!
-            </span>
-            <div class="btn-cta-icon-wrapper button-content-initial-icon bg-black">
-              <ChevronRight size={20} class="text-white" />
-            </div>
-          </a>
-          
-          <a href='/' class="btn-cta text-white hover:bg-white/10 w-full md:w-auto justify-center md:justify-start">
-            <span class="button-content-initial-text" data-translate="hero.cta.tours">
-              Passeios
-            </span>
-            <div class="btn-cta-icon-wrapper button-content-initial-icon bg-white/20">
-              <ChevronRight size={20} class="text-white" />
-            </div>
-          </a>
-        </div>
+       <div class="flex flex-col md:flex-row gap-3 md:gap-4 mt-4 md:mt-6 w-full md:w-auto">
+  <a href='/' class="btn-nav text-black w-full md:w-auto justify-center md:justify-start header-btn">
+    <span class="button-content-initial-text" data-translate="hero.cta.plan">
+      Planeje Sua Viagem Agora!
+    </span>
+    <div class="btn-cta-icon-wrapper button-content-initial-icon bg-black">
+      <ChevronRight size={20} class="text-white" />
+    </div>
+  </a>
+  
+  <a href='/' class="btn-cta text-white hover:bg-white/10 w-full md:w-auto justify-center md:justify-start header-btn">
+    <span class="button-content-initial-text" data-translate="hero.cta.tours">
+      Passeios
+    </span>
+    <div class="btn-cta-icon-wrapper button-content-initial-icon bg-white/20">
+      <ChevronRight size={20} class="text-white" />
+    </div>
+  </a>
+</div>
       </div> 
     </div>
   </section>
 </main>
 
+
+
 <script is:inline>
   document.addEventListener('DOMContentLoaded', function() {
-    console.log('🎬 Hero carregado');
+    console.log('🎬 Hero script loaded (DOM ready).');
 
     const slides = [
       {
         image: 'Hero-bg1.webp',
-        title: 'Sua Viagem para Foz do Iguaçu.<br> Experiências Sob Medida, Memórias Para Sempre.',
-        subtitle: 'Esqueça o estresse. A BNI Tour transforma sua viagem em Foz do Iguaçu, Paraguai e Argentina em um roteiro premium, exclusivo e inesquecível. Seu desejo é nosso guia...'
+        title: 'hero.slide1.title',
+        subtitle: 'hero.subtitle'
       },
       {
         image: 'Hero-bg2.webp',
-        title: 'Paraguai e Argentina.<br> Compras e Cultura em Uma Só Viagem.',
-        subtitle: 'Descubra as maravilhas do Paraguai e Argentina com roteiros personalizados. Shopping, gastronomia e pontos turísticos únicos te aguardam nesta aventura inesquecível.'
+        title: 'hero.slide2.title', 
+        subtitle: 'hero.slide2.subtitle' 
       },
       {
         image: 'Hero-bg3.webp',
-        title: 'Cataratas do Iguaçu.<br> A Oitava Maravilha do Mundo Te Espera.',
-        subtitle: 'Viva a experiência única das Cataratas do Iguaçu pelos lados brasileiro e argentino. Natureza exuberante e momentos que ficarão para sempre na sua memória.'
+        title: 'hero.slide3.title', 
+        subtitle: 'hero.slide3.subtitle' 
       }
     ];
     
@@ -122,8 +125,19 @@ import { ChevronRight } from 'lucide-astro';
       heroTitle.classList.remove('text-visible', 'text-slide-out');
       heroSubtitle.classList.remove('text-visible', 'text-slide-out');
       
-      heroTitle.innerHTML = slideData.title;
-      heroSubtitle.innerHTML = slideData.subtitle;
+      if (window.globalTranslator) {
+        const titleTranslation = window.globalTranslator.translations[window.globalTranslator.currentLanguage]?.[slideData.title];
+        const subtitleTranslation = window.globalTranslator.translations[window.globalTranslator.currentLanguage]?.[slideData.subtitle];
+        
+        heroTitle.innerHTML = titleTranslation || slideData.title;
+        heroSubtitle.innerHTML = subtitleTranslation || slideData.subtitle;
+        
+        console.log(`✨ Slide content updated for language ${window.globalTranslator.getCurrentLanguage()}`);
+      } else {
+        console.error("ERROR: window.globalTranslator not found when attempting to translate slide.");
+        heroTitle.innerHTML = slideData.title;
+        heroSubtitle.innerHTML = slideData.subtitle;
+      }
       
       setTimeout(() => {
         heroTitle.classList.remove('text-slide-in');
@@ -139,7 +153,7 @@ import { ChevronRight } from 'lucide-astro';
     function nextSlide() {
       if (isAnimating) return;
       
-      console.log('🎬 Iniciando animação do slide');
+      console.log('🎬 Starting next slide animation.');
       isAnimating = true;
       showLoader();
       
@@ -170,100 +184,53 @@ import { ChevronRight } from 'lucide-astro';
           currentSlide = nextSlideIndex;
           
           isAnimating = false;
-          console.log('🎬 Animação concluída');
+          console.log('🎬 Slide animation finished.');
         }, animationDuration);
         
       }, loaderDuration); 
     }
 
-    function initializeSlide() {
-      heroTitle.classList.add('text-visible');
-      heroSubtitle.classList.add('text-visible');
-      heroTitle.classList.remove('text-slide-in', 'text-slide-out');
-      heroSubtitle.classList.remove('text-slide-in', 'text-slide-out');
-    }
-
-    function initializeAnimations() {
-      const section = document.getElementById('Hero');
-      
-      setTimeout(() => {
-        section.classList.add('section-reveal-active');
-      }, 200);
-      
-      setTimeout(() => {
-        heroTitle.classList.add('is-visible');
-      }, 600);
-      
-      setTimeout(() => {
-        heroSubtitle.classList.add('is-visible');
-      }, 800);
-      
-      setTimeout(() => {
-        const buttons = document.querySelectorAll('#Hero .btn-cta, #Hero .btn-nav');
-        buttons.forEach((button, index) => {
-          setTimeout(() => {
-            button.classList.add('is-revealed');
-          }, index * 200);
-        });
-      }, 1200);
-    }
-
-    nextBtn.addEventListener('click', nextSlide);
-
-    setTimeout(initializeSlide, 200);
-    setTimeout(initializeAnimations, 300);
-
-    var sections = document.querySelectorAll('.section-reveal, .section-reveal-left');
-    var observer = new IntersectionObserver(function(entries) {
-      entries.forEach(function(entry) {
-        if (entry.isIntersecting) {
-          if (entry.target.classList.contains('section-reveal')) {
-            entry.target.classList.add('section-reveal-active');
-          }
-          if (entry.target.classList.contains('section-reveal-left')) {
-            entry.target.classList.add('section-reveal-left-active');
-          }
-          
-          setTimeout(function() {
-            var titles = entry.target.querySelectorAll('.title-reveal, .subtitle-reveal');
-            titles.forEach(function(title, index) {
-              setTimeout(function() {
-                title.classList.add('is-visible');
-              }, index * 200); 
-            });
-          }, 400);
-          
-          setTimeout(function() {
-            var buttons = entry.target.querySelectorAll('.btn-cta, .btn-nav');
-            buttons.forEach(function(button, index) {
-              setTimeout(function() {
-                button.classList.add('is-revealed');
-              }, index * 200); 
-            });
-          }, 1200);
-        }
-      });
-    });
+ function initializeHeroFeatures() {
+  if (window.globalTranslator) {
+    const initialSlideData = slides[currentSlide];
+    const titleTranslation = window.globalTranslator.translations[window.globalTranslator.currentLanguage]?.[initialSlideData.title];
+    const subtitleTranslation = window.globalTranslator.translations[window.globalTranslator.currentLanguage]?.[initialSlideData.subtitle];
     
-    sections.forEach(function(section) {
-      observer.observe(section);
-    });
+    heroTitle.innerHTML = titleTranslation || initialSlideData.title;
+    heroSubtitle.innerHTML = subtitleTranslation || initialSlideData.subtitle;
+    
+    console.log(`✨ Initial Hero content translated to ${window.globalTranslator.getCurrentLanguage()}.`);
+  } else {
+    console.warn("⚠️ GlobalTranslator not available when initializing HeroFeatures. Using fallback text.");
+  }
+  
+  heroTitle.classList.add('text-visible');
+  heroSubtitle.classList.add('text-visible');
+  heroTitle.classList.remove('text-slide-in', 'text-slide-out');
+  heroSubtitle.classList.remove('text-slide-in', 'text-slide-out');
 
-    function tryInitialTranslation() {
-      if (window.globalTranslator) {
-        window.globalTranslator.translateAll();
-      } else {
-        setTimeout(tryInitialTranslation, 100);
-      }
-    }
-    setTimeout(tryInitialTranslation, 500);
+  const section = document.getElementById('Hero');
+  setTimeout(() => {
+    section.classList.add('section-reveal-active');
+  }, 200);
+  
+  setTimeout(() => {
+    heroTitle.classList.add('is-visible');
+  }, 600);
+  
+  setTimeout(() => {
+    heroSubtitle.classList.add('is-visible');
+  }, 800);
 
-    document.addEventListener('languageChanged', function(e) {
-      if (window.globalTranslator) {
-        setTimeout(function() {
-          window.globalTranslator.translateAll();
-        }, 50);
-      }
+  // ✅ TODOS os botões do Hero (incluindo o "Conheça mais destinos")
+  const allHeroButtons = document.querySelectorAll('#Hero .header-btn');
+  setTimeout(() => {
+    allHeroButtons.forEach((btn, index) => {
+      setTimeout(() => {
+        btn.classList.add('is-revealed');
+        console.log(`�� Hero button ${index + 1} revealed:`, btn.textContent.trim());
+      }, index * 200);
     });
-  });
+  }, 1000);
+}})
 </script>
