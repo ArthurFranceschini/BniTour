@@ -5,13 +5,13 @@ import { ChevronLeft, ChevronRight } from "lucide-astro";
 <section id="Testimonials" class="section-padding section-reveal">
   <div class="p-4 md:p-8">
     <div class="header-container flex justify-between items-center mb-4">
-      <h1 class="title-reveal w-full" data-translate="testimonials.title">Histórias Que Inspiram: Nossos Clientes Falam.</h1>
+      <h1 class="title-reveal w-full text-blue" data-translate="testimonials.title">Histórias Que Inspiram: Nossos Clientes Falam.</h1>
       
       <div class="carousel-controls flex-shrink-0"> 
-        <button class="carousel-btn carousel-btn-prev" id="prevBtnTestimonials" style="display: none;">
+        <button class="carousel-btn carousel-btn-prev text-blue" id="prevBtnTestimonials" style="display: none;">
           <ChevronLeft size={20} />
         </button>
-        <button class="carousel-btn carousel-btn-next" id="nextBtnTestimonials">
+        <button class="carousel-btn carousel-btn-next text-blue" id="nextBtnTestimonials">
           <ChevronRight size={20} />
         </button>
       </div>
@@ -29,10 +29,11 @@ import { ChevronLeft, ChevronRight } from "lucide-astro";
                   <p class="font-semibold text-gray-900" data-translate="testimonials.ana.name">Ana Paula S.</p>
                   <p class="text-sm text-gray-500" data-translate="testimonials.ana.role">Cliente Satisfeita</p>
                 </div>
-                <a href='https://www.tripadvisor.com.br/Attraction_Review-g303444-d17724059-Reviews-Bni_Tour-Foz_do_Iguacu_State_of_Parana.html' class="btn-nav border-1 border-black text-black header-btn 2xl:self-auto self-start">
-                  <span class="button-content-initial-text" data-translate="testimonials.btn.tripadvisor">Ver no Tripadvisor</span>
-                  <div class="btn-cta-icon-wrapper button-content-initial-icon bg-black">
-                    <ChevronRight size={20} class="text-white" />
+                {/* Botão com a classe btn-nav e estilo */}
+                <a href='https://www.tripadvisor.com.br/Attraction_Review-g303444-d17724059-Reviews-Bni_Tour-Foz_do_Iguacu_State_of_Parana.html' class="btn-nav header-btn 2xl:self-auto self-start">
+                  <span class="button-content-initial-text text-blue" data-translate="testimonials.btn.tripadvisor">Ver no Tripadvisor</span>
+                  <div class="btn-cta-icon-wrapper button-content-initial-icon bg-white">
+                    <ChevronRight size={20} class="text-blue" />
                   </div>
                 </a>
               </div>
@@ -47,10 +48,10 @@ import { ChevronLeft, ChevronRight } from "lucide-astro";
                   <p class="font-semibold text-gray-900" data-translate="testimonials.joao.name">João M.</p>
                   <p class="text-sm text-gray-500" data-translate="testimonials.joao.role">Aventureiro de plantão</p>
                 </div>
-                <a href='https://www.google.com/travel' class="btn-nav border-1 border-black text-black header-btn 2xl:self-auto self-start">
-                  <span class="button-content-initial-text" data-translate="testimonials.btn.google">Avaliar no Google</span>
-                  <div class="btn-cta-icon-wrapper button-content-initial-icon bg-black">
-                    <ChevronRight size={20} class="text-white" />
+                <a href='https://www.google.com/travel' class="btn-nav header-btn 2xl:self-auto self-start">
+                  <span class="button-content-initial-text text-blue" data-translate="testimonials.btn.google">Avaliar no Google</span>
+                  <div class="btn-cta-icon-wrapper button-content-initial-icon bg-white">
+                    <ChevronRight size={20} class="text-blue" />
                   </div>
                 </a>
               </div>
@@ -65,10 +66,10 @@ import { ChevronLeft, ChevronRight } from "lucide-astro";
                   <p class="font-semibold text-gray-900" data-translate="testimonials.mariana.name">Mariana P.</p>
                   <p class="text-sm text-gray-500" data-translate="testimonials.mariana.role">Amante de viagens</p>
                 </div>
-                <a href='https://www.tripadvisor.com.br/Attraction_Review-g303444-d17724059-Reviews-Bni_Tour-Foz_do_Iguacu_State_of_Parana.html' class="btn-nav border-1 border-black text-black header-btn 2xl:self-auto self-start">
-                  <span class="button-content-initial-text" data-translate="testimonials.btn.tripadvisor">Ver no Tripadvisor</span>
-                  <div class="btn-cta-icon-wrapper button-content-initial-icon bg-black">
-                    <ChevronRight size={20} class="text-white" />
+                <a href='https://www.tripadvisor.com.br/Attraction_Review-g303444-d17724059-Reviews-Bni_Tour-Foz_do_Iguacu_State_of_Parana.html' class="btn-nav header-btn 2xl:self-auto self-start">
+                  <span class="button-content-initial-text text-blue" data-translate="testimonials.btn.tripadvisor">Ver no Tripadvisor</span>
+                  <div class="btn-cta-icon-wrapper button-content-initial-icon bg-white">
+                    <ChevronRight size={20} class="text-blue" />
                   </div>
                 </a>
               </div>
@@ -82,11 +83,10 @@ import { ChevronLeft, ChevronRight } from "lucide-astro";
                 <div class="flex-shrink-0">
                   <p class="font-semibold text-gray-900" data-translate="testimonials.carlos.name">Carlos R.</p>
                   <p class="text-sm text-gray-500" data-translate="testimonials.carlos.role">Viajante frequente</p>
-                </div>
-                <a href='https://www.google.com/travel' class="btn-nav border-1 border-black text-black header-btn 2xl:self-auto self-start">
-                  <span class="button-content-initial-text" data-translate="testimonials.btn.google">Avaliar no Google</span>
-                  <div class="btn-cta-icon-wrapper button-content-initial-icon bg-black">
-                    <ChevronRight size={20} class="text-white" />
+                </div>                <a href='https://www.google.com/travel' class="btn-nav header-btn 2xl:self-auto self-start">
+                  <span class="button-content-initial-text text-blue" data-translate="testimonials.btn.google">Avaliar no Google</span>
+                  <div class="btn-cta-icon-wrapper button-content-initial-icon bg-white">
+                    <ChevronRight size={20} class="text-blue" />
                   </div>
                 </a>
               </div>
@@ -101,10 +101,10 @@ import { ChevronLeft, ChevronRight } from "lucide-astro";
                   <p class="font-semibold text-gray-900" data-translate="testimonials.fernanda.name">Fernanda L.</p>
                   <p class="text-sm text-gray-500" data-translate="testimonials.fernanda.role">Exploradora</p>
                 </div>
-                <a href='https://www.tripadvisor.com.br/Attraction_Review-g303444-d17724059-Reviews-Bni_Tour-Foz_do_Iguacu_State_of_Parana.html' class="btn-nav border-1 border-black text-black header-btn 2xl:self-auto self-start">
-                  <span class="button-content-initial-text" data-translate="testimonials.btn.tripadvisor">Ver no Tripadvisor</span>
-                  <div class="btn-cta-icon-wrapper button-content-initial-icon bg-black">
-                    <ChevronRight size={20} class="text-white" />
+                <a href='https://www.tripadvisor.com.br/Attraction_Review-g303444-d17724059-Reviews-Bni_Tour-Foz_do_Iguacu_State_of_Parana.html' class="btn-nav header-btn 2xl:self-auto self-start">
+                  <span class="button-content-initial-text text-blue" data-translate="testimonials.btn.tripadvisor">Ver no Tripadvisor</span>
+                  <div class="btn-cta-icon-wrapper button-content-initial-icon bg-white">
+                    <ChevronRight size={20} class="text-blue" />
                   </div>
                 </a>
               </div>
@@ -119,10 +119,11 @@ import { ChevronLeft, ChevronRight } from "lucide-astro";
                   <p class="font-semibold text-gray-900" data-translate="testimonials.pedro.name">Pedro H.</p>
                   <p class="text-sm text-gray-500" data-translate="testimonials.pedro.role">Amante da natureza</p>
                 </div>
-                <a href='https://www.google.com/travel' class="btn-nav border-1 border-black text-black header-btn 2xl:self-auto self-start">
-                  <span class="button-content-initial-text" data-translate="testimonials.btn.google">Avaliar no Google</span>
-                  <div class="btn-cta-icon-wrapper button-content-initial-icon bg-black">
-                    <ChevronRight size={20} class="text-white" />
+                {/* Botão com a classe btn-nav e estilo */}
+                <a href='https://www.google.com/travel' class="btn-nav header-btn 2xl:self-auto self-start">
+                  <span class="button-content-initial-text text-blue" data-translate="testimonials.btn.google">Avaliar no Google</span>
+                  <div class="btn-cta-icon-wrapper button-content-initial-icon bg-white">
+                    <ChevronRight size={20} class="text-blue" />
                   </div>
                 </a>
               </div>
@@ -136,6 +137,35 @@ import { ChevronLeft, ChevronRight } from "lucide-astro";
 </section>
 
 <style>
+/* Estilos para .btn-nav, incorporando a definição anterior de .btn-cta */
+.btn-nav {
+    display: inline-flex;
+    align-items: center;
+    border-radius: 9999px; /* rounded-full */
+    font-weight: 500; /* font-medium */
+    transition-property: all;
+    transition-duration: 300ms;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1); /* ease-in-out */
+    outline: 2px solid transparent; /* focus:outline-none */
+    outline-offset: 2px;
+    border-width: 1px;
+    border-color: white; /* border-white */
+    background-color: transparent; /* bg-transparent */
+    backdrop-filter: blur(8px); /* backdrop-blur-md */
+    cursor: pointer;
+    overflow: hidden;
+    padding-left: 0.75rem; /* pl-3 */
+    padding-right: 0; /* pr-0 */
+    gap: 1rem; /* gap-x-4 */
+    position: relative;
+    min-height: 40px;
+}
+@media (min-width: 1024px) {
+  .btn-nav {
+    gap: 2rem; /* lg:gap-x-8 */
+  }
+}
+
 html, body {
   overflow-x: hidden !important;
   max-width: 100vw !important;
@@ -254,7 +284,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 800);
         
         setTimeout(() => {
-          const ctaButtons = entry.target.querySelectorAll('.btn-nav');
+          const ctaButtons = entry.target.querySelectorAll('.btn-nav'); 
           ctaButtons.forEach((button, index) => {
             setTimeout(() => {
               button.classList.add('is-revealed');

@@ -1,34 +1,38 @@
 ---
 import { ChevronRight } from 'lucide-astro';
+import Header from './Header.astro';
 ---
 
 <main>
-  <section id="Hero" class="section-reveal pt-[90px] md:pt-[100px] lg:pt-[110px]">
+  <section id="Hero" class="section-reveal">
     <div 
       id="hero-carousel"
-      class="min-h-screen bg-cover bg-center bg-no-repeat rounded-xl overflow-hidden relative transition-all duration-700"
-      style="background-image: url('Hero-bg1.webp');">
+      class="min-h-screen bg-cover bg-center bg-no-repeat overflow-hidden relative transition-all duration-700"
+      style="background-image: url('Hero-bg1.webp'); box-shadow: inset 0 -100px 80px -20px rgba(0, 0, 0, 0.7);">
     
       <div class="absolute inset-0" style="background: linear-gradient(45deg, rgba(0, 0, 0, 0.6 ), transparent);"></div>
+      
+      <div class="relative z-20">
+        <Header/>
+      </div>
     
-      <div id="hero-loader" class="absolute inset-0 flex items-center justify-center bg-black/50 backdrop-blur-md opacity-0 pointer-events-none transition-opacity duration-500">
+      <div id="hero-loader" class="absolute inset-0 flex items-center justify-center bg-black/50 backdrop-blur-md opacity-0 pointer-events-none transition-opacity duration-500 z-30">
         <div class="w-8 h-8 md:w-10 md:h-10 border-4 border-white border-t-transparent rounded-full animate-spin"></div>
       </div>
 
-      <div id="slide-overlay" class="absolute inset-0 bg-cover bg-center bg-no-repeat transform translate-x-full transition-transform duration-700 ease-in-out"></div>
+      <div id="slide-overlay" class="absolute inset-0 bg-cover bg-center bg-no-repeat transform translate-x-full transition-transform duration-700 ease-in-out z-10"></div>
 
-      <div class="relative z-10 min-h-screen flex flex-col justify-center items-start p-4 pb-4 md:p-8 md:pb-8">
+      <div class="relative z-15 min-h-screen flex flex-col justify-center items-start p-4 pb-4 md:p-8 md:pb-8 pt-[120px] md:pt-[140px]">
         
         <button id="next-destino" class="btn-cta text-white hover:bg-white/10 mb-6 md:mb-8 header-btn">
-  <span class="button-content-initial-text" data-translate="hero.cta.discover">
-    Conheça mais destinos...
-  </span>
-  <div class="btn-cta-icon-wrapper button-content-initial-icon bg-white/20">
-    <ChevronRight size={20} class="text-white" />
-  </div>
-</button>
+          <span class="button-content-initial-text" data-translate="hero.cta.discover">
+            Conheça mais destinos...
+          </span>
+          <div class="btn-cta-icon-wrapper button-content-initial-icon bg-white/20">
+            <ChevronRight size={20} class="text-white" />
+          </div>
+        </button>
 
-        
         <div class="text-content-wrapper overflow-hidden w-full">
           <h1 id="hero-title" class="mb-3 md:mb-4 text-white title-reveal w-full" data-translate="hero.slide1.title">
             Sua Viagem para Foz do Iguaçu.<br> Experiências Sob Medida, Memórias Para Sempre.
@@ -39,31 +43,27 @@ import { ChevronRight } from 'lucide-astro';
           </h2>
         </div>
         
-       <div class="flex flex-col md:flex-row gap-3 md:gap-4 mt-4 md:mt-6 w-full md:w-auto">
-  <a href='/' class="btn-nav text-black w-full md:w-auto justify-center md:justify-start header-btn">
-    <span class="button-content-initial-text" data-translate="hero.cta.plan">
-      Planeje Sua Viagem Agora!
-    </span>
-    <div class="btn-cta-icon-wrapper button-content-initial-icon bg-black">
-      <ChevronRight size={20} class="text-white" />
-    </div>
-  </a>
-  
-  <a href='/' class="btn-cta text-white hover:bg-white/10 w-full md:w-auto justify-center md:justify-start header-btn">
-    <span class="button-content-initial-text" data-translate="hero.cta.tours">
-      Passeios
-    </span>
-    <div class="btn-cta-icon-wrapper button-content-initial-icon bg-white/20">
-      <ChevronRight size={20} class="text-white" />
-    </div>
-  </a>
-</div>
+        <div class="flex flex-col md:flex-row gap-3 md:gap-4 w-full md:w-auto">
+            <a href='/' class="btn-nav bg-blue/50 border-2 border-blue/50 text-white header-btn w-full md:w-auto justify-center md:justify-start">
+                <span class="button-content-initial-text" data-translate="hero.cta.plan">Planeje sua Viagem Agora!</span>
+                <div class="btn-cta-icon-wrapper button-content-initial-icon bg-white">
+                    <ChevronRight size={20} class="text-blue" />
+                </div>
+            </a>
+          
+          <a href='/' class="btn-cta text-white hover:bg-white/10 w-full md:w-auto justify-center md:justify-start header-btn">
+            <span class="button-content-initial-text" data-translate="hero.cta.tours">
+              Passeios
+            </span>
+            <div class="btn-cta-icon-wrapper button-content-initial-icon bg-white/20">
+              <ChevronRight size={20} class="text-white" />
+            </div>
+          </a>
+        </div>
       </div> 
     </div>
   </section>
 </main>
-
-
 
 <script is:inline>
   document.addEventListener('DOMContentLoaded', function() {
@@ -190,47 +190,53 @@ import { ChevronRight } from 'lucide-astro';
       }, loaderDuration); 
     }
 
- function initializeHeroFeatures() {
-  if (window.globalTranslator) {
-    const initialSlideData = slides[currentSlide];
-    const titleTranslation = window.globalTranslator.translations[window.globalTranslator.currentLanguage]?.[initialSlideData.title];
-    const subtitleTranslation = window.globalTranslator.translations[window.globalTranslator.currentLanguage]?.[initialSlideData.subtitle];
-    
-    heroTitle.innerHTML = titleTranslation || initialSlideData.title;
-    heroSubtitle.innerHTML = subtitleTranslation || initialSlideData.subtitle;
-    
-    console.log(`✨ Initial Hero content translated to ${window.globalTranslator.getCurrentLanguage()}.`);
-  } else {
-    console.warn("⚠️ GlobalTranslator not available when initializing HeroFeatures. Using fallback text.");
-  }
-  
-  heroTitle.classList.add('text-visible');
-  heroSubtitle.classList.add('text-visible');
-  heroTitle.classList.remove('text-slide-in', 'text-slide-out');
-  heroSubtitle.classList.remove('text-slide-in', 'text-slide-out');
+    if (nextBtn) {
+      nextBtn.addEventListener('click', nextSlide);
+    }
 
-  const section = document.getElementById('Hero');
-  setTimeout(() => {
-    section.classList.add('section-reveal-active');
-  }, 200);
-  
-  setTimeout(() => {
-    heroTitle.classList.add('is-visible');
-  }, 600);
-  
-  setTimeout(() => {
-    heroSubtitle.classList.add('is-visible');
-  }, 800);
+    function initializeHeroFeatures() {
+      if (window.globalTranslator) {
+        const initialSlideData = slides[currentSlide];
+        const titleTranslation = window.globalTranslator.translations[window.globalTranslator.currentLanguage]?.[initialSlideData.title];
+        const subtitleTranslation = window.globalTranslator.translations[window.globalTranslator.currentLanguage]?.[initialSlideData.subtitle];
+        
+        heroTitle.innerHTML = titleTranslation || initialSlideData.title;
+        heroSubtitle.innerHTML = subtitleTranslation || initialSlideData.subtitle;
+        
+        console.log(`✨ Initial Hero content translated to ${window.globalTranslator.getCurrentLanguage()}.`);
+      } else {
+        console.warn("⚠️ GlobalTranslator not available when initializing HeroFeatures. Using fallback text.");
+      }
+      
+      heroTitle.classList.add('text-visible');
+      heroSubtitle.classList.add('text-visible');
+      heroTitle.classList.remove('text-slide-in', 'text-slide-out');
+      heroSubtitle.classList.remove('text-slide-in', 'text-slide-out');
 
-  // ✅ TODOS os botões do Hero (incluindo o "Conheça mais destinos")
-  const allHeroButtons = document.querySelectorAll('#Hero .header-btn');
-  setTimeout(() => {
-    allHeroButtons.forEach((btn, index) => {
+      const section = document.getElementById('Hero');
       setTimeout(() => {
-        btn.classList.add('is-revealed');
-        console.log(`�� Hero button ${index + 1} revealed:`, btn.textContent.trim());
-      }, index * 200);
-    });
-  }, 1000);
-}})
+        section.classList.add('section-reveal-active');
+      }, 200);
+      
+      setTimeout(() => {
+        heroTitle.classList.add('is-visible');
+      }, 600);
+      
+      setTimeout(() => {
+        heroSubtitle.classList.add('is-visible');
+      }, 800);
+
+      const allHeroButtons = document.querySelectorAll('#Hero .header-btn');
+      setTimeout(() => {
+        allHeroButtons.forEach((btn, index) => {
+          setTimeout(() => {
+            btn.classList.add('is-revealed');
+            console.log(`🎯 Hero button ${index + 1} revealed:`, btn.textContent.trim());
+          }, index * 200);
+        });
+      }, 1000);
+    }
+
+    setTimeout(initializeHeroFeatures, 100);
+  });
 </script>

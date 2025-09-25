@@ -2,15 +2,15 @@
 import { MessageCircle, FileText, ChevronRight, Phone, Mail } from 'lucide-astro';
 ---
 
-<section id="FinalCTA" class="section-padding section-reveal bg-gradient-to-br from-blue-50 via-white to-purple-50">
+<section id="FinalCTA" class="section-padding section-reveal bg-[#1a3a5b]">
   <div class="max-w-4xl mx-auto px-4 md:px-8 text-center">
     
     <div class="mb-8">
-      <h1 class="title-reveal leading-tight mb-4" data-translate="finalcta.title">
+      <h1 class="title-reveal leading-tight mb-4 text-white" data-translate="finalcta.title">
         Sua Próxima Aventura.<br> Espera Por Você
       </h1>
       
-      <p class="subtitle-reveal text-xl md:text-2xl text-gray-600 leading-relaxed max-w-3xl mx-auto" data-translate="finalcta.subtitle">
+      <p class="subtitle-reveal text-xl md:text-2xl text-white leading-relaxed max-w-3xl mx-auto" data-translate="finalcta.subtitle">
         Não deixe a organização da sua viagem tirar o brilho da sua expectativa. Confie na BNI Tour para transformar sua ideia de passeio em uma realidade impecável, repleta de momentos premium e memórias que durarão para sempre.
       </p>
     </div>
@@ -18,24 +18,24 @@ import { MessageCircle, FileText, ChevronRight, Phone, Mail } from 'lucide-astro
     <div class="cta-container space-y-6 mb-8">
       
       <div class="primary-cta">
-        <a href="https://wa.me/5545999999999"  class="btn-nav bg-green-500 text-white header-btn inline-flex">
+        <a href="https://wa.me/5545999999999"  class="btn-nav bg-[#315288] text-white header-btn inline-flex">
           <span class="button-content-initial-text" data-translate="finalcta.primary">Quero Meu Roteiro Personalizado</span>
-          <div class="btn-cta-icon-wrapper button-content-initial-icon bg-green-700">
+          <div class="btn-cta-icon-wrapper button-content-initial-icon bg-[#233c64]">
             <ChevronRight size={20} class="text-white" />
           </div>
         </a>
       </div>
 
       <div class="separator-cta flex items-center justify-center my-6">
-        <div class="flex-1 h-px bg-gray-300"></div>
-        <span class="px-4 text-gray-500 font-medium" data-translate="finalcta.separator">OU</span>
-        <div class="flex-1 h-px bg-gray-300"></div>
+        <div class="flex-1 h-px bg-white/30"></div>
+        <span class="px-4 text-white font-medium" data-translate="finalcta.separator">OU</span>
+        <div class="flex-1 h-px bg-white/30"></div>
       </div>
 
       <div class="secondary-cta">
-        <a href="/contato" class="btn-nav border-1 border-black text-black header-btn">
+        <a href="/contato" class="btn-nav border-1 border-white text-white header-btn">
           <span class="button-content-initial-text" data-translate="finalcta.secondary">Prefiro Preencher o Formulário</span>
-          <div class="btn-cta-icon-wrapper button-content-initial-icon bg-black">
+          <div class="btn-cta-icon-wrapper button-content-initial-icon bg-[#1a3a5b]">
             <ChevronRight size={20} class="text-white" />
           </div>
         </a>
@@ -81,7 +81,7 @@ import { MessageCircle, FileText, ChevronRight, Phone, Mail } from 'lucide-astro
               }, 800);
             }
 
-            const contactItems = section.querySelectorAll('.contact-item');
+            const contactItems = section.querySelectorAll('.contact-item'); // Note: These elements don't exist in the provided HTML.
             for (let i = 0; i < contactItems.length; i++) {
               setTimeout(function() {
                 contactItems[i].classList.add('is-visible');

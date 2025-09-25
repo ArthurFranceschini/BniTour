@@ -5,110 +5,142 @@ import FlagEUA from '../assets/Icons/flag-usa.svg?raw';
 import FlagESP from '../assets/Icons/flag-esp.svg?raw';
 ---
 
-<header class="header-padding flex items-center header-fade-in fixed top-0 inset-x-0 w-full bg-transparent z-50 transition-colors duration-300">    <div class="flex items-center justify-between w-full">
-        
-        <div class="flex-shrink-0 lg:hidden">
-            <button id="mobile-menu-btn" class="mobile-menu-btn p-2 rounded-lg border border-black bg-white">
-                <Menu size={20} class="menu-icon" />
-                <X size={20} class="close-icon hidden" />
-            </button>
-        </div>
+<header class="flex items-center header-fade-in fixed top-0 inset-x-0 w-full bg-transparent transition-colors duration-300 p-4 md:p-8">
+  <div class="flex items-center justify-between w-full">
+    
+    <div class="flex-shrink-0 lg:hidden">
+      <button id="mobile-menu-btn" class="mobile-menu-btn rounded-lg border border-black bg-white">
+        <Menu size={20} class="menu-icon" />
+        <X size={20} class="close-icon hidden" />
+      </button>
+    </div>
 
-        <div class="hidden lg:flex flex-shrink-0">
-            <a href='/' class="btn-nav border-1 border-black text-black header-btn">
-                <span class="button-content-initial-text" data-translate="header.cta">Fale Conosco</span>
-                <div class="btn-cta-icon-wrapper button-content-initial-icon bg-black">
-                    <ChevronRight size={20} class="text-white" />
+    <div class="hidden lg:flex flex-shrink-0">
+     <a href='/' class="btn-nav bg-blue/50  border-2 border-blue/50 text-white header-btn">
+                <span class="button-content-initial-text" data-translate="header.cta">Fale Conosco...</span>
+                <div class="btn-cta-icon-wrapper button-content-initial-icon bg-white">
+                    <ChevronRight size={20} class="text-blue" />
                 </div>
             </a>
-        </div>
+      </a>
+    </div>
 
-        <div class="absolute left-1/2 transform -translate-x-1/2">
-            <img src="/logoipsum-332.svg" alt="Logo" class="h-6 md:h-8">
-        </div>
+    <div class="absolute left-1/2 transform -translate-x-1/2">
+      <img src="/logoipsum-332.svg" alt="Logo" class="h-6 md:h-8">
+    </div>
+
+    <div class="hidden lg:flex items-center gap-6">
+      <div class="flex items-center gap-4 nav-links">
+        <button class="btn-cta text-white hover:bg-white/10 header-btn">
+          <span class="button-content-initial-text" data-translate="header.home">Início</span>
+          <div class="btn-cta-icon-wrapper button-content-initial-icon bg-white/20">
+            <ChevronRight size={20} class="text-white" />
+          </div>
+        </button>
+
+        <button class="btn-cta text-white hover:bg-white/10 header-btn">
+          <span class="button-content-initial-text" data-translate="header.tours">Passeios</span>
+          <div class="btn-cta-icon-wrapper button-content-initial-icon bg-white/20">
+            <ChevronRight size={20} class="text-white" />
+          </div>
+        </button>
+
+        <button class="btn-cta text-white hover:bg-white/10 header-btn">
+          <span class="button-content-initial-text" data-translate="header.about">Sobre</span>
+          <div class="btn-cta-icon-wrapper button-content-initial-icon bg-white/20">
+            <ChevronRight size={20} class="text-white" />
+          </div>
+        </button>
+
+        <button class="btn-cta text-white hover:bg-white/10 header-btn">
+          <span class="button-content-initial-text" data-translate="header.testimonials">Depoimentos</span>
+          <div class="btn-cta-icon-wrapper button-content-initial-icon bg-white/20">
+            <ChevronRight size={20} class="text-white" />
+          </div>
+        </button>
+
+        <button class="btn-cta text-white hover:bg-white/10 header-btn">
+          <span class="button-content-initial-text" data-translate="header.blog">Blog</span>
+          <div class="btn-cta-icon-wrapper button-content-initial-icon bg-white/20">
+            <ChevronRight size={20} class="text-white" />
+          </div>
+        </button>
+      </div>
+
+      <div class="language-switcher-container">
+        <button id="language-dropdown-btn" class="language-btn">
+          <div id="current-flag" class="flag-icon" set:html={FlagBR}></div>
+          <span id="current-lang">PT</span>
+          <svg class="dropdown-arrow" width="12" height="12" viewBox="0 0 12 12">
+            <path d="M3 4.5L6 7.5L9 4.5" stroke="currentColor" stroke-width="1.5" fill="none"/>
+          </svg>
+        </button>
         
-        <div class="hidden lg:flex items-center gap-4">
-            <div class="flex gap-4 nav-links">
-                <a href="/" class="nav-item hover:text-black" data-translate="header.home">Início</a>
-                <a href="/" class="nav-item" data-translate="header.tours">Passeios</a>
-                <a href="/" class="nav-item" data-translate="header.about">Sobre</a>
-                <a href="/" class="nav-item" data-translate="header.testimonials">Depoimentos</a>
-                <a href="/" class="nav-item" data-translate="header.blog">Blog</a>
-            </div>
-            
-            <div class="language-switcher-container">
-                <button id="language-dropdown-btn" class="language-btn">
-                    <div id="current-flag" class="flag-icon" set:html={FlagBR}></div>
-                    <span id="current-lang">PT</span>
-                    <svg class="dropdown-arrow" width="12" height="12" viewBox="0 0 12 12">
-                        <path d="M3 4.5L6 7.5L9 4.5" stroke="currentColor" stroke-width="1.5" fill="none"/>
-                    </svg>
-                </button>
-                
-                <div id="language-dropdown" class="language-dropdown hidden">
-                    <button data-lang="pt" class="lang-option active">
-                        <div class="flag-icon" set:html={FlagBR}></div>
-                        <span>Português</span>
-                    </button>
-                    <button data-lang="en" class="lang-option">
-                        <div class="flag-icon" set:html={FlagEUA}></div>
-                        <span>English</span>
-                    </button>
-                    <button data-lang="es" class="lang-option">
-                        <div class="flag-icon" set:html={FlagESP}></div>
-                        <span>Español</span>
-                    </button>
-                </div>
-            </div>
+        <div id="language-dropdown" class="language-dropdown hidden">
+          <button data-lang="pt" class="lang-option active">
+            <div class="flag-icon" set:html={FlagBR}></div>
+            <span>Português</span>
+          </button>
+          <button data-lang="en" class="lang-option">
+            <div class="flag-icon" set:html={FlagEUA}></div>
+            <span>English</span>
+          </button>
+          <button data-lang="es" class="lang-option">
+            <div class="flag-icon" set:html={FlagESP}></div>
+            <span>Español</span>
+          </button>
         </div>
-
-        <div class="flex lg:hidden language-switcher-container">
-            <button id="mobile-language-dropdown-btn" class="language-btn">
-                <div id="mobile-current-flag" class="flag-icon" set:html={FlagBR}></div>
-                <span id="mobile-current-lang">PT</span>
-                <svg class="dropdown-arrow" width="10" height="10" viewBox="0 0 12 12">
-                    <path d="M3 4.5L6 7.5L9 4.5" stroke="currentColor" stroke-width="1.5" fill="none"/>
-                </svg>
-            </button>
-            
-            <div id="mobile-language-dropdown" class="language-dropdown hidden">
-                <button data-lang="pt" class="mobile-lang-option active">
-                    <div class="flag-icon" set:html={FlagBR}></div>
-                    <span>Português</span>
-                </button>
-                <button data-lang="en" class="mobile-lang-option">
-                    <div class="flag-icon" set:html={FlagEUA}></div>
-                    <span>English</span>
-                </button>
-                <button data-lang="es" class="mobile-lang-option">
-                    <div class="flag-icon" set:html={FlagESP}></div>
-                    <span>Español</span>
-                </button>
-            </div>
-        </div>
+      </div>
     </div>
 
-    <div id="mobile-menu-overlay" class="mobile-menu-overlay">
-        <div class="mobile-menu-content">
-            <nav class="mobile-nav">
-                <a href="/" class="mobile-nav-item" data-translate="header.home">Início</a>
-                <a href="/" class="mobile-nav-item" data-translate="header.tours">Passeios</a>
-                <a href="/" class="mobile-nav-item" data-translate="header.about">Sobre</a>
-                <a href="/" class="mobile-nav-item" data-translate="header.testimonials">Depoimentos</a>
-                <a href="/" class="mobile-nav-item" data-translate="header.blog">Blog</a>
-            </nav>
-
-            <div class="mobile-cta-container">
-                <a href='/' class="btn-nav border-1 border-black text-black w-full justify-center mobile-cta-btn is-revealed">
-                    <span class="button-content-initial-text mobile-cta-text" data-translate="header.cta">Fale Conosco</span>
-                    <div class="btn-cta-icon-wrapper button-content-initial-icon bg-black mobile-cta-icon">
-                        <ChevronRight size={18} class="text-white" />
-                    </div>
-                </a>
-            </div>
-        </div>
+    <div class="flex lg:hidden language-switcher-container">
+      <button id="mobile-language-dropdown-btn" class="language-btn">
+        <div id="mobile-current-flag" class="flag-icon" set:html={FlagBR}></div>
+        <span id="mobile-current-lang">PT</span>
+        <svg class="dropdown-arrow" width="10" height="10" viewBox="0 0 12 12">
+          <path d="M3 4.5L6 7.5L9 4.5" stroke="currentColor" stroke-width="1.5" fill="none"/>
+        </svg>
+      </button>
+      
+      <div id="mobile-language-dropdown" class="language-dropdown hidden">
+        <button data-lang="pt" class="mobile-lang-option active">
+          <div class="flag-icon" set:html={FlagBR}></div>
+          <span>Português</span>
+        </button>
+        <button data-lang="en" class="mobile-lang-option">
+          <div class="flag-icon" set:html={FlagEUA}></div>
+          <span>English</span>
+        </button>
+        <button data-lang="es" class="mobile-lang-option">
+          <div class="flag-icon" set:html={FlagESP}></div>
+          <span>Español</span>
+        </button>
+      </div>
     </div>
+  </div>
+
+  <div id="mobile-menu-overlay" class="mobile-menu-overlay">
+    <div class="mobile-menu-content">
+      <nav class="mobile-nav">
+        <a href="/" class="mobile-nav-item" data-translate="header.home">Início</a>
+        <a href="/" class="mobile-nav-item" data-translate="header.tours">Passeios</a>
+        <a href="/" class="mobile-nav-item" data-translate="header.about">Sobre</a>
+        <a href="/" class="mobile-nav-item" data-translate="header.testimonials">Depoimentos</a>
+        <a href="/" class="mobile-nav-item" data-translate="header.blog">Blog</a>
+      </nav>
+
+      <div class="mobile-cta-container">
+        <a href='/' class="btn-nav border-1 border-blue text-blue w-full justify-center mobile-cta-btn is-revealed">
+          <span class="button-content-initial-text mobile-cta-text" data-translate="header.cta">Fale Conosco</span>
+          <div class="btn-cta-icon-wrapper button-content-initial-icon bg-black mobile-cta-icon">
+            <ChevronRight size={18} class=" bg-blue/20 text-white" />
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
 </header>
+
 
 <style>
 
@@ -361,7 +393,7 @@ import FlagESP from '../assets/Icons/flag-esp.svg?raw';
         'hero.cta.discover': "Conheça mais destinos...",
         'hero.slide1.title': "Sua Viagem para Foz do Iguaçu.<br> Experiências Sob Medida,<br> Memórias Para Sempre.",
         'hero.subtitle': "Esqueça o estresse. A BNI Tour transforma sua viagem em Foz do Iguaçu, Paraguai e Argentina <br> em um roteiro premium, exclusivo e inesquecível. Seu desejo é nosso guia...",
-        'hero.cta.plan': "Planeje Sua Viagem Agora!",
+        'hero.cta.plan': "Planeje Agora!",
         'hero.cta.tours': "Passeios",
         'hero.slide2.title': "Aventura nas Cataratas.<br> Emoções Que Marcam.",
         'hero.slide2.subtitle': "Explore a grandiosidade das Cataratas do Iguaçu, vivendo momentos de pura adrenalina e beleza natural. Sua jornada começa aqui!",
@@ -458,7 +490,7 @@ import FlagESP from '../assets/Icons/flag-esp.svg?raw';
         'hero.cta.discover': "Discover more destinations...",
         'hero.slide1.title': "Your Trip to Foz do Iguaçu.<br> Tailor-made Experiences. <br> Memories Forever.",
         'hero.subtitle': "Forget the stress. BNI Tour transforms your trip to Foz do Iguaçu, Paraguay, and Argentina into a premium, exclusive, and unforgettable experience. Your desire is our guide...",
-        'hero.cta.plan': "Plan Your Trip Now!",
+        'hero.cta.plan': "Plan Now!",
         'hero.cta.tours': "Tours",
         'hero.slide2.title': "Adventure at the Falls.<br> Unforgettable Emotions.",
         'hero.slide2.subtitle': "Explore the grandeur of Iguazu Falls, experiencing moments of pure adrenaline and natural beauty. Your journey begins here!",
@@ -554,7 +586,7 @@ import FlagESP from '../assets/Icons/flag-esp.svg?raw';
         'hero.cta.discover': "Descubre más destinos...",
         'hero.slide1.title': "Tu Viaje a Foz do Iguaçu.<br> Experiencias a Medida.<br> Recuerdos para Siempre.",
         'hero.subtitle': "Olvídate del estrés. BNI Tour transforma tu viaje a Foz do Iguaçu, Paraguay y Argentina <br> en un itinerario premium, exclusivo e inolvidable. Tu deseo es nuestra guía...",
-        'hero.cta.plan': "¡Planifica Tu Viaje Ahora!",
+        'hero.cta.plan': "Planifica Ahora!",
         'hero.cta.tours': "Paseos",
         'hero.slide2.title': "Aventura en las Cataratas.<br> Emociones Que Marcan.",
         'hero.slide2.subtitle': "Explora la grandeza de las Cataratas del Iguazú, viviendo momentos de pura adrenalina y belleza natural. ¡Tu viaje comienza aquí!",

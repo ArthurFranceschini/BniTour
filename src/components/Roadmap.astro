@@ -2,39 +2,39 @@
 import { MessageCircle, FileText, Heart, ChevronRight } from 'lucide-astro';
 ---
 
-<section id="Roadmap" class="section-padding section-reveal bg-gray-50">
+<section id="Roadmap" class="section-padding section-reveal bg-[#1a3a5b]">
   <div class="px-4 md:px-8">
     <div class="text-left mb-16">
-      <h1 class="title-reveal mb-4 w-fill" data-translate="roadmap.title">
+      <h1 class="title-reveal text-white mb-4 w-fill" data-translate="roadmap.title">
         Planejar Sua Viagem Premium. <br> Nunca Foi Tão Fácil.
       </h1>
-      <h2 class="subtitle-reveal mb-4" data-translate="roadmap.subtitle">
+      <h2 class="subtitle-reveal text-white mb-4" data-translate="roadmap.subtitle">
         Seu roteiro perfeito em apenas 3 passos simples
       </h2>
     </div>
 
     <div class="relative max-w-6xl mx-auto">
       <div class="hidden md:block absolute top-10 left-0 right-0 z-0">
-        <div class="roadmap-line h-1 bg-gradient-to-r from-blue-500 via-green-500 to-purple-500 rounded-full mx-[10%]"></div>
+        <div class="roadmap-line h-1 bg-gradient-to-r from-[#4a7ba7] via-[#315288] to-[#207a7a] rounded-full mx-[10%]"></div>
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12 relative z-10">
         
         <div class="roadmap-step flex flex-col items-center text-center">
           <div class="roadmap-icon-wrapper relative mb-6">
-            <div class="roadmap-icon bg-blue-500 text-white w-20 h-20 rounded-full flex items-center justify-center shadow-lg transform transition-all duration-300 hover:scale-110 relative z-10">
+            <div class="roadmap-icon bg-[#315288] text-white w-20 h-20 rounded-full flex items-center justify-center shadow-lg transform transition-all duration-300 hover:scale-110 relative z-10">
               <MessageCircle size={32} />
             </div>
-            <div class="roadmap-number absolute -top-2 -right-2 bg-white text-blue-500 w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold shadow-md z-20">
+            <div class="roadmap-number absolute -top-2 -right-2 bg-white text-[#315288] w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold shadow-md z-20">
               1
             </div>
           </div>
           
           <div class="roadmap-content">
-            <h3 class="mb-4" data-translate="roadmap.step1.title">
+            <h3 class="mb-4 text-white" data-translate="roadmap.step1.title">
               Fale Conosco Pelo WhatsApp
             </h3>
-            <p class="text-gray-600 leading-relaxed" data-translate="roadmap.step1.description">
+            <p class="text-white leading-relaxed" data-translate="roadmap.step1.description">
               Compartilhe seus sonhos, interesses e com quem você vai viajar. Nossos especialistas estão prontos para ouvir e entender o que torna uma viagem perfeita para você.
             </p>
           </div>
@@ -42,19 +42,19 @@ import { MessageCircle, FileText, Heart, ChevronRight } from 'lucide-astro';
 
         <div class="roadmap-step flex flex-col items-center text-center">
           <div class="roadmap-icon-wrapper relative mb-6">
-            <div class="roadmap-icon bg-green-500 text-white w-20 h-20 rounded-full flex items-center justify-center shadow-lg transform transition-all duration-300 hover:scale-110 relative z-10">
+            <div class="roadmap-icon bg-[#286f78] text-white w-20 h-20 rounded-full flex items-center justify-center shadow-lg transform transition-all duration-300 hover:scale-110 relative z-10">
               <FileText size={32} />
             </div>
-            <div class="roadmap-number absolute -top-2 -right-2 bg-white text-green-500 w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold shadow-md z-20">
+            <div class="roadmap-number absolute -top-2 -right-2 bg-white text-[#286f78] w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold shadow-md z-20">
               2
             </div>
           </div>
           
           <div class="roadmap-content">
-            <h3 class="mb-4 whitespace-nowrap" data-translate="roadmap.step2.title">
+            <h3 class="mb-4 whitespace-nowrap text-white" data-translate="roadmap.step2.title">
               Roteiro Personalizado e Detalhado
             </h3>
-            <p class="text-gray-600 leading-relaxed" data-translate="roadmap.step2.description">
+            <p class="text-white leading-relaxed" data-translate="roadmap.step2.description">
               Em pouco tempo, você terá em mãos uma sugestão de roteiro completa, otimizada e pensada nos mínimos detalhes, com os melhores passeios e a logística ideal.
             </p>
           </div>
@@ -62,19 +62,19 @@ import { MessageCircle, FileText, Heart, ChevronRight } from 'lucide-astro';
 
         <div class="roadmap-step flex flex-col items-center text-center">
           <div class="roadmap-icon-wrapper relative mb-6">
-            <div class="roadmap-icon bg-purple-500 text-white w-20 h-20 rounded-full flex items-center justify-center shadow-lg transform transition-all duration-300 hover:scale-110 relative z-10">
+            <div class="roadmap-icon bg-[#4a7ba7] text-white w-20 h-20 rounded-full flex items-center justify-center shadow-lg transform transition-all duration-300 hover:scale-110 relative z-10">
               <Heart size={32} />
             </div>
-            <div class="roadmap-number absolute -top-2 -right-2 bg-white text-purple-500 w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold shadow-md z-20">
+            <div class="roadmap-number absolute -top-2 -right-2 bg-white text-[#4a7ba7] w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold shadow-md z-20">
               3
             </div>
           </div>
           
           <div class="roadmap-content">
-            <h3 class="mb-4" data-translate="roadmap.step3.title">
+            <h3 class="mb-4 text-white" data-translate="roadmap.step3.title">
               Aproveite Cada Momento
             </h3>
-            <p class="text-gray-600 leading-relaxed" data-translate="roadmap.step3.description">
+            <p class="text-white leading-relaxed" data-translate="roadmap.step3.description">
               Com tudo organizado, sua única missão será relaxar, desfrutar da comodidade e criar memórias inesquecíveis. Do começo ao fim, cuidamos de tudo.
             </p>
           </div>
@@ -84,9 +84,9 @@ import { MessageCircle, FileText, Heart, ChevronRight } from 'lucide-astro';
     </div>
 
     <div class="text-center mt-16">
-     <a href="/" class="btn-nav border-1 border-black text-black header-btn 2xl:self-auto self-start cta-button">
+     <a href="/" class="btn-cta border-1 border-white text-white header-btn 2xl:self-auto self-start cta-button">
                 <span class="button-content-initial-text" data-translate="roadmap.cta">Começar Minha Viagem</span>
-                <div class="btn-cta-icon-wrapper button-content-initial-icon bg-black">
+                <div class="btn-cta-icon-wrapper button-content-initial-icon bg-[#315288]">
                     <ChevronRight size={20} class="text-white" />
                 </div>
             </a>
