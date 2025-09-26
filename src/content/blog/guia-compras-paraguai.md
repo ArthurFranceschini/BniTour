@@ -3,7 +3,7 @@
 title: "Guia Essencial de Compras no Paraguai: Planejamento, Documentos e Lojas Seguras"
 description: "Desvende os segredos para uma experiência de compras tranquila e vantajosa em Ciudad del Este. Saiba quando ir, o que levar e onde comprar com confiança."
 pubDate: 2025-09-19
-heroImage: "/blog-images/paraguai-compras-guia.jpg"
+heroImage: "/public/blog-images/paraguai-compras-guia.webp"
 author: "Marketing"
 tags: ["Paraguai", "Compras", "Ciudad del Este", "Foz do Iguaçu", "Dicas de Viagem", "Lojas"]
 

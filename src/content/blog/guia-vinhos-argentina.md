@@ -2,7 +2,7 @@
 title: "Guia Essencial dos Vinhos da Argentina: Regiões, Harmonização e Onde Comprar"
 description: "Descubra os segredos dos vinhos argentinos, desde as regiões mais famosas até dicas de harmonização e onde adquirir rótulos de qualidade."
 pubDate: 2025-09-21
-heroImage: "/blog-images/vinhos-argentina.jpg"
+heroImage: "/public/blog-images/paraguai-compras-guia.webp"
 author: "Marketing"
 tags: ["Argentina", "Vinhos", "Mendoza", "Turismo Gastronômico", "Dicas de Viagem", "Enoturismo"]
 ---

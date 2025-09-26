@@ -2,8 +2,6 @@
 import { getCollection } from 'astro:content';
 import Layout from '../../layouts/Layout.astro';
 import type { CollectionEntry } from 'astro:content';
-import Header from '../../components/Header.astro';
-import Footer from '../../components/Footer.astro';
 
 interface Props {
   entry: CollectionEntry<'blog'>;
@@ -21,25 +19,32 @@ const { entry } = Astro.props;
 ---
 
 <Layout entry={entry}>
-  <Header/>
-  <article class="blog-padding mx-auto py-8">
- <div class="max-w-3xl mx-auto text-xl leading-relaxed text-gray-800 space-y-6">
-  <h1 class="text-4xl font-bold mb-4">{entry.data.title}</h1>
-  <p class="text-gray-500">
-    {new Date(entry.data.pubDate).toLocaleDateString("pt-BR")}
-  </p>
-  <img src={entry.data.heroImage} alt={entry.data.title} class="rounded-xl my-4" />
-  <p class="text-lg text-gray-700">{entry.data.description}</p>
-  <hr class="my-6" />
-
-  <div class="whitespace-pre-line">
-    {entry.body}
-  </div>
-</div>
-
-
-  </article>
-  <Footer/>
-</Layout>
-
-
+  
+  <section>
+    <nav class="blog-padding pt-24 pb-4" aria-label="Breadcrumb">
+      <ol class="flex items-center space-x-2 text-sm">
+        <li>
+          <a href="/" class="text-gray-500 hover:text-blue-600 transition-colors">
+            <svg class="w-4 h-4 inline-block mr-2" fill="currentColor" viewBox="0 0 20 20">
+              <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"></path>
+            </svg>
+            Home
+          </a>
+        </li>
+        <li>
+          <svg class="w-4 h-4 text-gray-400" fill="currentColor" viewBox="0 0 20 20">
+            <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path>
+          </svg>
+        </li>
+        <li>
+          <a href="/blog" class="text-gray-500 hover:text-blue-600 transition-colors">
+            Blog
+          </a>
+        </li>
+        <li>
+          <svg class="w-4 h-4 text-gray-400" fill="currentColor" viewBox="0 0 20 20">
+            <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path>
+          </svg>
+        </li>
+        <li>
+          <span class="text-gray-700 font-medium truncate max-w-xs" aria-current="page">
