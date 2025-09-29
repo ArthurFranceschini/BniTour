@@ -11,14 +11,11 @@ const allBlogPosts = (await getCollection('blog')).sort(
 
 <Layout title="Blog - Bni">
 
-  <section id="Blog" class="section-padding">
-    <nav class="pt-24 pb-4" aria-label="Breadcrumb">
+  <section id="Blog" class="section-padding pt-24">
+    <nav class="pb-4" aria-label="Breadcrumb">
       <ol class="flex items-center space-x-2 text-sm">
         <li>
           <a href="/" class="text-gray-500 hover:text-blue-600 transition-colors">
-            <svg class="w-4 h-4 inline-block mr-2" fill="currentColor" viewBox="0 0 20 20">
-              <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"></path>
-            </svg>
             Home
           </a>
         </li>
@@ -33,14 +30,14 @@ const allBlogPosts = (await getCollection('blog')).sort(
       </ol>
     </nav>
 
-    <main class="section-padding pt-0 pb-8">
+    <main class="pt-0 pb-8">
       <h1 class="text-blue mb-4">Bni Blog</h1>
       <p class="md:w-2/3 text-lg leading-8 text-black">
         Bem-vindo ao blog-bni, acompanhe dicas, novidades e tudo mais relacionado aos destinos na fronteira! 
       </p>
     </main>
 
-    <section class="app-container section-padding py-12">
+    <section class="py-12">
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         {allBlogPosts.map((post: CollectionEntry<'blog'>) => (
           <a 
