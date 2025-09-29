@@ -1,0 +1,278 @@
+---
+import { packages } from '../../data/packages.js';
+import { ChevronRight, Clock, MapPin, Check, ArrowLeft } from 'lucide-astro';
+import Layout from '../../layouts/Layout.astro';
+
+export async function getStaticPaths() {
+  return packages.map((pkg) => ({
+    params: { slug: pkg.slug },
+    props: { package: pkg },
+  }));
+}
+
+const { package: pkg } = Astro.props;
+---
+
+<Layout title={`${pkg.title} - BNI Tour`}>
+  
+  <section class="hero-section section-reveal relative h-[60vh] md:h-[70vh] overflow-hidden">
+    <img 
+      src={pkg.image} 
+      alt={pkg.title}
+      class="absolute inset-0 w-full h-full object-cover"
+    />
+    <div class="absolute inset-0 bg-gradient-to-b from-black/50 via-black/30 to-black/70"></div>
+    
+    <div class="relative z-10 h-full flex flex-col justify-end section-padding max-w-6xl mx-auto">
+      <a href="/#Packages" class="back-button mb-4 inline-flex items-center text-white hover:text-white/80 transition-all w-fit">
+        <ArrowLeft size={20} class="mr-2" />
+        <span>Voltar aos Pacotes</span>
+      </a>
+      
+      <div class={`tag-reveal inline-block px-4 py-2 rounded-full mb-4 w-fit card-tag card-tag-${pkg.tagColor}`}>
+        <MapPin size={16} class="inline mr-2" />
+        {pkg.location}
+      </div>
+      
+      <h1 class="title-reveal text-white mb-4">
+        {pkg.title}
+      </h1>
+      
+      <p class="subtitle-reveal text-white text-lg md:text-xl max-w-2xl">
+        {pkg.description}
+      </p>
+    </div>
+  </section>
+
+  <section class="content-section section-reveal bg-white section-padding">
+    <div class="max-w-6xl mx-auto">
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-12">
+        
+        <div class="lg:col-span-2">
+          <div class="content-block mb-12">
+            <h2 class="content-title text-gray-900 mb-6">
+              Sobre o Passeio
+            </h2>
+            <p class="content-text text-gray-700 leading-relaxed">
+              {pkg.fullDescription}
+            </p>
+          </div>
+
+          <div class="content-block">
+            <h3 class="content-title text-gray-900 mb-6">
+              O que está incluído
+            </h3>
+            <ul class="space-y-4">
+              {pkg.included.map((item, index) => (
+                <li class="included-item flex items-start" style={`animation-delay: ${index * 100}ms`}>
+                  <div class="flex-shrink-0 w-6 h-6 rounded-full bg-[#315288] flex items-center justify-center mr-3 mt-1">
+                    <Check size={16} class="text-white" />
+                  </div>
+                  <span class="text-gray-700">{item}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+
+        <div class="lg:col-span-1">
+          <div class="sidebar-card sticky top-8 bg-gradient-to-br from-[#1a3a5b] to-[#315288] rounded-2xl p-8 shadow-2xl">
+            <div class="info-item mb-6">
+              <div class="flex items-center text-white/80 mb-2">
+                <Clock size={20} class="mr-2" />
+                <span class="text-sm font-semibold uppercase tracking-wide">Duração</span>
+              </div>
+              <p class="text-white text-xl font-bold">{pkg.duration}</p>
+            </div>
+
+            <div class="info-item mb-6">
+              <div class="flex items-center text-white/80 mb-2">
+                <MapPin size={20} class="mr-2" />
+                <span class="text-sm font-semibold uppercase tracking-wide">Localização</span>
+              </div>
+              <p class="text-white text-xl font-bold">{pkg.location}</p>
+            </div>
+
+            <div class="price-box bg-white/10 rounded-xl p-6 mb-6 backdrop-blur-sm">
+              <p class="text-white/80 text-sm mb-2">A partir de</p>
+              <p class="text-white text-3xl font-bold">{pkg.price}</p>
+            </div>
+
+            <a href="/" class="btn-cta w-full justify-center border-2 border-white text-white hover:bg-white hover:text-[#315288] transition-all">
+              <span class="button-content-initial-text">Reservar Agora</span>
+              <div class="btn-cta-icon-wrapper button-content-initial-icon bg-white/20">
+                <ChevronRight size={20} class="text-white" />
+              </div>
+            </a>
+
+            <p class="text-white/70 text-sm text-center mt-4">
+              Entre em contato para mais informações
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+</Layout>
+
+<style>
+  .back-button {
+    opacity: 0;
+    transform: translateX(-20px);
+    transition: opacity 0.6s ease 0.3s, transform 0.6s ease 0.3s;
+  }
+
+  .section-reveal-active .back-button {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  .tag-reveal {
+    opacity: 0;
+    transform: scale(0.9);
+    transition: opacity 0.6s ease 0.4s, transform 0.6s ease 0.4s;
+  }
+
+  .section-reveal-active .tag-reveal {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  .content-block {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+
+  .section-reveal-active .content-block {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .content-block:nth-child(1) {
+    transition-delay: 0.2s;
+  }
+
+  .content-block:nth-child(2) {
+    transition-delay: 0.4s;
+  }
+
+  .content-title {
+    opacity: 0;
+    transform: translateX(-20px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+
+  .section-reveal-active .content-title {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  .content-text {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease 0.2s, transform 0.6s ease 0.2s;
+  }
+
+  .section-reveal-active .content-text {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .included-item {
+    opacity: 0;
+    transform: translateX(-20px);
+    animation: slideInLeft 0.6s ease forwards;
+    animation-play-state: paused;
+  }
+
+  .section-reveal-active .included-item {
+    animation-play-state: running;
+  }
+
+  @keyframes slideInLeft {
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  .sidebar-card {
+    opacity: 0;
+    transform: translateY(30px) scale(0.95);
+    transition: opacity 0.8s ease 0.4s, transform 0.8s ease 0.4s;
+  }
+
+  .section-reveal-active .sidebar-card {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+
+  .info-item {
+    opacity: 0;
+    transform: translateX(-20px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+
+  .section-reveal-active .info-item {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  .info-item:nth-child(1) {
+    transition-delay: 0.6s;
+  }
+
+  .info-item:nth-child(2) {
+    transition-delay: 0.7s;
+  }
+
+  .price-box {
+    opacity: 0;
+    transform: scale(0.9);
+    transition: opacity 0.6s ease 0.8s, transform 0.6s ease 0.8s;
+  }
+
+  .section-reveal-active .price-box {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  .sidebar-card .btn-cta {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease 1s, transform 0.6s ease 1s;
+  }
+
+  .section-reveal-active .sidebar-card .btn-cta {
+    opacity: 1;
+    transform: translateY(0);
+  }
+</style>
+
+<script is:inline>
+  document.addEventListener('DOMContentLoaded', function() {
+    var observerOptions = {
+      root: null,
+      rootMargin: '0px',
+      threshold: 0.1
+    };
+
+    var sectionObserver = new IntersectionObserver(function(entries) {
+      for (var i = 0; i < entries.length; i++) {
+        var entry = entries[i];
+        if (entry.isIntersecting) {
+          entry.target.classList.add('section-reveal-active');
+          sectionObserver.unobserve(entry.target);
+        }
+      }
+    }, observerOptions);
+
+    var revealSections = document.querySelectorAll('.section-reveal');
+    for (var i = 0; i < revealSections.length; i++) {
+      sectionObserver.observe(revealSections[i]);
+    }
+  });
+</script>
