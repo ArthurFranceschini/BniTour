@@ -1,6 +1,7 @@
 ---
 import { packages } from '../../data/packages.js';
-import { ChevronRight, Clock, MapPin, Check, ArrowLeft } from 'lucide-astro';
+import { mapLocations } from '../../data/mapLocations.js';
+import { ChevronRight, Clock, MapPin, Check, ArrowLeft, Star, Camera, Compass, Waves, Mountain, TreePine, Building, Church, ShoppingBag } from 'lucide-astro';
 import Layout from '../../layouts/Layout.astro';
 
 export async function getStaticPaths() {
@@ -11,6 +12,27 @@ export async function getStaticPaths() {
 }
 
 const { package: pkg } = Astro.props;
+
+type LocationType = 'attraction' | 'landmark' | 'adventure' | 'shopping' | 'port' | 'waterfall' | 'church' | 'park' | 'city' | 'entertainment';
+
+interface Location {
+  name: string;
+  lat: number;
+  lng: number;
+  type: LocationType;
+  description: string;
+}
+
+type LocationConfigKey = 'joias-naturais' | 'cataratas-argentina' | 'aventura-emocao' | 'compras-cultura' | 'city-tour-argentina' | 'cruzeiro-por-do-sol' | 'city-tour-paraguai' | 'city-tour-foz';
+
+interface LocationConfig {
+  sectionTitle: string;
+  sectionSubtitle: string;
+  bgGradient: string;
+  cardStyle: string;
+}
+
+const locations: Location[] = (mapLocations as Record<string, Location[]>)[pkg.slug] || [];
 
 const colorMap = {
   blue: {
@@ -33,10 +55,112 @@ const colorMap = {
     gradientFrom: '#2563eb',
     gradientTo: '#60a5fa',
   }
+} as const;
+
+type ColorKey = keyof typeof colorMap;
+const currentColors = colorMap[pkg.tagColor as ColorKey] || colorMap.default;
+
+const getLocationIcon = (type: LocationType) => {
+  const iconMap: Record<LocationType, any> = {
+    attraction: Star,
+    landmark: MapPin,
+    adventure: Waves,
+    shopping: ShoppingBag,
+    port: Compass,
+    waterfall: Mountain,
+    church: Church,
+    park: TreePine,
+    city: Building,
+    entertainment: Camera
+  };
+  return iconMap[type] || MapPin;
 };
 
-const currentColors = (colorMap[pkg.tagColor as keyof typeof colorMap] || colorMap.default);
+const locationConfigs: Record<LocationConfigKey, LocationConfig> = {
+  'joias-naturais': {
+    sectionTitle: 'Maravilhas Naturais',
+    sectionSubtitle: 'Descubra a força da natureza em cada passo',
+    bgGradient: 'from-emerald-50 to-green-50',
+    cardStyle: 'nature'
+  },
+  'cataratas-argentina': {
+    sectionTitle: 'Experiência Argentina',
+    sectionSubtitle: 'Viva a paixão e cultura argentina',
+    bgGradient: 'from-blue-50 to-sky-50',
+    cardStyle: 'cultural'
+  },
+  'aventura-emocao': {
+    sectionTitle: 'Adrenalina Pura',
+    sectionSubtitle: 'Para os amantes de aventura e emoção',
+    bgGradient: 'from-orange-50 to-amber-50',
+    cardStyle: 'adventure'
+  },
+  'compras-cultura': {
+    sectionTitle: 'Compras & Descobertas',
+    sectionSubtitle: 'O melhor do comércio paraguaio',
+    bgGradient: 'from-purple-50 to-pink-50',
+    cardStyle: 'shopping'
+  },
+  'city-tour-argentina': {
+    sectionTitle: 'Charme Argentino',
+    sectionSubtitle: 'Explore a elegância de Puerto Iguazú',
+    bgGradient: 'from-blue-50 to-indigo-50',
+    cardStyle: 'cultural'
+  },
+  'cruzeiro-por-do-sol': {
+    sectionTitle: 'Romance nas Águas',
+    sectionSubtitle: 'Um pôr do sol inesquecível',
+    bgGradient: 'from-rose-50 to-orange-50',
+    cardStyle: 'romantic'
+  },
+  'city-tour-paraguai': {
+    sectionTitle: 'Cultura Paraguaia',
+    sectionSubtitle: 'Tradições e belezas naturais',
+    bgGradient: 'from-red-50 to-rose-50',
+    cardStyle: 'cultural'
+  },
+  'city-tour-foz': {
+    sectionTitle: 'Orgulho Brasileiro',
+    sectionSubtitle: 'O melhor de Foz do Iguaçu',
+    bgGradient: 'from-green-50 to-emerald-50',
+    cardStyle: 'urban'
+  }
+};
 
+const getLocationConfig = (slug: string): LocationConfig => {
+  return locationConfigs[slug as LocationConfigKey] || locationConfigs['joias-naturais'];
+};
+
+const config = getLocationConfig(pkg.slug);
+
+const getLocationTypeText = (type: LocationType): string => {
+  const typeMap: Record<LocationType, string> = {
+    attraction: 'Atração',
+    landmark: 'Marco',
+    adventure: 'Aventura',
+    shopping: 'Compras',
+    port: 'Porto',
+    waterfall: 'Cachoeira',
+    church: 'Igreja',
+    park: 'Parque',
+    city: 'Centro',
+    entertainment: 'Entretenimento'
+  };
+  return typeMap[type] || 'Atração';
+};
+
+const getMapCenter = () => {
+  if (locations.length === 0) {
+    return { lat: -25.5469, lng: -54.5882 };
+  }
+  
+  const avgLat = locations.reduce((sum, point) => sum + point.lat, 0) / locations.length;
+  const avgLng = locations.reduce((sum, point) => sum + point.lng, 0) / locations.length;
+  
+  return { lat: avgLat, lng: avgLng };
+};
+
+const mapCenter = getMapCenter();
 ---
 
 <Layout title={`${pkg.title} - BNI Tour`}>
@@ -50,14 +174,14 @@ const currentColors = (colorMap[pkg.tagColor as keyof typeof colorMap] || colorM
     <div class="absolute inset-0 bg-gradient-to-b from-black/50 via-black/30 to-black/70"></div>
     
     <div class="relative z-10 h-full flex flex-col justify-end section-padding max-w-6xl mx-auto">
-      <a href="/#Packages" class="back-button mb-4 inline-flex items-center text-white hover:text-white/80 transition-all w-fit">
-        <ArrowLeft size={20} class="mr-2" />
-        <span>Voltar aos Pacotes</span>
+      <a href="/#Packages" class="back-button mb-6 inline-flex items-center bg-white/10 backdrop-blur-sm px-4 py-2 rounded-full text-white hover:bg-white/20 transition-all w-fit border border-white/20">
+        <ArrowLeft size={18} class="mr-2" />
+        <span class="font-medium">Voltar aos Pacotes</span>
       </a>
       
-      <div class={`tag-reveal inline-block px-4 py-2 rounded-full mb-4 w-fit card-tag card-tag-${pkg.tagColor}`}>
-        <MapPin size={16} class="inline mr-2" />
-        {pkg.location}
+      <div class={`tag-reveal inline-block px-6 py-3 rounded-full mb-6 w-fit card-tag card-tag-${pkg.tagColor} shadow-lg backdrop-blur-sm border border-white/20`}>
+        <MapPin size={18} class="inline mr-2" />
+        <span class="font-semibold">{pkg.location}</span>
       </div>
       
       <h1 class="title-reveal text-white mb-4">
@@ -69,6 +193,72 @@ const currentColors = (colorMap[pkg.tagColor as keyof typeof colorMap] || colorM
       </p>
     </div>
   </section>
+
+  {locations.length > 0 && (
+    <section class={`locations-section section-reveal bg-gradient-to-br ${config.bgGradient} section-padding`}>
+      <div class="max-w-6xl mx-auto">
+        <div class="text-center mb-12">
+          <h2 class="content-title text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+            {config.sectionTitle}
+          </h2>
+          <p class="content-subtitle text-lg text-gray-600 max-w-2xl mx-auto">
+            {config.sectionSubtitle}
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+          <div class="space-y-6">
+            {locations.map((location: Location, index: number) => {
+              const IconComponent = getLocationIcon(location.type);
+              return (
+                <div 
+                  class={`location-card location-card-${config.cardStyle} bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 cursor-pointer`}
+                  style={`animation-delay: ${index * 150}ms`}
+                  data-lat={location.lat}
+                  data-lng={location.lng}
+                  data-name={location.name}
+                  data-description={location.description}
+                  data-index={index}
+                >
+                  <div class="flex items-start mb-4">
+                    <div 
+                      class="location-icon flex-shrink-0 w-12 h-12 rounded-xl flex items-center justify-center mr-4"
+                      style={`background: linear-gradient(135deg, ${currentColors.gradientFrom}, ${currentColors.gradientTo});`}
+                    >
+                      <IconComponent size={24} class="text-white" />
+                    </div>
+                    <div class="flex-1">
+                      <h3 class="font-bold text-gray-900 text-lg mb-1 leading-tight">
+                        {location.name}
+                      </h3>
+                      <span class="location-type text-sm px-2 py-1 rounded-full" style={`background-color: ${currentColors.primary}20; color: ${currentColors.primary};`}>
+                        {getLocationTypeText(location.type)}
+                      </span>
+                    </div>
+                  </div>
+                  <p class="text-gray-600 text-sm leading-relaxed">
+                    {location.description}
+                  </p>
+                </div>
+              );
+            })}
+          </div>
+
+          <div class="map-container bg-white rounded-2xl shadow-xl overflow-hidden">
+            <div class="p-6 border-b border-gray-100">
+              <h3 class="text-xl font-bold text-gray-900 mb-2">
+                Localização dos Pontos
+              </h3>
+              <p class="text-gray-600 text-sm">
+                Clique nos cards ao lado para navegar no mapa
+              </p>
+            </div>
+            <div id="leaflet-map" class="w-full h-96"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+  )}
 
   <section class="content-section section-reveal bg-white section-padding">
     <div class="max-w-6xl mx-auto">
@@ -89,7 +279,7 @@ const currentColors = (colorMap[pkg.tagColor as keyof typeof colorMap] || colorM
               O que está incluído
             </h3>
             <ul class="space-y-4">
-              {pkg.included.map((item, index) => (
+              {pkg.included.map((item: string, index: number) => (
                 <li class="included-item flex items-start" style={`animation-delay: ${index * 100}ms`}>
                   <div class="flex-shrink-0 w-6 h-6 rounded-full flex items-center justify-center mr-3 mt-1" style={`background-color: ${currentColors.primary};`}>
                     <Check size={16} class="text-white" />
@@ -124,11 +314,9 @@ const currentColors = (colorMap[pkg.tagColor as keyof typeof colorMap] || colorM
               <p class="text-white text-3xl font-bold">{pkg.price}</p>
             </div>
 
-            <a href="/" class="btn-cta w-full justify-center text-white hover:bg-white/10 transition-all header-btn">
-              <span class="button-content-initial-text">Reservar Agora</span>
-              <div class="btn-cta-icon-wrapper button-content-initial-icon bg-white/20">
-                <ChevronRight size={20} class="text-white" />
-              </div>
+            <a href="/" class="btn-cta w-full flex items-center justify-center text-white hover:bg-white/10 transition-all px-6 py-3 rounded-xl font-semibold">
+              <span>Reservar Agora</span>
+              <ChevronRight size={20} class="ml-2" />
             </a>
 
             <p class="text-white/70 text-sm text-center mt-4">
@@ -143,22 +331,105 @@ const currentColors = (colorMap[pkg.tagColor as keyof typeof colorMap] || colorM
 
 </Layout>
 
-<style>
-  .card-tag-red { background: #ef4444; }
-  .card-tag-green { background: #10b981; }
-  .card-tag-blue { background: #3b82f6; }
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
 
-  .sidebar-card .btn-cta .button-content-initial-text,
-  .sidebar-card .btn-cta .btn-cta-icon-wrapper {
-    opacity: 1 !important; 
-    transform: none !important; 
-    transition: none !important; 
+<style>
+  .card-tag-red { 
+    background: linear-gradient(135deg, #ef4444, #dc2626);
+    color: white;
+    box-shadow: 0 8px 25px rgba(239, 68, 68, 0.3);
   }
-  
-  .header-btn {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem; 
+  .card-tag-green { 
+    background: linear-gradient(135deg, #10b981, #059669);
+    color: white;
+    box-shadow: 0 8px 25px rgba(16, 185, 129, 0.3);
+  }
+  .card-tag-blue { 
+    background: linear-gradient(135deg, #3b82f6, #2563eb);
+    color: white;
+    box-shadow: 0 8px 25px rgba(59, 130, 246, 0.3);
+  }
+
+  .location-card {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+
+  .section-reveal-active .location-card {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .location-card:hover {
+    border-color: var(--primary-color);
+  }
+
+  .location-card-nature {
+    border-left: 4px solid #10b981;
+  }
+
+  .location-card-cultural {
+    border-left: 4px solid #3b82f6;
+  }
+
+  .location-card-adventure {
+    border-left: 4px solid #f59e0b;
+  }
+
+  .location-card-shopping {
+    border-left: 4px solid #8b5cf6;
+  }
+
+  .location-card-romantic {
+    border-left: 4px solid #ec4899;
+  }
+
+  .location-card-urban {
+    border-left: 4px solid #64748b;
+  }
+
+  .location-icon {
+    opacity: 0;
+    transform: scale(0.8);
+    transition: opacity 0.6s ease 0.2s, transform 0.6s ease 0.2s;
+  }
+
+  .section-reveal-active .location-icon {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  .location-type {
+    opacity: 0;
+    transform: translateX(-10px);
+    transition: opacity 0.6s ease 0.3s, transform 0.6s ease 0.3s;
+  }
+
+  .section-reveal-active .location-type {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  .map-container {
+    opacity: 0;
+    transform: translateX(30px);
+    transition: opacity 0.8s ease 0.4s, transform 0.8s ease 0.4s;
+  }
+
+  .section-reveal-active .map-container {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  .leaflet-popup-content-wrapper {
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+  }
+
+  .leaflet-popup-content {
+    margin: 16px;
+    font-family: inherit;
   }
 
   .back-button {
@@ -172,15 +443,19 @@ const currentColors = (colorMap[pkg.tagColor as keyof typeof colorMap] || colorM
     transform: translateX(0);
   }
 
+  .back-button:hover {
+    transform: translateX(-2px);
+  }
+
   .tag-reveal {
     opacity: 0;
-    transform: scale(0.9);
+    transform: scale(0.9) translateY(10px);
     transition: opacity 0.6s ease 0.4s, transform 0.6s ease 0.4s;
   }
 
   .section-reveal-active .tag-reveal {
     opacity: 1;
-    transform: scale(1);
+    transform: scale(1) translateY(0);
   }
 
   .content-block {
@@ -211,6 +486,17 @@ const currentColors = (colorMap[pkg.tagColor as keyof typeof colorMap] || colorM
   .section-reveal-active .content-title {
     opacity: 1;
     transform: translateX(0);
+  }
+
+  .content-subtitle {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease 0.2s, transform 0.6s ease 0.2s;
+  }
+
+  .section-reveal-active .content-subtitle {
+    opacity: 1;
+    transform: translateY(0);
   }
 
   .content-text {
@@ -294,10 +580,93 @@ const currentColors = (colorMap[pkg.tagColor as keyof typeof colorMap] || colorM
     transform: translateY(0);
   }
 
-  .sidebar-card .btn-cta:hover {
-    color: initial;
+  .btn-cta:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(255,255,255,0.2);
   }
 </style>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<script is:inline define:vars={{ locations, mapCenter, currentColors }}>
+  document.addEventListener('DOMContentLoaded', function() {
+    if (typeof L === 'undefined') {
+      console.error('Leaflet não carregou');
+      return;
+    }
+
+    const map = L.map('leaflet-map').setView([mapCenter.lat, mapCenter.lng], 12);
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '© OpenStreetMap contributors',
+      maxZoom: 19
+    }).addTo(map);
+
+    const markers = [];
+
+    const createCustomIcon = (color) => {
+      return L.divIcon({
+        className: 'custom-marker',
+        html: `<div style="
+          width: 20px;
+          height: 20px;
+          background-color: ${color};
+          border: 3px solid white;
+          border-radius: 50%;
+          box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+        "></div>`,
+        iconSize: [20, 20],
+        iconAnchor: [10, 10]
+      });
+    };
+
+    locations.forEach((location, index) => {
+      const marker = L.marker([location.lat, location.lng], {
+        icon: createCustomIcon(currentColors.primary)
+      }).addTo(map);
+
+      marker.bindPopup(`
+        <div style="padding: 8px; max-width: 200px;">
+          <h3 style="margin: 0 0 8px 0; color: ${currentColors.primary}; font-size: 16px; font-weight: bold;">
+            ${location.name}
+          </h3>
+          <p style="margin: 0; color: #666; font-size: 14px; line-height: 1.4;">
+            ${location.description}
+          </p>
+        </div>
+      `);
+
+      markers.push(marker);
+    });
+
+    const locationCards = document.querySelectorAll('.location-card');
+    locationCards.forEach((card, index) => {
+      card.addEventListener('click', () => {
+        const lat = parseFloat(card.dataset.lat);
+        const lng = parseFloat(card.dataset.lng);
+        
+        map.setView([lat, lng], 15);
+        
+        if (markers[index]) {
+          markers[index].openPopup();
+        }
+        
+        card.style.transform = 'scale(1.02)';
+        card.style.boxShadow = '0 10px 25px rgba(0,0,0,0.15)';
+        
+        setTimeout(() => {
+          card.style.transform = '';
+          card.style.boxShadow = '';
+        }, 200);
+      });
+    });
+
+    if (locations.length > 1) {
+      const group = new L.featureGroup(markers);
+      map.fitBounds(group.getBounds().pad(0.1));
+    }
+  });
+</script>
 
 <script is:inline>
   document.addEventListener('DOMContentLoaded', function() {

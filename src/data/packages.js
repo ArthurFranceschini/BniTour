@@ -1,16 +1,14 @@
 // packages.js
 
-
 import CataratasImg from '../assets/image/Cards/Brasil/Cataratas.jpg';
 import ParqueImg from '../assets/image/Cards/Brasil/Parque das Aves.jpg';
 import MacucoImg from '../assets/image/Cards/Brasil/Macuco.webp';
 import ComprasImg from '../assets/image/Cards/Paraguai/Compras.jpg';
 import CataratasArgImg from '../assets/image/Cards/Argentina/CataratasArg.webp';
 import CityTourArgImg from '../assets/image/Cards/Argentina/CityTourArg.webp';
-import KatamaramImg from   '../assets/image/Cards/Brasil/Katamaram 2.webp';
-import SaltosDelMondayImg from   '../assets/image/Cards/Paraguai/SaltosDelMonday.webp';
+import KatamaramImg from '../assets/image/Cards/Brasil/Katamaram 2.webp';
+import SaltosDelMondayImg from '../assets/image/Cards/Paraguai/SaltosDelMonday.webp';
 import CityTourFozImg from '../assets/image/Cards/Brasil/Marco das Três Fonteiras.webp';
-
 
 export const packages = [
   {
@@ -31,6 +29,7 @@ export const packages = [
     ],
     duration: 'Dia inteiro',
     price: 'Sob consulta',
+    hasMap: true,
   },
   {
     slug: 'cataratas-argentina',
@@ -39,7 +38,7 @@ export const packages = [
     location: 'Puerto Iguazú - Argentina',
     tag: 'puerto_argentina',
     tagColor: 'blue',
-    image: CataratasArgImg,  
+    image: CataratasArgImg,
     fullDescription: 'Explore o lado argentino das Cataratas do Iguaçu com acesso exclusivo à Garganta do Diabo. Uma experiência completa que inclui passeios culturais, gastronomia e entretenimento em Puerto Iguazú.',
     included: [
       'Transporte internacional',
@@ -51,6 +50,7 @@ export const packages = [
     ],
     duration: 'Dia inteiro',
     price: 'Sob consulta',
+    hasMap: true,
   },
   {
     slug: 'aventura-emocao',
@@ -59,7 +59,7 @@ export const packages = [
     location: 'Foz do Iguaçu - Brasil',
     tag: 'foz_brasil',
     tagColor: 'green',
-    image: MacucoImg,  
+    image: MacucoImg,
     fullDescription: 'Para quem busca adrenalina! Embarque no Macuco Safari, uma experiência inesquecível de barco que leva você até bem perto das quedas d\'água. Prepare-se para se molhar e viver emoções intensas!',
     included: [
       'Transporte até o parque',
@@ -71,6 +71,7 @@ export const packages = [
     ],
     duration: 'Meio dia',
     price: 'Sob consulta',
+    hasMap: true,
   },
   {
     slug: 'compras-cultura',
@@ -79,7 +80,7 @@ export const packages = [
     location: 'Ciudad del Este - Paraguai',
     tag: 'ciudad_paraguai',
     tagColor: 'red',
-    image: ComprasImg,  
+    image: ComprasImg,
     fullDescription: 'Descubra as melhores ofertas de Ciudad del Este com segurança e tranquilidade. Nosso tour de compras oferece transporte seguro, orientação sobre os melhores locais e auxílio com a documentação necessária.',
     included: [
       'Transporte internacional seguro',
@@ -91,6 +92,7 @@ export const packages = [
     ],
     duration: 'Meio dia ou dia inteiro',
     price: 'Sob consulta',
+    hasMap: true,
   },
   {
     slug: 'city-tour-argentina',
@@ -99,7 +101,7 @@ export const packages = [
     location: 'Puerto Iguazú - Argentina',
     tag: 'puerto_argentina',
     tagColor: 'blue',
-    image: CityTourArgImg,  
+    image: CityTourArgImg,
     fullDescription: 'Conheça os principais pontos turísticos de Puerto Iguazú em um city tour completo. Visite o Marco das Três Fronteiras, aprecie vinhos argentinos, experimente a gastronomia local e divirta-se nos cassinos.',
     included: [
       'Transporte durante todo o passeio',
@@ -111,6 +113,7 @@ export const packages = [
     ],
     duration: 'Dia inteiro',
     price: 'Sob consulta',
+    hasMap: true,
   },
   {
     slug: 'cruzeiro-por-do-sol',
@@ -119,7 +122,7 @@ export const packages = [
     location: 'Foz do Iguaçu - Brasil',
     tag: 'foz_brasil',
     tagColor: 'green',
-    image: KatamaramImg,  
+    image: KatamaramImg,
     fullDescription: 'Navegue pelas águas do Rio Iguaçu e contemple um pôr do sol espetacular a bordo de um confortável catamarã. Uma experiência romântica e relaxante que oferece vistas únicas da região das três fronteiras.',
     included: [
       'Transporte até o porto',
@@ -131,6 +134,7 @@ export const packages = [
     ],
     duration: '2-3 horas',
     price: 'Sob consulta',
+    hasMap: true,
   },
   {
     slug: 'city-tour-paraguai',
@@ -139,7 +143,7 @@ export const packages = [
     location: 'Ciudad del Este - Paraguai',
     tag: 'ciudad_paraguai',
     tagColor: 'red',
-    image: SaltosDelMondayImg,  
+    image: SaltosDelMondayImg,
     fullDescription: 'Descubra os encantos de Ciudad del Este além das compras! Visite os Saltos del Monday, conheça a bela Igreja San Lucas, relaxe no Lago de La República e explore a cultura paraguaia.',
     included: [
       'Transporte internacional',
@@ -151,6 +155,7 @@ export const packages = [
     ],
     duration: 'Dia inteiro',
     price: 'Sob consulta',
+    hasMap: true,
   },
   {
     slug: 'city-tour-foz',
@@ -159,7 +164,7 @@ export const packages = [
     location: 'Foz do Iguaçu - Brasil',
     tag: 'foz_brasil',
     tagColor: 'green',
-    image: CityTourFozImg, 
+    image: CityTourFozImg,
     fullDescription: 'Conheça os principais atrativos de Foz do Iguaçu em um tour completo pela cidade. Visite a gigantesca Usina de Itaipu, o Wonder Park, o icônico Marco das Três Fronteiras e outros pontos turísticos imperdíveis.',
     included: [
       'Transporte com ar-condicionado',
@@ -171,5 +176,6 @@ export const packages = [
     ],
     duration: 'Dia inteiro',
     price: 'Sob consulta',
+    hasMap: true,
   },
 ];

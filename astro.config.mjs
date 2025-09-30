@@ -1,7 +1,9 @@
 import { defineConfig } from 'astro/config';
 import tailwindcss from '@tailwindcss/vite';
+import react from '@astrojs/react';
 
 export default defineConfig({
+  integrations: [react()],
   server: {
     host: true, 
     port: 4321
@@ -11,8 +13,6 @@ export default defineConfig({
     server: {
       host: true,
       allowedHosts: [
-        '.ngrok-free.app',
-        '.ngrok.io',
         'localhost'
       ]
     }
