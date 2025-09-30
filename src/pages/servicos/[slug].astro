@@ -1,7 +1,7 @@
 ---
 import { packages } from '../../data/packages.js';
 import { mapLocations } from '../../data/mapLocations.js';
-import { ChevronRight, Clock, MapPin, Check, ArrowLeft, Star, Camera, Compass, Waves, Mountain, TreePine, Building, Church, ShoppingBag } from 'lucide-astro';
+import { ChevronRight, MessageCircle, Clock, MapPin, Check, ArrowLeft, Star, Camera, Compass, Waves, Mountain, TreePine, Building, Church, ShoppingBag } from 'lucide-astro';
 import Layout from '../../layouts/Layout.astro';
 
 export async function getStaticPaths() {
@@ -165,34 +165,37 @@ const mapCenter = getMapCenter();
 
 <Layout title={`${pkg.title} - BNI Tour`}>
   
-  <section class="hero-section section-reveal relative h-[60vh] md:h-[70vh] overflow-hidden">
+<section class="hero-section section-reveal relative h-[50vh] md:h-[55vh] lg:h-[60vh] overflow-hidden bg-gray-900">
+  <div class="absolute inset-0 w-full h-full flex items-end justify-center">
     <img 
       src={pkg.image.src}
       alt={pkg.title}
-      class="absolute inset-0 w-full h-full object-cover"
+      class="w-full h-auto object-bottom"
+      style="object-position: center bottom;"
     />
-    <div class="absolute inset-0 bg-gradient-to-b from-black/50 via-black/30 to-black/70"></div>
+  </div>
+  <div class="absolute inset-0 bg-gradient-to-b from-black/40 via-black/20 to-black/60"></div>
+  
+  <div class="relative z-10 h-full flex flex-col justify-end section-padding max-w-6xl mx-auto pb-8 md:pb-12">
+    <a href="/#Packages" class="back-button mb-6 inline-flex items-center bg-white/10 backdrop-blur-sm px-4 py-2 rounded-full text-white hover:bg-white/20 transition-all w-fit border border-white/20">
+      <ArrowLeft size={18} class="mr-2" />
+      <span class="font-medium">Voltar aos Pacotes</span>
+    </a>
     
-    <div class="relative z-10 h-full flex flex-col justify-end section-padding max-w-6xl mx-auto">
-      <a href="/#Packages" class="back-button mb-6 inline-flex items-center bg-white/10 backdrop-blur-sm px-4 py-2 rounded-full text-white hover:bg-white/20 transition-all w-fit border border-white/20">
-        <ArrowLeft size={18} class="mr-2" />
-        <span class="font-medium">Voltar aos Pacotes</span>
-      </a>
-      
-      <div class={`tag-reveal inline-block px-6 py-3 rounded-full mb-6 w-fit card-tag card-tag-${pkg.tagColor} shadow-lg backdrop-blur-sm border border-white/20`}>
-        <MapPin size={18} class="inline mr-2" />
-        <span class="font-semibold">{pkg.location}</span>
-      </div>
-      
-      <h1 class="title-reveal text-white mb-4">
-        {pkg.title}
-      </h1>
-      
-      <p class="subtitle-reveal text-white text-lg md:text-xl max-w-2xl">
-        {pkg.description}
-      </p>
+    <div class={`tag-reveal inline-block px-6 py-3 rounded-full mb-6 w-fit card-tag card-tag-${pkg.tagColor} shadow-lg backdrop-blur-sm border border-white/20`}>
+      <MapPin size={18} class="inline mr-2" />
+      <span class="font-semibold">{pkg.location}</span>
     </div>
-  </section>
+    
+    <h1 class="title-reveal text-white mb-4 text-3xl md:text-4xl lg:text-5xl font-bold leading-tight">
+      {pkg.title}
+    </h1>
+    
+    <p class="subtitle-reveal text-white text-base md:text-lg lg:text-xl max-w-2xl leading-relaxed">
+      {pkg.description}
+    </p>
+  </div>
+</section>
 
   {locations.length > 0 && (
     <section class={`locations-section section-reveal bg-gradient-to-br ${config.bgGradient} section-padding`}>
@@ -314,9 +317,11 @@ const mapCenter = getMapCenter();
               <p class="text-white text-3xl font-bold">{pkg.price}</p>
             </div>
 
-            <a href="/" class="btn-cta w-full flex items-center justify-center text-white hover:bg-white/10 transition-all px-6 py-3 rounded-xl font-semibold">
+            <a href="/" class="btn-cta w-full flex items-center justify-between text-white hover:shadow-lg transition-all px-6 py-3 rounded-xl font-semibold bg-gradient-to-r from-[#25D366] to-[#128C7E] hover:from-[#20B954] hover:to-[#0F6B5C]">
               <span>Reservar Agora</span>
-              <ChevronRight size={20} class="ml-2" />
+              <div class="w-8 h-8 bg-white/20 rounded-full flex items-center justify-center flex-shrink-0 hover:bg-white/30 transition-colors">
+                <MessageCircle size={16} class="text-white" />
+              </div>
             </a>
 
             <p class="text-white/70 text-sm text-center mt-4">
@@ -350,6 +355,14 @@ const mapCenter = getMapCenter();
     box-shadow: 0 8px 25px rgba(59, 130, 246, 0.3);
   }
 
+.hero-section img {
+  transition: transform 0.3s ease;
+}
+
+.hero-section:hover img {
+  transform: scale(1.02);
+}
+
   .location-card {
     opacity: 0;
     transform: translateY(30px);
@@ -361,9 +374,11 @@ const mapCenter = getMapCenter();
     transform: translateY(0);
   }
 
-  .location-card:hover {
-    border-color: var(--primary-color);
-  }
+ .location-card:hover {
+  border-color: rgba(59, 130, 246, 0.3);
+  box-shadow: 0 8px 25px rgba(59, 130, 246, 0.15);
+  background-color: rgba(59, 130, 246, 0.02);
+}
 
   .location-card-nature {
     border-left: 4px solid #10b981;

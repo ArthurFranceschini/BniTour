@@ -68,8 +68,8 @@ export const mapLocations = {
   'cruzeiro-por-do-sol': [
     {
       name: 'Porto Kattamaram',
-      lat: -25.5441,
-      lng: -54.5882,
+      lat: -25.431980288767267,
+      lng: -54.54530055605823,
       type: 'port',
       description: 'Embarque do passeio de catamarã'
     }
