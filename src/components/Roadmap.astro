@@ -1,5 +1,10 @@
 ---
 import { MessageCircle, FileText, Heart, ChevronRight } from 'lucide-astro';
+
+const blueColor = '#3b82f6';
+const redColor = '#ef4444';
+const greenColor = '#10b981';
+
 ---
 
 <section id="Roadmap" class="section-padding section-reveal bg-[#1a3a5b]">
@@ -15,17 +20,17 @@ import { MessageCircle, FileText, Heart, ChevronRight } from 'lucide-astro';
 
     <div class="relative max-w-6xl mx-auto">
       <div class="hidden md:block absolute top-10 left-0 right-0 z-0">
-        <div class="roadmap-line h-1 bg-gradient-to-r from-[#4a7ba7] via-[#315288] to-[#207a7a] rounded-full mx-[10%]"></div>
+        <div class="roadmap-line h-1 rounded-full mx-[10%]" style={`background-image: linear-gradient(to right, ${blueColor}, ${greenColor}, ${redColor});`}></div>
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12 relative z-10">
         
         <div class="roadmap-step flex flex-col items-center text-center">
           <div class="roadmap-icon-wrapper relative mb-6">
-            <div class="roadmap-icon bg-[#315288] text-white w-20 h-20 rounded-full flex items-center justify-center shadow-lg transform transition-all duration-300 hover:scale-110 relative z-10">
+            <div class="roadmap-icon text-white w-20 h-20 rounded-full flex items-center justify-center shadow-lg transform transition-all duration-300 hover:scale-110 relative z-10" style={`background-color: ${blueColor};`}>
               <MessageCircle size={32} />
             </div>
-            <div class="roadmap-number absolute -top-2 -right-2 bg-white text-[#315288] w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold shadow-md z-20">
+            <div class="roadmap-number absolute -top-2 -right-2 bg-white w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold shadow-md z-20" style={`color: ${blueColor};`}>
               1
             </div>
           </div>
@@ -42,10 +47,10 @@ import { MessageCircle, FileText, Heart, ChevronRight } from 'lucide-astro';
 
         <div class="roadmap-step flex flex-col items-center text-center">
           <div class="roadmap-icon-wrapper relative mb-6">
-            <div class="roadmap-icon bg-[#286f78] text-white w-20 h-20 rounded-full flex items-center justify-center shadow-lg transform transition-all duration-300 hover:scale-110 relative z-10">
+            <div class="roadmap-icon text-white w-20 h-20 rounded-full flex items-center justify-center shadow-lg transform transition-all duration-300 hover:scale-110 relative z-10" style={`background-color: ${greenColor};`}>
               <FileText size={32} />
             </div>
-            <div class="roadmap-number absolute -top-2 -right-2 bg-white text-[#286f78] w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold shadow-md z-20">
+            <div class="roadmap-number absolute -top-2 -right-2 bg-white w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold shadow-md z-20" style={`color: ${greenColor};`}>
               2
             </div>
           </div>
@@ -62,10 +67,10 @@ import { MessageCircle, FileText, Heart, ChevronRight } from 'lucide-astro';
 
         <div class="roadmap-step flex flex-col items-center text-center">
           <div class="roadmap-icon-wrapper relative mb-6">
-            <div class="roadmap-icon bg-[#4a7ba7] text-white w-20 h-20 rounded-full flex items-center justify-center shadow-lg transform transition-all duration-300 hover:scale-110 relative z-10">
+            <div class="roadmap-icon text-white w-20 h-20 rounded-full flex items-center justify-center shadow-lg transform transition-all duration-300 hover:scale-110 relative z-10" style={`background-color: ${redColor};`}>
               <Heart size={32} />
             </div>
-            <div class="roadmap-number absolute -top-2 -right-2 bg-white text-[#4a7ba7] w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold shadow-md z-20">
+            <div class="roadmap-number absolute -top-2 -right-2 bg-white w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold shadow-md z-20" style={`color: ${redColor};`}>
               3
             </div>
           </div>
@@ -84,7 +89,7 @@ import { MessageCircle, FileText, Heart, ChevronRight } from 'lucide-astro';
     </div>
 
     <div class="text-center mt-16">
-     <a href="/" class="btn-cta border-1 border-white text-white header-btn 2xl:self-auto self-start cta-button">
+     <a href="/" class="btn-cta border-1 border-white text-white header-btn 2xl:self-auto self-start cta-button **inline-flex**"> <!-- AQUI ESTÁ A ÚNICA ALTERAÇÃO NO BOTÃO -->
                 <span class="button-content-initial-text" data-translate="roadmap.cta">Começar Minha Viagem</span>
                 <div class="btn-cta-icon-wrapper button-content-initial-icon bg-[#315288]">
                     <ChevronRight size={20} class="text-white" />
@@ -93,6 +98,63 @@ import { MessageCircle, FileText, Heart, ChevronRight } from 'lucide-astro';
     </div>
   </div>
 </section>
+
+<style>
+  .roadmap-line {
+    width: 0%;
+    transition: width 1s ease-out;
+  }
+  .section-reveal-active .roadmap-line.is-visible {
+    width: 80%;
+  }
+
+  .title-reveal {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .section-reveal-active .title-reveal.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .subtitle-reveal {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .section-reveal-active .subtitle-reveal.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .roadmap-step {
+    opacity: 0;
+    transform: translateY(30px) scale(0.9);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .section-reveal-active .roadmap-step.is-visible {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+
+  .cta-button {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .section-reveal-active .cta-button.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  
+
+  .header-btn {
+    
+    align-items: center;
+    gap: 0.5rem;
+  }
+</style>
 
 <script is:inline>
   document.addEventListener('DOMContentLoaded', function() {
