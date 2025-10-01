@@ -1,17 +1,57 @@
 ---
 import { packages } from '../../data/packages.js';
+import { packagesContent } from '../../data/packages-i18n.ts';
+import { t } from '../../data/trannslations.ts';
 import { mapLocations } from '../../data/mapLocations.js';
 import { ChevronRight, MessageCircle, Clock, MapPin, Check, ArrowLeft, Star, Camera, Compass, Waves, Mountain, TreePine, Building, Church, ShoppingBag } from 'lucide-astro';
 import Layout from '../../layouts/Layout.astro';
 
-export async function getStaticPaths() {
-  return packages.map((pkg) => ({
-    params: { slug: pkg.slug },
-    props: { package: pkg },
-  }));
+// Definir tipos para as rotas
+interface StaticPath {
+  params: { slug: string };
+  props: { package: any; lang: 'pt' | 'en' | 'es' };
+}
+
+export async function getStaticPaths(): Promise<StaticPath[]> {
+  // Gerar rotas para todos os idiomas
+  const paths: StaticPath[] = [];
+  
+  packages.forEach((pkg) => {
+    // Rota padrão (português)
+    paths.push({
+      params: { slug: pkg.slug },
+      props: { package: pkg, lang: 'pt' },
+    });
+    
+    // Rotas com idiomas específicos
+    (['en', 'es'] as const).forEach(lang => {
+      paths.push({
+        params: { slug: pkg.slug },
+        props: { package: pkg, lang: lang },
+      });
+    });
+  });
+  
+  return paths;
 }
 
 const { package: pkg } = Astro.props;
+
+// Detectar idioma da URL no servidor
+let serverLang: 'pt' | 'en' | 'es' = 'pt';
+try {
+  const url = new URL(Astro.request.url);
+  const langParam = url.searchParams.get('lang');
+  serverLang = (langParam === 'en' || langParam === 'es' ? langParam : 'pt') as 'pt' | 'en' | 'es';
+} catch (error) {
+  serverLang = 'pt';
+}
+
+// Usar o idioma detectado
+const lang = serverLang;
+
+// Pegar conteúdo traduzido
+const content = packagesContent[pkg.slug as keyof typeof packagesContent]?.[lang] || packagesContent[pkg.slug as keyof typeof packagesContent].pt;
 
 type LocationType = 'attraction' | 'landmark' | 'adventure' | 'shopping' | 'port' | 'waterfall' | 'church' | 'park' | 'city' | 'entertainment';
 
@@ -167,15 +207,92 @@ const getMapCenter = () => {
 };
 
 const mapCenter = getMapCenter();
+
+// Traduções locais para fallback
+const getMapTitle = (lang: string): string => {
+  const titles: Record<string, string> = {
+    pt: 'Localização dos Pontos',
+    en: 'Location Points',
+    es: 'Puntos de Ubicación'
+  };
+  return titles[lang] || titles.pt;
+};
+
+const getMapSubtitle = (lang: string): string => {
+  const subtitles: Record<string, string> = {
+    pt: 'Clique nos cards ao lado para navegar no mapa',
+    en: 'Click on the cards to navigate the map',
+    es: 'Haz clic en las tarjetas para navegar por el mapa'
+  };
+  return subtitles[lang] || subtitles.pt;
+};
+
+const getContactInfo = (lang: string): string => {
+  const contactTexts: Record<string, string> = {
+    pt: 'Entre em contato para mais informações',
+    en: 'Contact us for more information',
+    es: 'Contáctanos para más información'
+  };
+  return contactTexts[lang] || contactTexts.pt;
+};
+
+// Criar versões traduzidas para todos os idiomas
+const allTranslations = {
+  pt: {
+    content: packagesContent[pkg.slug as keyof typeof packagesContent]?.pt || content,
+    mapTitle: getMapTitle('pt'),
+    mapSubtitle: getMapSubtitle('pt'),
+    contactInfo: getContactInfo('pt')
+  },
+  en: {
+    content: packagesContent[pkg.slug as keyof typeof packagesContent]?.en || content,
+    mapTitle: getMapTitle('en'),
+    mapSubtitle: getMapSubtitle('en'),
+    contactInfo: getContactInfo('en')
+  },
+  es: {
+    content: packagesContent[pkg.slug as keyof typeof packagesContent]?.es || content,
+    mapTitle: getMapTitle('es'),
+    mapSubtitle: getMapSubtitle('es'),
+    contactInfo: getContactInfo('es')
+  }
+};
 ---
 
-<Layout title={`${pkg.title} - BNI Tour`}>
+<Layout title={`${content.title} - BNI Tour`}>
   
+<!-- Language Selector -->
+<div class="language-selector-wrapper">
+  <div class="language-selector">
+    <button 
+      class="lang-btn"
+      data-lang="pt"
+      onclick="changeLanguage('pt')"
+    >
+      🇧🇷 PT
+    </button>
+    <button 
+      class="lang-btn"
+      data-lang="en"
+      onclick="changeLanguage('en')"
+    >
+      🇺🇸 EN
+    </button>
+    <button 
+      class="lang-btn"
+      data-lang="es"
+      onclick="changeLanguage('es')"
+    >
+      🇪🇸 ES
+    </button>
+  </div>
+</div>
+
 <section class="hero-section section-reveal relative h-[50vh] md:h-[55vh] lg:h-[60vh] overflow-hidden bg-gray-900">
   <div class="absolute inset-0 w-full h-full flex items-end justify-center">
     <img 
       src={pkg.image.src}
-      alt={pkg.title}
+      alt={content.title}
       class="w-full h-auto object-bottom"
       style="object-position: center bottom;"
     />
@@ -185,7 +302,7 @@ const mapCenter = getMapCenter();
   <div class="relative z-10 h-full flex flex-col justify-end section-padding max-w-6xl mx-auto pb-8 md:pb-12">
     <a href="/#Packages" class="back-button mb-6 inline-flex items-center bg-white/10 backdrop-blur-sm px-4 py-2 rounded-full text-white hover:bg-white/20 transition-all w-fit border border-white/20">
       <ArrowLeft size={18} class="mr-2" />
-      <span class="font-medium">Voltar aos Pacotes</span>
+      <span class="font-medium" data-translate="packages.backToPackages">{t(lang, 'packages.backToPackages')}</span>
     </a>
     
     <div class={`tag-reveal inline-block px-6 py-3 rounded-full mb-6 w-fit card-tag card-tag-${pkg.tagColor} shadow-lg backdrop-blur-sm border border-white/20`}>
@@ -193,12 +310,12 @@ const mapCenter = getMapCenter();
       <span class="font-semibold">{pkg.location}</span>
     </div>
     
-    <h1 class="title-reveal text-white mb-4 text-3xl md:text-4xl lg:text-5xl font-bold leading-tight">
-      {pkg.title}
+    <h1 class="title-reveal text-white mb-4 text-3xl md:text-4xl lg:text-5xl font-bold leading-tight" data-translate="title">
+      {content.title}
     </h1>
     
-    <p class="subtitle-reveal text-white text-base md:text-lg lg:text-xl max-w-2xl leading-relaxed">
-      {pkg.description}
+    <p class="subtitle-reveal text-white text-base md:text-lg lg:text-xl max-w-2xl leading-relaxed" data-translate="description">
+      {content.description}
     </p>
   </div>
 </section>
@@ -255,11 +372,11 @@ const mapCenter = getMapCenter();
 
 <div class="map-container bg-white rounded-2xl shadow-xl overflow-hidden flex flex-col min-h-[24rem]"> 
   <div class="p-6 border-b border-gray-100 flex-shrink-0"> 
-    <h3 class="text-xl font-bold text-gray-900 mb-2">
-      Localização dos Pontos
+    <h3 class="text-xl font-bold text-gray-900 mb-2" data-translate="mapTitle">
+      {getMapTitle(lang)}
     </h3>
-    <p class="text-gray-600 text-sm">
-      Clique nos cards ao lado para navegar no mapa
+    <p class="text-gray-600 text-sm" data-translate="mapSubtitle">
+      {getMapSubtitle(lang)}
     </p>
   </div>
   <div id="leaflet-map" class="w-full flex-grow"></div>
@@ -275,20 +392,20 @@ const mapCenter = getMapCenter();
         
         <div class="lg:col-span-2">
           <div class="content-block mb-12">
-            <h2 class="content-title text-gray-900 mb-6">
-              Sobre o Passeio
+            <h2 class="content-title text-gray-900 mb-6" data-translate="packages.fullDescription">
+              {t(lang, 'packages.fullDescription')}
             </h2>
-            <p class="content-text text-gray-700 leading-relaxed">
-              {pkg.fullDescription}
+            <p class="content-text text-gray-700 leading-relaxed" data-translate="fullDescription">
+              {content.fullDescription}
             </p>
           </div>
 
           <div class="content-block">
-            <h3 class="content-title text-gray-900 mb-6">
-              O que está incluído
+            <h3 class="content-title text-gray-900 mb-6" data-translate="packages.included">
+              {t(lang, 'packages.included')}
             </h3>
-            <ul class="space-y-4">
-              {pkg.included.map((item: string, index: number) => (
+            <ul class="space-y-4" data-translate="included">
+              {content.included.map((item: string, index: number) => (
                 <li class="included-item flex items-start" style={`animation-delay: ${index * 100}ms`}>
                   <div class="flex-shrink-0 w-6 h-6 rounded-full flex items-center justify-center mr-3 mt-1" style={`background-color: ${currentColors.primary};`}>
                     <Check size={16} class="text-white" />
@@ -305,33 +422,33 @@ const mapCenter = getMapCenter();
             <div class="info-item mb-6">
               <div class="flex items-center text-white/80 mb-2">
                 <Clock size={20} class="mr-2" />
-                <span class="text-sm font-semibold uppercase tracking-wide">Duração</span>
+                <span class="text-sm font-semibold uppercase tracking-wide" data-translate="packages.duration">{t(lang, 'packages.duration')}</span>
               </div>
-              <p class="text-white text-xl font-bold">{pkg.duration}</p>
+              <p class="text-white text-xl font-bold" data-translate="duration">{content.duration}</p>
             </div>
 
             <div class="info-item mb-6">
               <div class="flex items-center text-white/80 mb-2">
                 <MapPin size={20} class="mr-2" />
-                <span class="text-sm font-semibold uppercase tracking-wide">Localização</span>
+                <span class="text-sm font-semibold uppercase tracking-wide" data-translate="packages.location">{t(lang, 'packages.location')}</span>
               </div>
               <p class="text-white text-xl font-bold">{pkg.location}</p>
             </div>
 
             <div class="price-box bg-white/10 rounded-xl p-6 mb-6 backdrop-blur-sm">
-              <p class="text-white/80 text-sm mb-2">A partir de</p>
+              <p class="text-white/80 text-sm mb-2" data-translate="packages.price">{t(lang, 'packages.price')}</p>
               <p class="text-white text-3xl font-bold">{pkg.price}</p>
             </div>
 
             <a href="/" class="btn-cta w-full flex items-center justify-between text-white hover:shadow-lg transition-all px-6 py-3 rounded-xl font-semibold bg-gradient-to-r from-[#25D366] to-[#128C7E] hover:from-[#20B954] hover:to-[#0F6B5C]">
-              <span>Reservar Agora</span>
+              <span data-translate="packages.bookNow">{t(lang, 'packages.bookNow')}</span>
               <div class="w-8 h-8 bg-white/20 rounded-full flex items-center justify-center flex-shrink-0 hover:bg-white/30 transition-colors">
                 <MessageCircle size={16} class="text-white" />
               </div>
             </a>
 
-            <p class="text-white/70 text-sm text-center mt-4">
-              Entre em contato para mais informações
+            <p class="text-white/70 text-sm text-center mt-4" data-translate="contactInfo">
+              {getContactInfo(lang)}
             </p>
           </div>
         </div>
@@ -345,6 +462,46 @@ const mapCenter = getMapCenter();
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
 
 <style>
+  .language-selector-wrapper {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1000;
+  }
+
+  .language-selector {
+    display: flex;
+    gap: 8px;
+    background: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(10px);
+    padding: 8px;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  }
+
+  .lang-btn {
+    padding: 8px 12px;
+    border-radius: 8px;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    color: #666;
+  }
+
+  .lang-btn:hover {
+    background: rgba(59, 130, 246, 0.1);
+    color: #3b82f6;
+  }
+
+  .lang-btn.active {
+    background: #3b82f6;
+    color: white;
+    box-shadow: 0 2px 8px rgba(59, 130, 246, 0.3);
+  }
+
   .card-tag-red { 
     background: linear-gradient(135deg, #ef4444, #dc2626);
     color: white;
@@ -609,8 +766,139 @@ const mapCenter = getMapCenter();
 
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
-<script is:inline define:vars={{ locations, mapCenter, currentColors }}>
+<script is:inline define:vars={{ locations, mapCenter, currentColors, lang: lang, allTranslations, t }}>
   document.addEventListener('DOMContentLoaded', function() {
+    // Detectar idioma da URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const currentLang = urlParams.get('lang') || 'pt';
+    
+    // Função para atualizar conteúdo traduzido
+    function updateTranslations(newLang) {
+      const translations = allTranslations[newLang];
+      if (!translations) return;
+      
+      // Atualizar elementos com data-translate
+      document.querySelectorAll('[data-translate]').forEach(element => {
+        const key = element.getAttribute('data-translate');
+        
+        switch(key) {
+          case 'title':
+            element.textContent = translations.content.title;
+            break;
+          case 'description':
+            element.textContent = translations.content.description;
+            break;
+          case 'fullDescription':
+            element.textContent = translations.content.fullDescription;
+            break;
+          case 'duration':
+            element.textContent = translations.content.duration;
+            break;
+          case 'mapTitle':
+            element.textContent = translations.mapTitle;
+            break;
+          case 'mapSubtitle':
+            element.textContent = translations.mapSubtitle;
+            break;
+          case 'contactInfo':
+            element.textContent = translations.contactInfo;
+            break;
+          case 'packages.backToPackages':
+            element.textContent = getTranslation(newLang, 'packages.backToPackages');
+            break;
+          case 'packages.fullDescription':
+            element.textContent = getTranslation(newLang, 'packages.fullDescription');
+            break;
+          case 'packages.included':
+            element.textContent = getTranslation(newLang, 'packages.included');
+            break;
+          case 'packages.duration':
+            element.textContent = getTranslation(newLang, 'packages.duration');
+            break;
+          case 'packages.location':
+            element.textContent = getTranslation(newLang, 'packages.location');
+            break;
+          case 'packages.price':
+            element.textContent = getTranslation(newLang, 'packages.price');
+            break;
+          case 'packages.bookNow':
+            element.textContent = getTranslation(newLang, 'packages.bookNow');
+            break;
+        }
+      });
+      
+      // Atualizar lista de incluídos
+      const includedList = document.querySelector('[data-translate="included"]');
+      if (includedList && translations.content.included) {
+        includedList.innerHTML = '';
+        translations.content.included.forEach((item, index) => {
+          const li = document.createElement('li');
+          li.className = 'included-item flex items-start';
+          li.style.animationDelay = `${index * 100}ms`;
+          li.innerHTML = `
+            <div class="flex-shrink-0 w-6 h-6 rounded-full flex items-center justify-center mr-3 mt-1" style="background-color: ${currentColors.primary};">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-white">
+                <polyline points="20,6 9,17 4,12"></polyline>
+              </svg>
+            </div>
+            <span class="text-gray-700">${item}</span>
+          `;
+          includedList.appendChild(li);
+        });
+      }
+    }
+    
+    // Função auxiliar para traduções
+    function getTranslation(lang, key) {
+      const translations = {
+        pt: {
+          'packages.backToPackages': 'Voltar aos Pacotes',
+          'packages.fullDescription': 'Descrição Completa',
+          'packages.included': 'O que está incluído',
+          'packages.duration': 'Duração',
+          'packages.location': 'Localização',
+          'packages.price': 'Preço',
+          'packages.bookNow': 'Reserve Agora'
+        },
+        en: {
+          'packages.backToPackages': 'Back to Packages',
+          'packages.fullDescription': 'Full Description',
+          'packages.included': 'What\'s included',
+          'packages.duration': 'Duration',
+          'packages.location': 'Location',
+          'packages.price': 'Price',
+          'packages.bookNow': 'Book Now'
+        },
+        es: {
+          'packages.backToPackages': 'Volver a Paquetes',
+          'packages.fullDescription': 'Descripción Completa',
+          'packages.included': 'Qué está incluido',
+          'packages.duration': 'Duración',
+          'packages.location': 'Ubicación',
+          'packages.price': 'Precio',
+          'packages.bookNow': 'Reservar Ahora'
+        }
+      };
+      
+      return translations[lang]?.[key] || translations.pt[key] || key;
+    }
+    
+    // Atualizar botões de idioma
+    function updateLanguageButtons(activeLang) {
+      const langButtons = document.querySelectorAll('.lang-btn');
+      langButtons.forEach(btn => {
+        btn.classList.remove('active');
+        if (btn.dataset.lang === activeLang) {
+          btn.classList.add('active');
+        }
+      });
+    }
+    
+    // Inicializar com idioma atual
+    updateLanguageButtons(currentLang);
+    updateTranslations(currentLang);
+
+    // Mapa Leaflet
     if (typeof L === 'undefined') {
       console.error('Leaflet não carregou');
       return;
@@ -686,6 +974,19 @@ const mapCenter = getMapCenter();
       const group = new L.featureGroup(markers);
       map.fitBounds(group.getBounds().pad(0.1));
     }
+
+    // Função global para trocar idioma
+    window.changeLanguage = function(newLang) {
+      const currentUrl = new URL(window.location.href);
+      currentUrl.searchParams.set('lang', newLang);
+      
+      // Atualizar URL sem recarregar
+      window.history.pushState({}, '', currentUrl.toString());
+      
+      // Atualizar conteúdo
+      updateLanguageButtons(newLang);
+      updateTranslations(newLang);
+    };
   });
 </script>
 
