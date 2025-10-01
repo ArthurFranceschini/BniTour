@@ -23,7 +23,7 @@ interface Location {
   description: string;
 }
 
-type LocationConfigKey = 'joias-naturais' | 'cataratas-argentina' | 'aventura-emocao' | 'compras-cultura' | 'city-tour-argentina' | 'cruzeiro-por-do-sol' | 'city-tour-paraguai' | 'city-tour-foz';
+type LocationConfigKey = 'cataratas-brasil-+-parque-das-aves' | 'cataratas-argentina-+-city-tour-argentina' | 'macuco-safari' | 'compras-paraguai' | 'city-tour-argentina' | 'kattamaramII' | 'city-tour-paraguai' | 'city-tour-foz' | 'cassino-argentina';
 
 interface LocationConfig {
   sectionTitle: string;
@@ -77,37 +77,43 @@ const getLocationIcon = (type: LocationType) => {
 };
 
 const locationConfigs: Record<LocationConfigKey, LocationConfig> = {
-  'joias-naturais': {
+  'cataratas-brasil-+-parque-das-aves': {
     sectionTitle: 'Maravilhas Naturais',
     sectionSubtitle: 'Descubra a força da natureza em cada passo',
     bgGradient: 'from-emerald-50 to-green-50',
     cardStyle: 'nature'
   },
-  'cataratas-argentina': {
+  'cataratas-argentina-+-city-tour-argentina': {
     sectionTitle: 'Experiência Argentina',
     sectionSubtitle: 'Viva a paixão e cultura argentina',
     bgGradient: 'from-blue-50 to-sky-50',
     cardStyle: 'cultural'
   },
-  'aventura-emocao': {
+  'cassino-argentina': {
+    sectionTitle: 'Cassino City Center',
+    sectionSubtitle: 'Jogos, bar completo e prêmios na moeda de sua escolha.',
+    bgGradient: 'from-blue-50 to-sky-50',
+    cardStyle: 'cultural',
+  },
+  'macuco-safari': {
     sectionTitle: 'Adrenalina Pura',
     sectionSubtitle: 'Para os amantes de aventura e emoção',
     bgGradient: 'from-orange-50 to-amber-50',
     cardStyle: 'adventure'
   },
-  'compras-cultura': {
+  'compras-paraguai': {
     sectionTitle: 'Compras & Descobertas',
     sectionSubtitle: 'O melhor do comércio paraguaio',
     bgGradient: 'from-purple-50 to-pink-50',
     cardStyle: 'shopping'
   },
   'city-tour-argentina': {
-    sectionTitle: 'Charme Argentino',
-    sectionSubtitle: 'Explore a elegância de Puerto Iguazú',
+    sectionTitle: 'Passeio em Puerto Iguazú',
+    sectionSubtitle: 'Conheça os principais pontos turísticos da cidade',
     bgGradient: 'from-blue-50 to-indigo-50',
     cardStyle: 'cultural'
   },
-  'cruzeiro-por-do-sol': {
+  'kattamaramII': {
     sectionTitle: 'Romance nas Águas',
     sectionSubtitle: 'Um pôr do sol inesquecível',
     bgGradient: 'from-rose-50 to-orange-50',
@@ -128,7 +134,7 @@ const locationConfigs: Record<LocationConfigKey, LocationConfig> = {
 };
 
 const getLocationConfig = (slug: string): LocationConfig => {
-  return locationConfigs[slug as LocationConfigKey] || locationConfigs['joias-naturais'];
+  return locationConfigs[slug as LocationConfigKey] || locationConfigs['cataratas-brasil-+-parque-das-aves'];
 };
 
 const config = getLocationConfig(pkg.slug);
@@ -247,8 +253,8 @@ const mapCenter = getMapCenter();
             })}
           </div>
 
-          <div class="map-container bg-white rounded-2xl shadow-xl overflow-hidden">
-            <div class="p-6 border-b border-gray-100">
+          <div class="map-container bg-white rounded-2xl shadow-xl overflow-hidden flex flex-col"> 
+            <div class="p-6 border-b border-gray-100 flex-shrink-0"> 
               <h3 class="text-xl font-bold text-gray-900 mb-2">
                 Localização dos Pontos
               </h3>
@@ -256,7 +262,7 @@ const mapCenter = getMapCenter();
                 Clique nos cards ao lado para navegar no mapa
               </p>
             </div>
-            <div id="leaflet-map" class="w-full h-96"></div>
+            <div id="leaflet-map" class="w-full flex-grow"></div>
           </div>
         </div>
       </div>

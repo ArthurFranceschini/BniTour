@@ -9,17 +9,18 @@ import CityTourArgImg from '../assets/image/Cards/Argentina/CityTourArg.webp';
 import KatamaramImg from '../assets/image/Cards/Brasil/Katamaram 2.webp';
 import SaltosDelMondayImg from '../assets/image/Cards/Paraguai/SaltosDelMonday.webp';
 import CityTourFozImg from '../assets/image/Cards/Brasil/Marco das Três Fonteiras.webp';
+import CassinoArg from '../assets/image/Cards/Argentina/CassinoArg.webp';
 
 export const packages = [
   {
-    slug: 'joias-naturais',
-    title: 'Joias Naturais',
+    slug: 'cataratas-brasil-+-parque-da-aves',
+    title: 'Cataratas Brasil + Parque das Aves',
     description: 'Cataratas do Iguaçu e Parque das Aves. A Força da Natureza...',
     location: 'Foz do Iguaçu - Brasil',
     tag: 'foz_brasil',
     tagColor: 'green',
     image: ParqueImg,
-    fullDescription: 'Mergulhe na exuberância natural de Foz do Iguaçu com um tour completo pelas Cataratas do Iguaçu e pelo Parque das Aves. Contemple a força impressionante das quedas d\'água e conheça centenas de espécies de aves em seu habitat natural.',
+    fullDescription: 'Viva um dia completo em Foz do Iguaçu: encante-se com o Parque das Aves, explore as impressionantes Cataratas, almoce às margens do Rio Iguaçu e finalize com a emoção do Macuco Safari.',
     included: [
       'Transporte de ida e volta',
       'Ingresso para as Cataratas do Iguaçu',
@@ -39,7 +40,7 @@ export const packages = [
     tag: 'puerto_argentina',
     tagColor: 'blue',
     image: CataratasArgImg,
-    fullDescription: 'Explore o lado argentino das Cataratas do Iguaçu com acesso exclusivo à Garganta do Diabo. Uma experiência completa que inclui passeios culturais, gastronomia e entretenimento em Puerto Iguazú.',
+    fullDescription: 'Explore as Cataratas Argentinas em um passeio exclusivo onde voce vai poder conhecer as tres trilhas das Cataratas. Circuito superior, circuito inferior e Garganta do Diabo.',
     included: [
       'Transporte internacional',
       'Ingresso para o Parque Nacional Iguazú',
@@ -52,9 +53,25 @@ export const packages = [
     price: 'Sob consulta',
     hasMap: true,
   },
+    {
+    slug: 'cassino-argentina',
+    title: 'Cassino Argentina',
+    description: 'Um dos mais prestigiados da América Latina',
+    location: 'Puerto Iguazú - Argentina',
+    tag: 'puerto_argentina',
+    tagColor: 'blue',
+    image: CassinoArg,
+    fullDescription: 'Anexo ao Hotel Iguazu, o Casino Iguazú é um dos mais prestigiados da América Latina. Oferece jogos, bar completo e prêmios na moeda de sua escolha. Diversão e luxo em um só lugar!',
+    included: [
+      'Transporte ida e volta',
+    ],
+    duration: 'Lorem ipsum',
+    price: 'Lorem ipsum',
+    hasMap: true,
+  },
   {
-    slug: 'aventura-emocao',
-    title: 'Aventura e Emoção',
+    slug: 'macuco-safari',
+    title: 'Macuco Safari',
     description: 'Para os amantes da aventura. Que tal um passeio de barco nas Cataratas?',
     location: 'Foz do Iguaçu - Brasil',
     tag: 'foz_brasil',
@@ -65,9 +82,8 @@ export const packages = [
       'Transporte até o parque',
       'Passeio de barco Macuco Safari',
       'Equipamentos de segurança',
-      'Capa de chuva',
       'Guia especializado',
-      'Seguro de aventura'
+      'Acesso exclusivo ao parque nacional',
     ],
     duration: 'Meio dia',
     price: 'Sob consulta',
@@ -95,8 +111,8 @@ export const packages = [
     hasMap: true,
   },
   {
-    slug: 'city-tour-argentina',
-    title: 'City Tour Argentina',
+    slug: 'cataratas-argentina-+-city-tour-argentina',
+    title: ' Cataratas Argentina + City Tour Argentina',
     description: 'Marcos das três fronteiras, jantar, vinhoteca, cassino e muito mais...',
     location: 'Puerto Iguazú - Argentina',
     tag: 'puerto_argentina',
@@ -116,8 +132,8 @@ export const packages = [
     hasMap: true,
   },
   {
-    slug: 'cruzeiro-por-do-sol',
-    title: 'Cruzeiro ao Pôr do Sol',
+    slug: 'kattamaramII',
+    title: 'Kattamaram II',
     description: 'Katamarã: Foz do Iguaçu Sob um Novo Olhar...',
     location: 'Foz do Iguaçu - Brasil',
     tag: 'foz_brasil',

@@ -1,7 +1,7 @@
 // src/data/mapLocations.js
 
 export const mapLocations = {
-  'joias-naturais': [
+  'cataratas-brasil-+-parque-da-aves': [
     {
       name: 'Cataratas do Iguaçu - Lado Brasil',
       lat: -25.61357986306162,
@@ -15,7 +15,22 @@ export const mapLocations = {
       lng: -54.481204625231875,
       type: 'attraction',
       description: 'Maior parque de aves da América Latina'
+    },
+    {
+      name: 'Macuco Safari',
+      lat: -25.65029554523917,
+      lng: -54.43412007543563,
+      type: 'adventure',
+      description: 'Passeio de barco nas Cataratas'
+    },
+    {
+      name: 'Restaurante Porto Canoas',
+      lat:  -25.69239077603995, 
+      lng:  -54.43287678938324,
+      type: 'attraction',
+      description: 'Almoce com uma vista incrível para o Rio Iguaçu'
     }
+
   ],
 
   'cataratas-argentina': [
@@ -28,7 +43,7 @@ export const mapLocations = {
     }
   ],
 
-  'aventura-emocao': [
+  'macuco-safari': [
     {
       name: 'Macuco Safari',
       lat: -25.65029554523917,
@@ -44,17 +59,31 @@ export const mapLocations = {
       lat: -25.498031910908242,
       lng: -54.66240338635118,
       type: 'shopping',
-      description: 'Principal área de compras'
+      description: '3ª maior zona franca do mundo'
     }
   ],
 
-  'city-tour-argentina': [
+  'cataratas-argentina-+-city-tour-argentina': [
     {
       name: 'Marco das Três Fronteiras - Argentina',
-      lat: -25.5917,
-      lng: -54.5892,
+      lat: -25.594635793702096, 
+      lng: -54.58979205970208,
       type: 'landmark',
       description: 'Ponto turístico icônico'
+    },
+     {
+      name: 'Duty Free',
+      lat: -25.59916959918272, 
+      lng: -54.563552865772785,
+      type: 'city',
+      description: '$$$$$$$$$$$'
+    },
+     {
+      name: 'Casino Iguazú',
+      lat: -25.60168760588072,
+      lng: -54.55344643101972,
+      type: 'city',
+      description: '$$$$$$$$'
     },
     {
       name: 'Centro de Puerto Iguazú',
@@ -62,10 +91,24 @@ export const mapLocations = {
       lng: -54.5781,
       type: 'city',
       description: 'Centro comercial e turístico'
-    }
+    },
+    {
+      name: 'Feirinha Gastronômica',
+      lat: -25.59381939644155, 
+      lng: -54.57379591770972,
+      type: 'city',
+      description: 'Compra de alfajor, vinhos argentinos, doce de leite'
+    },
+    {
+      name: 'La Aripuca',
+      lat: -25.618746021591235, 
+      lng: -54.55838710362609,
+      type: 'attraction',
+      description: 'Um local que un e consciência ambiental e cultura local'
+    },
   ],
 
-  'cruzeiro-por-do-sol': [
+  'kattamaramII': [
     {
       name: 'Porto Kattamaram',
       lat: -25.431980288767267,
@@ -81,14 +124,14 @@ export const mapLocations = {
       lat: -25.5191,
       lng: -54.6392,
       type: 'waterfall',
-      description: 'Cachoeira espetacular de 45 metros'
+      description: 'Cataratas do Paraguai'
     },
     {
-      name: 'Igreja San Blas (Catedral)',
+      name: 'Igreja San Blas',
       lat: -25.5095,
       lng: -54.6116,
       type: 'church',
-      description: 'Principal igreja de Ciudad del Este'
+      description: 'Catedral de Ciudad del Este'
     },
     {
       name: 'Lago de La República',
