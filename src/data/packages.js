@@ -176,16 +176,15 @@ export const packages = [
   {
     slug: 'city-tour-foz',
     title: 'City Tour Foz do Iguaçu',
-    description: 'Transfer, Wonder Park, Itaipu, Marco das três fronteiras e muito mais...',
+    description: 'Transfer, Itaipu, Marco das três fronteiras e muito mais...',
     location: 'Foz do Iguaçu - Brasil',
     tag: 'foz_brasil',
     tagColor: 'green',
     image: CityTourFozImg,
-    fullDescription: 'Conheça os principais atrativos de Foz do Iguaçu em um tour completo pela cidade. Visite a gigantesca Usina de Itaipu, o Wonder Park, o icônico Marco das Três Fronteiras e outros pontos turísticos imperdíveis.',
+    fullDescription: 'Conheça os principais atrativos de Foz do Iguaçu em um tour completo pela cidade. Visite a gigantesca Usina de Itaipu, o icônico Marco das Três Fronteiras e outros pontos turísticos imperdíveis.',
     included: [
       'Transporte com ar-condicionado',
       'Visita à Usina de Itaipu',
-      'Entrada no Wonder Park',
       'Marco das Três Fronteiras',
       'Paradas fotográficas',
       'Guia especializado'
