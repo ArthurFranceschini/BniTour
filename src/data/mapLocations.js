@@ -62,6 +62,15 @@ export const mapLocations = {
       description: '3ª maior zona franca do mundo'
     }
   ],
+  'cassino-argentina': [
+      {
+      name: 'Casino Iguazú',
+      lat: -25.60168760588072,
+      lng: -54.55344643101972,
+      type: 'city',
+      description: 'Um dos maiores da américa Latina'
+    },
+  ],
 
   'cataratas-argentina-+-city-tour-argentina': [
     {
@@ -77,13 +86,6 @@ export const mapLocations = {
       lng: -54.563552865772785,
       type: 'city',
       description: '$$$$$$$$$$$'
-    },
-     {
-      name: 'Casino Iguazú',
-      lat: -25.60168760588072,
-      lng: -54.55344643101972,
-      type: 'city',
-      description: '$$$$$$$$'
     },
     {
       name: 'Centro de Puerto Iguazú',
