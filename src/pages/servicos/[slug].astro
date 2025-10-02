@@ -3,10 +3,9 @@ import { packages } from '../../data/packages.js';
 import { packagesContent } from '../../data/packages-i18n.ts';
 import { t } from '../../data/trannslations.ts';
 import { mapLocations } from '../../data/mapLocations.js';
+import { mapLocationsTranslations } from '../../data/mapLocations-i18n.ts'; 
 import { ChevronRight, MessageCircle, Clock, MapPin, Check, ArrowLeft, Star, Camera, Compass, Waves, Mountain, TreePine, Building, Church, ShoppingBag } from 'lucide-astro';
 import Layout from '../../layouts/Layout.astro';
-
-// Definir tipos para as rotas
 interface StaticPath {
   params: { slug: string };
   props: { package: any; lang: 'pt' | 'en' | 'es' };
@@ -236,25 +235,145 @@ const getContactInfo = (lang: string): string => {
   return contactTexts[lang] || contactTexts.pt;
 };
 
-// Criar versões traduzidas para todos os idiomas
+// Funções para traduzir títulos e subtítulos das seções
+const getLocationSectionTitle = (lang: string, slug: string): string => {
+  const titles: Record<string, Record<string, string>> = {
+    'cataratas-brasil-+-parque-das-aves': {
+      pt: 'Maravilhas Naturais',
+      en: 'Natural Wonders',
+      es: 'Maravillas Naturales'
+    },
+    'cataratas-argentina-+-city-tour-argentina': {
+      pt: 'Experiência Argentina',
+      en: 'Argentine Experience',
+      es: 'Experiencia Argentina'
+    },
+    'cassino-argentina': {
+      pt: 'Cassino City Center',
+      en: 'City Center Casino',
+      es: 'Casino City Center'
+    },
+    'macuco-safari': {
+      pt: 'Adrenalina Pura',
+      en: 'Pure Adrenaline',
+      es: 'Adrenalina Pura'
+    },
+    'compras-paraguai': {
+      pt: 'Compras & Descobertas',
+      en: 'Shopping & Discoveries',
+      es: 'Compras y Descubrimientos'
+    },
+    'city-tour-argentina': {
+      pt: 'Passeio em Puerto Iguazú',
+      en: 'Puerto Iguazú Tour',
+      es: 'Tour por Puerto Iguazú'
+    },
+    'kattamaramII': {
+      pt: 'Romance nas Águas',
+      en: 'Romance on the Waters',
+      es: 'Romance en las Aguas'
+    },
+    'city-tour-paraguai': {
+      pt: 'Cultura Paraguaia',
+      en: 'Paraguayan Culture',
+      es: 'Cultura Paraguaya'
+    },
+    'city-tour-foz': {
+      pt: 'Orgulho Brasileiro',
+      en: 'Brazilian Pride',
+      es: 'Orgullo Brasileño'
+    }
+  };
+  return titles[slug]?.[lang] || titles[slug]?.pt || config.sectionTitle;
+};
+
+const getLocationSectionSubtitle = (lang: string, slug: string): string => {
+  const subtitles: Record<string, Record<string, string>> = {
+    'cataratas-brasil-+-parque-das-aves': {
+      pt: 'Descubra a força da natureza em cada passo',
+      en: 'Discover the power of nature at every step',
+      es: 'Descubre el poder de la naturaleza en cada paso'
+    },
+    'cataratas-argentina-+-city-tour-argentina': {
+      pt: 'Viva a paixão e cultura argentina',
+      en: 'Experience the passion and culture of Argentina',
+      es: 'Vive la pasión y cultura argentina'
+    },
+    'cassino-argentina': {
+      pt: 'Jogos, bar completo e prêmios na moeda de sua escolha',
+      en: 'Games, full bar and prizes in your currency',
+      es: 'Juegos, bar completo y premios en tu moneda'
+    },
+    'macuco-safari': {
+      pt: 'Para os amantes de aventura e emoção',
+      en: 'For adventure and thrill seekers',
+      es: 'Para los amantes de la aventura y la emoción'
+    },
+    'compras-paraguai': {
+      pt: 'O melhor do comércio paraguaio',
+      en: 'The best of Paraguayan commerce',
+      es: 'Lo mejor del comercio paraguayo'
+    },
+    'city-tour-argentina': {
+      pt: 'Conheça os principais pontos turísticos da cidade',
+      en: 'Discover the main tourist attractions of the city',
+      es: 'Conoce los principales puntos turísticos de la ciudad'
+    },
+    'kattamaramII': {
+      pt: 'Um pôr do sol inesquecível',
+      en: 'An unforgettable sunset',
+      es: 'Un atardecer inolvidable'
+    },
+    'city-tour-paraguai': {
+      pt: 'Tradições e belezas naturais',
+      en: 'Traditions and natural beauty',
+      es: 'Tradiciones y bellezas naturales'
+    },
+    'city-tour-foz': {
+      pt: 'O melhor de Foz do Iguaçu',
+      en: 'The best of Foz do Iguaçu',
+      es: 'Lo mejor de Foz do Iguaçu'
+    }
+  };
+  return subtitles[slug]?.[lang] || subtitles[slug]?.pt || config.sectionSubtitle;
+};
+
 const allTranslations = {
   pt: {
     content: packagesContent[pkg.slug as keyof typeof packagesContent]?.pt || content,
     mapTitle: getMapTitle('pt'),
     mapSubtitle: getMapSubtitle('pt'),
-    contactInfo: getContactInfo('pt')
+    contactInfo: getContactInfo('pt'),
+    sectionTitle: config.sectionTitle,
+    sectionSubtitle: config.sectionSubtitle,
+    locations: locations.map((_, index) => {
+      const translated = mapLocationsTranslations[pkg.slug as keyof typeof mapLocationsTranslations]?.locations[index];
+      return translated ? { name: translated.name.pt, description: translated.description.pt } : null;
+    }).filter(Boolean)
   },
   en: {
     content: packagesContent[pkg.slug as keyof typeof packagesContent]?.en || content,
     mapTitle: getMapTitle('en'),
     mapSubtitle: getMapSubtitle('en'),
-    contactInfo: getContactInfo('en')
+    contactInfo: getContactInfo('en'),
+    sectionTitle: getLocationSectionTitle('en', pkg.slug),
+    sectionSubtitle: getLocationSectionSubtitle('en', pkg.slug),
+    locations: locations.map((_, index) => {
+      const translated = mapLocationsTranslations[pkg.slug as keyof typeof mapLocationsTranslations]?.locations[index];
+      return translated ? { name: translated.name.en, description: translated.description.en } : null;
+    }).filter(Boolean)
   },
   es: {
     content: packagesContent[pkg.slug as keyof typeof packagesContent]?.es || content,
     mapTitle: getMapTitle('es'),
     mapSubtitle: getMapSubtitle('es'),
-    contactInfo: getContactInfo('es')
+    contactInfo: getContactInfo('es'),
+    sectionTitle: getLocationSectionTitle('es', pkg.slug),
+    sectionSubtitle: getLocationSectionSubtitle('es', pkg.slug),
+    locations: locations.map((_, index) => {
+      const translated = mapLocationsTranslations[pkg.slug as keyof typeof mapLocationsTranslations]?.locations[index];
+      return translated ? { name: translated.name.es, description: translated.description.es } : null;
+    }).filter(Boolean)
   }
 };
 ---
@@ -324,10 +443,10 @@ const allTranslations = {
     <section class={`locations-section section-reveal bg-gradient-to-br ${config.bgGradient} section-padding`}>
       <div class="max-w-6xl mx-auto">
         <div class="text-center mb-12">
-          <h2 class="content-title text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+          <h2 class="content-title text-3xl md:text-4xl font-bold text-gray-900 mb-4" data-translate="sectionTitle">
             {config.sectionTitle}
           </h2>
-          <p class="content-subtitle text-lg text-gray-600 max-w-2xl mx-auto">
+          <p class="content-subtitle text-lg text-gray-600 max-w-2xl mx-auto" data-translate="sectionSubtitle">
             {config.sectionSubtitle}
           </p>
         </div>
@@ -335,39 +454,39 @@ const allTranslations = {
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
           <div class="space-y-6">
             {locations.map((location: Location, index: number) => {
-              const IconComponent = getLocationIcon(location.type);
-              return (
-                <div 
-                  class={`location-card location-card-${config.cardStyle} bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 cursor-pointer`}
-                  style={`animation-delay: ${index * 150}ms`}
-                  data-lat={location.lat}
-                  data-lng={location.lng}
-                  data-name={location.name}
-                  data-description={location.description}
-                  data-index={index}
-                >
-                  <div class="flex items-start mb-4">
-                    <div 
-                      class="location-icon flex-shrink-0 w-12 h-12 rounded-xl flex items-center justify-center mr-4"
-                      style={`background: linear-gradient(135deg, ${currentColors.gradientFrom}, ${currentColors.gradientTo});`}
-                    >
-                      <IconComponent size={24} class="text-white" />
-                    </div>
-                    <div class="flex-1">
-                      <h3 class="font-bold text-gray-900 text-lg mb-1 leading-tight">
-                        {location.name}
-                      </h3>
-                      <span class="location-type text-sm px-2 py-1 rounded-full" style={`background-color: ${currentColors.primary}20; color: ${currentColors.primary};`}>
-                        {getLocationTypeText(location.type)}
-                      </span>
-                    </div>
-                  </div>
-                  <p class="text-gray-600 text-sm leading-relaxed">
-                    {location.description}
-                  </p>
-                </div>
-              );
-            })}
+  const IconComponent = getLocationIcon(location.type);
+  return (
+    <div 
+      class={`location-card location-card-${config.cardStyle} bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 cursor-pointer`}
+      style={`animation-delay: ${index * 150}ms`}
+      data-lat={location.lat}
+      data-lng={location.lng}
+      data-name={location.name}
+      data-description={location.description}
+      data-index={index}
+    >
+      <div class="flex items-start mb-4">
+        <div 
+          class="location-icon flex-shrink-0 w-12 h-12 rounded-xl flex items-center justify-center mr-4"
+          style={`background: linear-gradient(135deg, ${currentColors.gradientFrom}, ${currentColors.gradientTo});`}
+        >
+          <IconComponent size={24} class="text-white" />
+        </div>
+        <div class="flex-1">
+          <h3 class="font-bold text-gray-900 text-lg mb-1 leading-tight" data-translate={`location-name-${index}`}>
+            {location.name}
+          </h3>
+          <span class="location-type text-sm px-2 py-1 rounded-full" style={`background-color: ${currentColors.primary}20; color: ${currentColors.primary};`}>
+            {getLocationTypeText(location.type)}
+          </span>
+        </div>
+      </div>
+      <p class="text-gray-600 text-sm leading-relaxed" data-translate={`location-description-${index}`}>
+        {location.description}
+      </p>
+    </div>
+  );
+})}
           </div>
 
 <div class="map-container bg-white rounded-2xl shadow-xl overflow-hidden flex flex-col min-h-[24rem]"> 
@@ -766,11 +885,14 @@ const allTranslations = {
 
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
-<script is:inline define:vars={{ locations, mapCenter, currentColors, lang: lang, allTranslations, t }}>
+<script is:inline define:vars={{ locations, mapCenter, currentColors, lang: lang, allTranslations, t, pkgSlug: pkg.slug }}>
   document.addEventListener('DOMContentLoaded', function() {
     // Detectar idioma da URL
     const urlParams = new URLSearchParams(window.location.search);
     const currentLang = urlParams.get('lang') || 'pt';
+    
+    // Variável global para armazenar os markers
+    let markers = [];
     
     // Função para atualizar conteúdo traduzido
     function updateTranslations(newLang) {
@@ -780,6 +902,23 @@ const allTranslations = {
       // Atualizar elementos com data-translate
       document.querySelectorAll('[data-translate]').forEach(element => {
         const key = element.getAttribute('data-translate');
+        
+        // Verificar se é uma tradução de location
+        if (key.startsWith('location-name-')) {
+          const index = parseInt(key.replace('location-name-', ''));
+          if (translations.locations && translations.locations[index]) {
+            element.textContent = translations.locations[index].name;
+          }
+          return;
+        }
+        
+        if (key.startsWith('location-description-')) {
+          const index = parseInt(key.replace('location-description-', ''));
+          if (translations.locations && translations.locations[index]) {
+            element.textContent = translations.locations[index].description;
+          }
+          return;
+        }
         
         switch(key) {
           case 'title':
@@ -802,6 +941,12 @@ const allTranslations = {
             break;
           case 'contactInfo':
             element.textContent = translations.contactInfo;
+            break;
+          case 'sectionTitle':
+            element.textContent = translations.sectionTitle;
+            break;
+          case 'sectionSubtitle':
+            element.textContent = translations.sectionSubtitle;
             break;
           case 'packages.backToPackages':
             element.textContent = getTranslation(newLang, 'packages.backToPackages');
@@ -827,6 +972,9 @@ const allTranslations = {
         }
       });
       
+      // Atualizar popups do mapa
+      updateMapPopups(newLang);
+      
       // Atualizar lista de incluídos
       const includedList = document.querySelector('[data-translate="included"]');
       if (includedList && translations.content.included) {
@@ -846,6 +994,28 @@ const allTranslations = {
           includedList.appendChild(li);
         });
       }
+    }
+    
+    // Função para atualizar popups do mapa
+    function updateMapPopups(newLang) {
+      const translations = allTranslations[newLang];
+      if (!translations || !translations.locations) return;
+      
+      markers.forEach((marker, index) => {
+        if (translations.locations[index]) {
+          const loc = translations.locations[index];
+          marker.setPopupContent(`
+            <div style="padding: 8px; max-width: 200px;">
+              <h3 style="margin: 0 0 8px 0; color: ${currentColors.primary}; font-size: 16px; font-weight: bold;">
+                ${loc.name}
+              </h3>
+              <p style="margin: 0; color: #666; font-size: 14px; line-height: 1.4;">
+                ${loc.description}
+              </p>
+            </div>
+          `);
+        }
+      });
     }
     
     // Função auxiliar para traduções
@@ -911,8 +1081,6 @@ const allTranslations = {
       maxZoom: 19
     }).addTo(map);
 
-    const markers = [];
-
     const createCustomIcon = (color) => {
       return L.divIcon({
         className: 'custom-marker',
@@ -929,18 +1097,29 @@ const allTranslations = {
       });
     };
 
+    // Obter traduções iniciais
+    const currentTranslations = allTranslations[currentLang];
+    
     locations.forEach((location, index) => {
       const marker = L.marker([location.lat, location.lng], {
         icon: createCustomIcon(currentColors.primary)
       }).addTo(map);
 
+      // Usar tradução se disponível
+      const translatedName = currentTranslations.locations && currentTranslations.locations[index] 
+        ? currentTranslations.locations[index].name 
+        : location.name;
+      const translatedDescription = currentTranslations.locations && currentTranslations.locations[index]
+        ? currentTranslations.locations[index].description
+        : location.description;
+
       marker.bindPopup(`
         <div style="padding: 8px; max-width: 200px;">
           <h3 style="margin: 0 0 8px 0; color: ${currentColors.primary}; font-size: 16px; font-weight: bold;">
-            ${location.name}
+            ${translatedName}
           </h3>
           <p style="margin: 0; color: #666; font-size: 14px; line-height: 1.4;">
-            ${location.description}
+            ${translatedDescription}
           </p>
         </div>
       `);
