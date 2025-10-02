@@ -17,122 +17,223 @@ import { ChevronLeft, ChevronRight } from "lucide-astro";
       </div>
     </div>
     
-    <div class="carousel-wrapper-outer relative">
-      <div class="carousel-container overflow-hidden relative z-10 pb-8">
-        <div class="carousel-track flex transition-transform duration-500 ease-in-out pb-4 items-stretch" id="testimonials-track">
-          
-          <div class="testimonial-card testimonial-reveal flex-none">
-            <div class="testimonial-content p-4 bg-white rounded-lg shadow-md hover:shadow-lg flex flex-col">
-              <p class="text-gray-700 text-lg mb-4 flex-grow" data-translate="testimonials.ana.quote">"A BNI Tour superou todas as nossas expectativas! Cada detalhe da viagem foi planejado com maestria para a nossa família. Uma experiência incrível do início ao fim!"</p>
-              <div class="flex flex-col 2xl:flex-row 2xl:items-center 2xl:justify-between gap-3 mt-auto">
-                <div class="flex-shrink-0">
-                  <p class="font-semibold text-gray-900" data-translate="testimonials.ana.name">Ana Paula S.</p>
-                  <p class="text-sm text-gray-500" data-translate="testimonials.ana.role">Cliente Satisfeita</p>
-                </div>
-                
-                <a href='https://www.tripadvisor.com.br/Attraction_Review-g303444-d17724059-Reviews-Bni_Tour-Foz_do_Iguacu_State_of_Parana.html' class="btn-nav header-btn 2xl:self-auto self-start">
-                  <span class="button-content-initial-text text-blue" data-translate="testimonials.btn.tripadvisor">Ver no Tripadvisor</span>
-                  <div class="btn-cta-icon-wrapper button-content-initial-icon bg-white">
-                    <ChevronRight size={20} class="text-blue" />
-                  </div>
-                </a>
-              </div>
+ <div class="carousel-wrapper-outer relative">
+  <div class="carousel-container overflow-hidden relative z-10 pb-8">
+    <div class="carousel-track flex transition-transform duration-500 ease-in-out pb-4 items-stretch" id="testimonials-track">
+      
+      <!-- 1. Nicolas Leal -->
+      <div class="testimonial-card testimonial-reveal flex-none">
+        <div class="testimonial-content p-4 bg-white rounded-lg shadow-md hover:shadow-lg flex flex-col">
+          <p class="text-gray-700 text-lg mb-4 flex-grow" data-translate="testimonials.nicolas.quote">"Fez um City tour - Ciudad del Este (Paraguai) com compras, guiado por Luiz. Experiência super agradável, guia atencioso, disponível e prestativo, com um roteiro bem feito e muitas curiosidades históricas. Carro confortável, com ar-condicionado e água. Super recomenda!"</p>
+          <div class="flex flex-col 2xl:flex-row 2xl:items-center 2xl:justify-between gap-3 mt-auto">
+            <div class="flex-shrink-0">
+              <p class="font-semibold text-gray-900" data-translate="testimonials.nicolas.name">Nicolas Leal</p>
+              <p class="text-sm text-gray-500" data-translate="testimonials.nicolas.role">Cliente Satisfeito</p>
             </div>
-          </div>
-
-          <div class="testimonial-card testimonial-reveal flex-none">
-            <div class="testimonial-content p-4 bg-white rounded-lg shadow-md hover:shadow-lg flex flex-col">
-              <p class="text-gray-700 text-lg mb-4 flex-grow" data-translate="testimonials.joao.quote">"Nunca imaginei que uma viagem pudesse ser tão tranquila e personalizada. Os roteiros da BNI Tour nos permitiram aproveitar cada momento sem preocupações. Altamente recomendado!"</p>
-              <div class="flex flex-col 2xl:flex-row 2xl:items-center 2xl:justify-between gap-3 mt-auto">
-                <div class="flex-shrink-0">
-                  <p class="font-semibold text-gray-900" data-translate="testimonials.joao.name">João M.</p>
-                  <p class="text-sm text-gray-500" data-translate="testimonials.joao.role">Aventureiro de plantão</p>
-                </div>
-                <a href='https://www.google.com/travel' class="btn-nav header-btn 2xl:self-auto self-start">
-                  <span class="button-content-initial-text text-blue" data-translate="testimonials.btn.google">Avaliar no Google</span>
-                  <div class="btn-cta-icon-wrapper button-content-initial-icon bg-white">
-                    <ChevronRight size={20} class="text-blue" />
-                  </div>
-                </a>
+            <a href='https://www.tripadvisor.com.br/Attraction_Review-g303444-d17724059-Reviews-Bni_Tour-Foz_do_Iguacu_State_of_Parana.html' class="btn-nav header-btn 2xl:self-auto self-start">
+              <span class="button-content-initial-text text-blue" data-translate="testimonials.btn.tripadvisor">Ver no Tripadvisor</span>
+              <div class="btn-cta-icon-wrapper button-content-initial-icon bg-white">
+                <ChevronRight size={20} class="text-blue" />
               </div>
-            </div>
+            </a>
           </div>
-
-          <div class="testimonial-card testimonial-reveal flex-none">
-            <div class="testimonial-content p-4 bg-white rounded-lg shadow-md hover:shadow-lg flex flex-col">
-              <p class="text-gray-700 text-lg mb-4 flex-grow" data-translate="testimonials.mariana.quote">"Simplesmente perfeito! Desde o atendimento inicial até o retorno, a equipe da BNI Tour foi impecável. Minha família e eu tivemos uma experiência inesquecível em Foz do Iguaçu."</p>
-              <div class="flex flex-col 2xl:flex-row 2xl:items-center 2xl:justify-between gap-3 mt-auto">
-                <div class="flex-shrink-0">
-                  <p class="font-semibold text-gray-900" data-translate="testimonials.mariana.name">Mariana P.</p>
-                  <p class="text-sm text-gray-500" data-translate="testimonials.mariana.role">Amante de viagens</p>
-                </div>
-                <a href='https://www.tripadvisor.com.br/Attraction_Review-g303444-d17724059-Reviews-Bni_Tour-Foz_do_Iguacu_State_of_Parana.html' class="btn-nav header-btn 2xl:self-auto self-start">
-                  <span class="button-content-initial-text text-blue" data-translate="testimonials.btn.tripadvisor">Ver no Tripadvisor</span>
-                  <div class="btn-cta-icon-wrapper button-content-initial-icon bg-white">
-                    <ChevronRight size={20} class="text-blue" />
-                  </div>
-                </a>
-              </div>
-            </div>
-          </div>
-
-          <div class="testimonial-card testimonial-reveal flex-none">
-            <div class="testimonial-content p-4 bg-white rounded-lg shadow-md hover:shadow-lg flex flex-col">
-              <p class="text-gray-700 text-lg mb-4 flex-grow" data-translate="testimonials.carlos.quote">"Viajar com a BNI Tour é garantia de tranquilidade. Roteiros excelentes e motoristas muito atenciosos. Recomendo para quem busca uma viagem sem preocupações!"</p>
-              <div class="flex flex-col 2xl:flex-row 2xl:items-center 2xl:justify-between gap-3 mt-auto">
-                <div class="flex-shrink-0">
-                  <p class="font-semibold text-gray-900" data-translate="testimonials.carlos.name">Carlos R.</p>
-                  <p class="text-sm text-gray-500" data-translate="testimonials.carlos.role">Viajante frequente</p>
-                </div>                <a href='https://www.google.com/travel' class="btn-nav header-btn 2xl:self-auto self-start">
-                  <span class="button-content-initial-text text-blue" data-translate="testimonials.btn.google">Avaliar no Google</span>
-                  <div class="btn-cta-icon-wrapper button-content-initial-icon bg-white">
-                    <ChevronRight size={20} class="text-blue" />
-                  </div>
-                </a>
-              </div>
-            </div>
-          </div>
-
-          <div class="testimonial-card testimonial-reveal flex-none">
-            <div class="testimonial-content p-4 bg-white rounded-lg shadow-md hover:shadow-lg flex flex-col">
-              <p class="text-gray-700 text-lg mb-4 flex-grow" data-translate="testimonials.fernanda.quote">"Experiência incrível na tríplice fronteira! A BNI Tour nos proporcionou momentos inesquecíveis, com todo o conforto e segurança. Mal podemos esperar para a próxima!"</p>
-              <div class="flex flex-col 2xl:flex-row 2xl:items-center 2xl:justify-between gap-3 mt-auto">
-                <div class="flex-shrink-0">
-                  <p class="font-semibold text-gray-900" data-translate="testimonials.fernanda.name">Fernanda L.</p>
-                  <p class="text-sm text-gray-500" data-translate="testimonials.fernanda.role">Exploradora</p>
-                </div>
-                <a href='https://www.tripadvisor.com.br/Attraction_Review-g303444-d17724059-Reviews-Bni_Tour-Foz_do_Iguacu_State_of_Parana.html' class="btn-nav header-btn 2xl:self-auto self-start">
-                  <span class="button-content-initial-text text-blue" data-translate="testimonials.btn.tripadvisor">Ver no Tripadvisor</span>
-                  <div class="btn-cta-icon-wrapper button-content-initial-icon bg-white">
-                    <ChevronRight size={20} class="text-blue" />
-                  </div>
-                </a>
-              </div>
-            </div>
-          </div>
-
-          <div class="testimonial-card testimonial-reveal flex-none">
-            <div class="testimonial-content p-4 bg-white rounded-lg shadow-md hover:shadow-lg flex flex-col">
-              <p class="text-gray-700 text-lg mb-4 flex-grow" data-translate="testimonials.pedro.quote">"Atendimento personalizado e guias muito bem informados. Minha viagem para as Cataratas foi perfeita, graças ao planejamento cuidadoso da BNI Tour."</p>
-              <div class="flex flex-col 2xl:flex-row 2xl:items-center 2xl:justify-between gap-3 mt-auto">
-                <div class="flex-shrink-0">
-                  <p class="font-semibold text-gray-900" data-translate="testimonials.pedro.name">Pedro H.</p>
-                  <p class="text-sm text-gray-500" data-translate="testimonials.pedro.role">Amante da natureza</p>
-                </div>
-                {/* Botão com a classe btn-nav e estilo */}
-                <a href='https://www.google.com/travel' class="btn-nav header-btn 2xl:self-auto self-start">
-                  <span class="button-content-initial-text text-blue" data-translate="testimonials.btn.google">Avaliar no Google</span>
-                  <div class="btn-cta-icon-wrapper button-content-initial-icon bg-white">
-                    <ChevronRight size={20} class="text-blue" />
-                  </div>
-                </a>
-              </div>
-            </div>
-          </div>
-          
         </div>
       </div>
+
+      <!-- 2. Lara B. -->
+      <div class="testimonial-card testimonial-reveal flex-none">
+        <div class="testimonial-content p-4 bg-white rounded-lg shadow-md hover:shadow-lg flex flex-col">
+          <p class="text-gray-700 text-lg mb-4 flex-grow" data-translate="testimonials.lara.quote">"Os passeios foram feitos com o casal Luiz e Natacha. Destaca o transporte pontual e confortável, a atuação como guias atenciosos, simpáticos e bem preparados, com profundo conhecimento dos pontos turísticos."</p>
+          <div class="flex flex-col 2xl:flex-row 2xl:items-center 2xl:justify-between gap-3 mt-auto">
+            <div class="flex-shrink-0">
+              <p class="font-semibold text-gray-900" data-translate="testimonials.lara.name">Lara B.</p>
+              <p class="text-sm text-gray-500" data-translate="testimonials.lara.role">Viajante</p>
+            </div>
+            <a href='https://www.google.com/travel' class="btn-nav header-btn 2xl:self-auto self-start">
+              <span class="button-content-initial-text text-blue" data-translate="testimonials.btn.google">Avaliar no Google</span>
+              <div class="btn-cta-icon-wrapper button-content-initial-icon bg-white">
+                <ChevronRight size={20} class="text-blue" />
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- 3. Antônio Carlos L. -->
+      <div class="testimonial-card testimonial-reveal flex-none">
+        <div class="testimonial-content p-4 bg-white rounded-lg shadow-md hover:shadow-lg flex flex-col">
+          <p class="text-gray-700 text-lg mb-4 flex-grow" data-translate="testimonials.antonio.quote">"Viagem memorável de 5 dias para Foz do Iguaçu, Argentina e Paraguai. O guia Luiz foi peça chave, profissional extremamente competente, com vasto conhecimento (história, geologia, antropologia), pontual, bem-humorado, direção segura e veículo confortável e limpo."</p>
+          <div class="flex flex-col 2xl:flex-row 2xl:items-center 2xl:justify-between gap-3 mt-auto">
+            <div class="flex-shrink-0">
+              <p class="font-semibold text-gray-900" data-translate="testimonials.antonio.name">Antônio Carlos L.</p>
+              <p class="text-sm text-gray-500" data-translate="testimonials.antonio.role">Viajante</p>
+            </div>
+            <a href='https://www.tripadvisor.com.br/Attraction_Review-g303444-d17724059-Reviews-Bni_Tour-Foz_do_Iguacu_State_of_Parana.html' class="btn-nav header-btn 2xl:self-auto self-start">
+              <span class="button-content-initial-text text-blue" data-translate="testimonials.btn.tripadvisor">Ver no Tripadvisor</span>
+              <div class="btn-cta-icon-wrapper button-content-initial-icon bg-white">
+                <ChevronRight size={20} class="text-blue" />
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- 4. Sandro B. (primeira aparição) -->
+      <div class="testimonial-card testimonial-reveal flex-none">
+        <div class="testimonial-content p-4 bg-white rounded-lg shadow-md hover:shadow-lg flex flex-col">
+          <p class="text-gray-700 text-lg mb-4 flex-grow" data-translate="testimonials.sandro.quote">"Casal nota 1.000! Os passeios foram incríveis, com as informações passadas pelo casal Luiz e Natacha. Um aprendizado sobre as culturas regionais que se tornou surreal. O casal é natural de Foz."</p>
+          <div class="flex flex-col 2xl:flex-row 2xl:items-center 2xl:justify-between gap-3 mt-auto">
+            <div class="flex-shrink-0">
+              <p class="font-semibold text-gray-900" data-translate="testimonials.sandro.name">Sandro B.</p>
+              <p class="text-sm text-gray-500" data-translate="testimonials.sandro.role">Cliente Satisfeito</p>
+            </div>
+            <a href='https://www.tripadvisor.com.br/Attraction_Review-g303444-d17724059-Reviews-Bni_Tour-Foz_do_Iguacu_State_of_Parana.html' class="btn-nav header-btn 2xl:self-auto self-start">
+              <span class="button-content-initial-text text-blue" data-translate="testimonials.btn.tripadvisor">Ver no Tripadvisor</span>
+              <div class="btn-cta-icon-wrapper button-content-initial-icon bg-white">
+                <ChevronRight size={20} class="text-blue" />
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- 5. Bruno C. -->
+      <div class="testimonial-card testimonial-reveal flex-none">
+        <div class="testimonial-content p-4 bg-white rounded-lg shadow-md hover:shadow-lg flex flex-col">
+          <p class="text-gray-700 text-lg mb-4 flex-grow" data-translate="testimonials.bruno.quote">"Excelência no atendimento. Saí de Foz do Iguaçu com o sentimento de ter feito um amigo, não apenas contratado um guia. Luiz Boni demonstrou carinho, zelo e comprometimento."</p>
+          <div class="flex flex-col 2xl:flex-row 2xl:items-center 2xl:justify-between gap-3 mt-auto">
+            <div class="flex-shrink-0">
+              <p class="font-semibold text-gray-900" data-translate="testimonials.bruno.name">Bruno C.</p>
+              <p class="text-sm text-gray-500" data-translate="testimonials.bruno.role">Cliente Satisfeito</p>
+            </div>
+            <a href='https://www.google.com/travel' class="btn-nav header-btn 2xl:self-auto self-start">
+              <span class="button-content-initial-text text-blue" data-translate="testimonials.btn.google">Avaliar no Google</span>
+              <div class="btn-cta-icon-wrapper button-content-initial-icon bg-white">
+                <ChevronRight size={20} class="text-blue" />
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- 6. Albano R. -->
+      <div class="testimonial-card testimonial-reveal flex-none">
+        <div class="testimonial-content p-4 bg-white rounded-lg shadow-md hover:shadow-lg flex flex-col">
+          <p class="text-gray-700 text-lg mb-4 flex-grow" data-translate="testimonials.albano.quote">"Experiência inesquecível em Foz do Iguaçu. Luiz foi discreto, educado, prestativo e pontual. Recomendações e dicas sobre refeições, passeios e roteiros foram muito bem elaboradas."</p>
+          <div class="flex flex-col 2xl:flex-row 2xl:items-center 2xl:justify-between gap-3 mt-auto">
+            <div class="flex-shrink-0">
+              <p class="font-semibold text-gray-900" data-translate="testimonials.albano.name">Albano R.</p>
+              <p class="text-sm text-gray-500" data-translate="testimonials.albano.role">Viajante</p>
+            </div>
+            <a href='https://www.tripadvisor.com.br/Attraction_Review-g303444-d17724059-Reviews-Bni_Tour-Foz_do_Iguacu_State_of_Parana.html' class="btn-nav header-btn 2xl:self-auto self-start">
+              <span class="button-content-initial-text text-blue" data-translate="testimonials.btn.tripadvisor">Ver no Tripadvisor</span>
+              <div class="btn-cta-icon-wrapper button-content-initial-icon bg-white">
+                <ChevronRight size={20} class="text-blue" />
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- 7. Ana Claudia M. -->
+      <div class="testimonial-card testimonial-reveal flex-none">
+        <div class="testimonial-content p-4 bg-white rounded-lg shadow-md hover:shadow-lg flex flex-col">
+          <p class="text-gray-700 text-lg mb-4 flex-grow" data-translate="testimonials.anaclaudia.quote">"Viver a experiência em Foz do Iguaçu na companhia da Natacha foi inesquecível e muito agradável. Atenciosa e preocupada com o bem-estar, demonstrando muito conhecimento em cada ponto de visitação."</p>
+          <div class="flex flex-col 2xl:flex-row 2xl:items-center 2xl:justify-between gap-3 mt-auto">
+            <div class="flex-shrink-0">
+              <p class="font-semibold text-gray-900" data-translate="testimonials.anaclaudia.name">Ana Claudia M.</p>
+              <p class="text-sm text-gray-500" data-translate="testimonials.anaclaudia.role">Cliente Satisfeita</p>
+            </div>
+            <a href='https://www.google.com/travel' class="btn-nav header-btn 2xl:self-auto self-start">
+              <span class="button-content-initial-text text-blue" data-translate="testimonials.btn.google">Avaliar no Google</span>
+              <div class="btn-cta-icon-wrapper button-content-initial-icon bg-white">
+                <ChevronRight size={20} class="text-blue" />
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- 8. Luiz C. -->
+      <div class="testimonial-card testimonial-reveal flex-none">
+        <div class="testimonial-content p-4 bg-white rounded-lg shadow-md hover:shadow-lg flex flex-col">
+          <p class="text-gray-700 text-lg mb-4 flex-grow" data-translate="testimonials.luizc.quote">"Guia excepcional! Experiência incrível, simpático e muito bem informado. Luiz Boni ofereceu um tour com muita informação, indicações precisas em um veículo confortável com água mineral. O melhor guia das três fronteiras."</p>
+          <div class="flex flex-col 2xl:flex-row 2xl:items-center 2xl:justify-between gap-3 mt-auto">
+            <div class="flex-shrink-0">
+              <p class="font-semibold text-gray-900" data-translate="testimonials.luizc.name">Luiz C.</p>
+              <p class="text-sm text-gray-500" data-translate="testimonials.luizc.role">Viajante</p>
+            </div>
+            <a href='https://www.tripadvisor.com.br/Attraction_Review-g303444-d17724059-Reviews-Bni_Tour-Foz_do_Iguacu_State_of_Parana.html' class="btn-nav header-btn 2xl:self-auto self-start">
+              <span class="button-content-initial-text text-blue" data-translate="testimonials.btn.tripadvisor">Ver no Tripadvisor</span>
+              <div class="btn-cta-icon-wrapper button-content-initial-icon bg-white">
+                <ChevronRight size={20} class="text-blue" />
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- 9. Amzar A. -->
+      <div class="testimonial-card testimonial-reveal flex-none">
+        <div class="testimonial-content p-4 bg-white rounded-lg shadow-md hover:shadow-lg flex flex-col">
+          <p class="text-gray-700 text-lg mb-4 flex-grow" data-translate="testimonials.amzar.quote">"Viagem reservada com Natacha. Planejamento via WhatsApp com clareza e transparência de custos. Natacha foi pontual e, o mais importante, muito familiarizada com a história e os fatos. Uma grande experiência!"</p>
+          <div class="flex flex-col 2xl:flex-row 2xl:items-center 2xl:justify-between gap-3 mt-auto">
+            <div class="flex-shrink-0">
+              <p class="font-semibold text-gray-900" data-translate="testimonials.amzar.name">Amzar A.</p>
+              <p class="text-sm text-gray-500" data-translate="testimonials.amzar.role">Cliente Satisfeito</p>
+            </div>
+            <a href='https://www.google.com/travel' class="btn-nav header-btn 2xl:self-auto self-start">
+              <span class="button-content-initial-text text-blue" data-translate="testimonials.btn.google">Avaliar no Google</span>
+              <div class="btn-cta-icon-wrapper button-content-initial-icon bg-white">
+                <ChevronRight size={20} class="text-blue" />
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- 10. Marlon S. -->
+      <div class="testimonial-card testimonial-reveal flex-none">
+        <div class="testimonial-content p-4 bg-white rounded-lg shadow-md hover:shadow-lg flex flex-col">
+          <p class="text-gray-700 text-lg mb-4 flex-grow" data-translate="testimonials.marlon.quote">"Excelentemente bem atendidos de forma profissional e acolhedora. Nosso filho ficou contente com o carinho e atenção. Recomendo absolutamente os serviços: traslado, passeios, cordialidade, pontualidade e sugestões assertivas."</p>
+          <div class="flex flex-col 2xl:flex-row 2xl:items-center 2xl:justify-between gap-3 mt-auto">
+            <div class="flex-shrink-0">
+              <p class="font-semibold text-gray-900" data-translate="testimonials.marlon.name">Marlon S.</p>
+              <p class="text-sm text-gray-500" data-translate="testimonials.marlon.role">Cliente Satisfeito</p>
+            </div>
+            <a href='https://www.tripadvisor.com.br/Attraction_Review-g303444-d17724059-Reviews-Bni_Tour-Foz_do_Iguacu_State_of_Parana.html' class="btn-nav header-btn 2xl:self-auto self-start">
+              <span class="button-content-initial-text text-blue" data-translate="testimonials.btn.tripadvisor">Ver no Tripadvisor</span>
+              <div class="btn-cta-icon-wrapper button-content-initial-icon bg-white">
+                <ChevronRight size={20} class="text-blue" />
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- 11. Ana Paula T. -->
+      <div class="testimonial-card testimonial-reveal flex-none">
+        <div class="testimonial-content p-4 bg-white rounded-lg shadow-md hover:shadow-lg flex flex-col">
+          <p class="text-gray-700 text-lg mb-4 flex-grow" data-translate="testimonials.anapaula.quote">"Tive a sorte de contar com a expertise de Luiz para otimizar os passeios. Tour completo pelas Cataratas, helicóptero e macuco safari. Luiz foi solicito, cordial e ajudou a registrar os passeios com fotos e vídeos."</p>
+          <div class="flex flex-col 2xl:flex-row 2xl:items-center 2xl:justify-between gap-3 mt-auto">
+            <div class="flex-shrink-0">
+              <p class="font-semibold text-gray-900" data-translate="testimonials.anapaula.name">Ana Paula T.</p>
+              <p class="text-sm text-gray-500" data-translate="testimonials.anapaula.role">Viajante</p>
+            </div>
+            <a href='https://www.google.com/travel' class="btn-nav header-btn 2xl:self-auto self-start">
+              <span class="button-content-initial-text text-blue" data-translate="testimonials.btn.google">Avaliar no Google</span>
+              <div class="btn-cta-icon-wrapper button-content-initial-icon bg-white">
+                <ChevronRight size={20} class="text-blue" />
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+   
+      
     </div>
+  </div>
+</div>
   </div>
 </section>
 

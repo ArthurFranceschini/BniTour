@@ -408,12 +408,12 @@ const allTranslations = {
 </div>
 
 <section class="hero-section section-reveal relative h-[50vh] md:h-[55vh] lg:h-[60vh] overflow-hidden bg-gray-900">
-  <div class="absolute inset-0 w-full h-full flex items-end justify-center">
+  <div class="absolute inset-0 w-full h-full">
     <img 
       src={pkg.image.src}
       alt={content.title}
-      class="w-full h-auto object-bottom"
-      style="object-position: center bottom;"
+      class="w-full h-full object-cover"
+      style="object-position: center center;"
     />
   </div>
   <div class="absolute inset-0 bg-gradient-to-b from-black/40 via-black/20 to-black/60"></div>
@@ -643,6 +643,17 @@ const allTranslations = {
 
 .hero-section:hover img {
   transform: scale(1.02);
+}
+
+@media (max-width: 768px) {
+  .hero-section {
+    height: 60vh !important;
+  }
+  
+  .hero-section img {
+    object-fit: cover;
+    object-position: center;
+  }
 }
 
   .location-card {
@@ -887,89 +898,92 @@ const allTranslations = {
 
 <script is:inline define:vars={{ locations, mapCenter, currentColors, lang: lang, allTranslations, t, pkgSlug: pkg.slug }}>
   document.addEventListener('DOMContentLoaded', function() {
-    // Detectar idioma da URL
     const urlParams = new URLSearchParams(window.location.search);
     const currentLang = urlParams.get('lang') || 'pt';
     
-    // Variável global para armazenar os markers
     let markers = [];
     
-    // Função para atualizar conteúdo traduzido
+    
     function updateTranslations(newLang) {
       const translations = allTranslations[newLang];
-      if (!translations) return;
+      if (!translations) {
+        console.warn('Traduções não encontradas para:', newLang);
+        return;
+      }
       
-      // Atualizar elementos com data-translate
       document.querySelectorAll('[data-translate]').forEach(element => {
         const key = element.getAttribute('data-translate');
         
-        // Verificar se é uma tradução de location
-        if (key.startsWith('location-name-')) {
+        if (key && key.startsWith('location-name-')) {
           const index = parseInt(key.replace('location-name-', ''));
-          if (translations.locations && translations.locations[index]) {
+          if (translations.locations && translations.locations[index] && translations.locations[index].name) {
             element.textContent = translations.locations[index].name;
           }
           return;
         }
         
-        if (key.startsWith('location-description-')) {
+        if (key && key.startsWith('location-description-')) {
           const index = parseInt(key.replace('location-description-', ''));
-          if (translations.locations && translations.locations[index]) {
+          if (translations.locations && translations.locations[index] && translations.locations[index].description) {
             element.textContent = translations.locations[index].description;
           }
           return;
         }
         
         switch(key) {
-          case 'title':
-            element.textContent = translations.content.title;
-            break;
-          case 'description':
-            element.textContent = translations.content.description;
-            break;
-          case 'fullDescription':
-            element.textContent = translations.content.fullDescription;
-            break;
-          case 'duration':
-            element.textContent = translations.content.duration;
-            break;
-          case 'mapTitle':
-            element.textContent = translations.mapTitle;
-            break;
-          case 'mapSubtitle':
-            element.textContent = translations.mapSubtitle;
-            break;
-          case 'contactInfo':
-            element.textContent = translations.contactInfo;
-            break;
-          case 'sectionTitle':
-            element.textContent = translations.sectionTitle;
-            break;
-          case 'sectionSubtitle':
-            element.textContent = translations.sectionSubtitle;
-            break;
-          case 'packages.backToPackages':
-            element.textContent = getTranslation(newLang, 'packages.backToPackages');
-            break;
-          case 'packages.fullDescription':
-            element.textContent = getTranslation(newLang, 'packages.fullDescription');
-            break;
-          case 'packages.included':
-            element.textContent = getTranslation(newLang, 'packages.included');
-            break;
-          case 'packages.duration':
-            element.textContent = getTranslation(newLang, 'packages.duration');
-            break;
-          case 'packages.location':
-            element.textContent = getTranslation(newLang, 'packages.location');
-            break;
-          case 'packages.price':
-            element.textContent = getTranslation(newLang, 'packages.price');
-            break;
-          case 'packages.bookNow':
-            element.textContent = getTranslation(newLang, 'packages.bookNow');
-            break;
-        }
+  case 'title':
+    element.textContent = translations.content.title;
+    break;
+  case 'description':
+    element.textContent = translations.content.description;
+    break;
+  case 'fullDescription':
+    element.textContent = translations.content.fullDescription;
+    break;
+  case 'duration':
+    element.textContent = translations.content.duration;
+    break;
+  case 'mapTitle':
+    element.textContent = translations.mapTitle;
+    break;
+  case 'mapSubtitle':
+    element.textContent = translations.mapSubtitle;
+    break;
+  case 'contactInfo':
+    element.textContent = translations.contactInfo;
+    break;
+  case 'sectionTitle':
+    element.textContent = translations.sectionTitle;
+    break;
+  case 'sectionSubtitle':
+    element.textContent = translations.sectionSubtitle;
+    break;
+  case 'packages.backToPackages':
+    element.textContent = getTranslation(newLang, 'packages.backToPackages');
+    break;
+  case 'packages.fullDescription':
+    element.textContent = getTranslation(newLang, 'packages.fullDescription');
+    break;
+  case 'packages.included':
+    element.textContent = getTranslation(newLang, 'packages.included');
+    break;
+  case 'packages.duration':
+    element.textContent = getTranslation(newLang, 'packages.duration');
+    break;
+  case 'packages.location':
+    element.textContent = getTranslation(newLang, 'packages.location');
+    break;
+  case 'packages.price':
+    element.textContent = getTranslation(newLang, 'packages.price');
+    break;
+  case 'packages.bookNow':
+    element.textContent = getTranslation(newLang, 'packages.bookNow');
+    break;
+  default:
+    if (translations.content && translations.content[key]) {
+      element.textContent = translations.content[key];
+    }
+}
       });
       
       // Atualizar popups do mapa

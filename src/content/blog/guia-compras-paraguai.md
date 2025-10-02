@@ -15,5 +15,5 @@ Planejar suas compras em Ciudad del Este, no Paraguai, é a chave para uma exper
 
 A melhor época depende do que você busca. Quer aproveitar as super promoções? Fique de olho na **Black Friday** (novembro) e na **Crazy Week** (maio) – mas prepare-se para as multidões! Se prefere tranquilidade, anote as dicas:
 
- **Evite Finais de Semana e Feriados:** São dias de grande movimento. Opte por dias de semana para uma experiência mais calma.
- **Acorde Cedo:** Muitas lojas abrem por volta das 5h-7h. Chegar antes das 9h-10h te ajuda a escapar do pico de visitantes. Lembre-se que o comércio de rua geralmente fecha por volta das 15h.
+**Evite Finais de Semana e Feriados:** São dias de grande movimento. Opte por dias de semana para uma experiência mais calma.
+**Acorde Cedo:** Muitas lojas abrem por volta das 5h-7h. Chegar antes das 9h-10h te ajuda a escapar do pico de visitantes. Lembre-se que o comércio de rua geralmente fecha por volta das 15h.
